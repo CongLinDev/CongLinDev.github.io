@@ -1086,7 +1086,7 @@ pre .javascript .function {
   display: block;
 }
 .header {
-  background: url("../images/ad.jpg");
+  background: transparent;
 }
 .header-inner {
   position: relative;
@@ -1946,7 +1946,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4424e7;
+  background: #57ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
