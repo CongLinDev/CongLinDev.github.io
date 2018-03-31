@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="利用C++链表知识实现简单的列车查询系统。 设计目的综合运用链表知识解决实际问题的能力。   设计内容设计火车售票处的计算机系统，可以为客户提供下列各项服务：  查询列车信息：根据旅客提出的起始站和终点站名，或者列车车次，输出下列信息：列车车次、发车时刻、到达时刻、运行时间，以及每个途经站点的站名、到达时间、发车时间、运行里程等信息； 录入列车信息； 修改列车信息； 删除列车信息； 浏览所有列车信">
+<meta name="keywords" content="C++,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表实现简单列车查询系统">
+<meta property="og:url" content="http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/index.html">
+<meta property="og:site_name" content="CongLin&#39;s Blog">
+<meta property="og:description" content="利用C++链表知识实现简单的列车查询系统。 设计目的综合运用链表知识解决实际问题的能力。   设计内容设计火车售票处的计算机系统，可以为客户提供下列各项服务：  查询列车信息：根据旅客提出的起始站和终点站名，或者列车车次，输出下列信息：列车车次、发车时刻、到达时刻、运行时间，以及每个途经站点的站名、到达时间、发车时间、运行里程等信息； 录入列车信息； 修改列车信息； 删除列车信息； 浏览所有列车信">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-31T12:45:52.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="链表实现简单列车查询系统">
+<meta name="twitter:description" content="利用C++链表知识实现简单的列车查询系统。 设计目的综合运用链表知识解决实际问题的能力。   设计内容设计火车售票处的计算机系统，可以为客户提供下列各项服务：  查询列车信息：根据旅客提出的起始站和终点站名，或者列车车次，输出下列信息：列车车次、发车时刻、到达时刻、运行时间，以及每个途经站点的站名、到达时间、发车时间、运行里程等信息； 录入列车信息； 修改列车信息； 删除列车信息； 浏览所有列车信">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/"/>
+
+
+
+
+
+  <title>链表实现简单列车查询系统 | CongLin's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6f823d2810f7a1836c701bfbeb347726";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/CongLinDev"><img style
+    ="position: absolute; top: 0; right: 0; border: 0;" 
+     src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CongLin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敢于直面惨淡的人生。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">链表实现简单列车查询系统</h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T20:23:00+08:00">
+                2018-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/31/链表实现简单列车查询系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/31/链表实现简单列车查询系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>利用C++链表知识实现简单的列车查询系统。</p>
+<h2 id="设计目的"><a href="#设计目的" class="headerlink" title="设计目的"></a><strong>设计目的</strong></h2><p>综合运用链表知识解决实际问题的能力。 </p>
+<hr>
+<h2 id="设计内容"><a href="#设计内容" class="headerlink" title="设计内容"></a><strong>设计内容</strong></h2><p>设计火车售票处的计算机系统，可以为客户提供下列各项服务：</p>
+<ol>
+<li>查询列车信息：根据旅客提出的起始站和终点站名，或者列车车次，输<br>出下列信息：列车车次、发车时刻、到达时刻、运行时间，以及每个途经站点的<br>站名、到达时间、发车时间、运行里程等信息；</li>
+<li>录入列车信息；</li>
+<li>修改列车信息；</li>
+<li>删除列车信息；</li>
+<li>浏览所有列车信息；</li>
+<li>其它必要功能。</li>
+</ol>
+<hr>
+<h2 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a><strong>设计要求</strong></h2><ol>
+<li>要求采用链表方式存储所有列车车次基本信息（如车次名称等），对于其中的<br>每个列车车次，也采用链表方式存储各个途经站点信息；</li>
+<li>能够支持查询、修改、增加、删除等信息；</li>
+<li>如有时间，建议提供保存和打开功能，用户可以把所有信息保存到硬盘文件<br>上，也可以从硬盘文件上读取信息；</li>
+<li>界面友好。</li>
+</ol>
+<hr>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h2><h3 id="station-h"><a href="#station-h" class="headerlink" title="station.h"></a><em>station.h</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::ostream;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Station</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">		<span class="comment">//有参构造函数</span></span><br><span class="line">		Station(<span class="built_in">string</span> _stationName = <span class="string">"未命名站点"</span>, <span class="built_in">string</span> _arrivalTime = <span class="string">""</span>, <span class="built_in">string</span> _leaveTime = <span class="string">""</span>)&#123;</span><br><span class="line">			stationName = _stationName;</span><br><span class="line">			arrivalTime = _arrivalTime;</span><br><span class="line">			leaveTime = _leaveTime;</span><br><span class="line">			pNextStation = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//复制构造函数</span></span><br><span class="line">		Station(Station &amp;aStation)&#123;</span><br><span class="line">			<span class="keyword">this</span>-&gt;stationName = aStation.stationName;</span><br><span class="line">			<span class="keyword">this</span>-&gt;arrivalTime = aStation.arrivalTime;</span><br><span class="line">			<span class="keyword">this</span>-&gt;leaveTime = aStation.leaveTime;</span><br><span class="line">			<span class="keyword">this</span>-&gt;pNextStation = aStation.pNextStation;</span><br><span class="line"> 		&#125;</span><br><span class="line"></span><br><span class="line"> 		<span class="comment">//析构函数</span></span><br><span class="line">		~Station()&#123;&#125;    </span><br><span class="line"></span><br><span class="line">		<span class="comment">//重载输出运算符</span></span><br><span class="line">		<span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream  &amp;os, <span class="keyword">const</span> Station &amp;aStation)&#123;</span><br><span class="line">			os &lt;&lt; aStation.stationName &lt;&lt; <span class="string">'\t'</span> </span><br><span class="line">				&lt;&lt; aStation.arrivalTime &lt;&lt; <span class="string">'\t'</span> </span><br><span class="line">				&lt;&lt; aStation.leaveTime;</span><br><span class="line"> 			<span class="keyword">return</span> os;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">string</span> stationName;				<span class="comment">//站名</span></span><br><span class="line">		<span class="built_in">string</span> arrivalTime;				<span class="comment">//到达时间</span></span><br><span class="line">		<span class="built_in">string</span> leaveTime;				<span class="comment">//出发时间</span></span><br><span class="line">		Station* pNextStation;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="train-h"><a href="#train-h" class="headerlink" title="train.h"></a><em>train.h</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"station.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Train</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">        <span class="comment">//构造函数</span></span><br><span class="line">		Train(<span class="built_in">string</span> _trainName = <span class="string">"未命名列车"</span>)&#123;</span><br><span class="line">            trainName = _trainName;</span><br><span class="line">            stationNum = <span class="number">0</span>;</span><br><span class="line">			headStation = <span class="literal">NULL</span>;</span><br><span class="line">			pNextTrain = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//析构函数</span></span><br><span class="line">		~Train();</span><br><span class="line">		<span class="comment">//添加站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">insertStation</span><span class="params">(<span class="keyword">int</span> locate, <span class="built_in">string</span> _stationName = <span class="string">"未命名站点"</span>, <span class="built_in">string</span> _arrivalTime = <span class="string">"未定义时间"</span>, <span class="built_in">string</span> _leaveTime = <span class="string">"未定义时间"</span>)</span></span>;</span><br><span class="line">        <span class="comment">//键盘添加站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">keyboardInsertStation</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//删除站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">deleteStation</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//改变站点信息</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">changeStation</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">//根据站点名称查询站点信息</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">searchStationForName</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">//打印该列车经过所有站点信息	</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">showAllStation</span><span class="params">()</span></span>;     </span><br><span class="line">		<span class="comment">//求列车经过站点个数           </span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span></span>; </span><br><span class="line"></span><br><span class="line">		<span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream  &amp;os, <span class="keyword">const</span> Train &amp;aTrain);</span><br><span class="line"></span><br><span class="line">		<span class="built_in">string</span> trainName;                       <span class="comment">//列车车次</span></span><br><span class="line">        <span class="keyword">int</span> stationNum;                         <span class="comment">//站点个数</span></span><br><span class="line">		Station* headStation;                     <span class="comment">//头站点</span></span><br><span class="line">		Train* pNextTrain;						<span class="comment">//下一列列车</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="train-cpp"><a href="#train-cpp" class="headerlink" title="train.cpp"></a><em>train.cpp</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"train.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//重载运算符</span></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream  &amp;os, <span class="keyword">const</span> Train &amp;aTrain) &#123;</span><br><span class="line">	Station *p = aTrain.headStation;</span><br><span class="line">	<span class="keyword">while</span> (p) &#123;</span><br><span class="line">		os &lt;&lt; aTrain.trainName &lt;&lt; <span class="string">'\t'</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		p = p-&gt;pNextStation;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求列车站点长度</span></span><br><span class="line"><span class="keyword">int</span> Train::getLength()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>-&gt;stationNum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加站点</span></span><br><span class="line"><span class="keyword">void</span> Train::insertStation(<span class="keyword">int</span> locate, <span class="built_in">string</span> _stationName, <span class="built_in">string</span> _arrivalTime, <span class="built_in">string</span> _leaveTime)&#123;</span><br><span class="line">	<span class="keyword">if</span> (locate &gt; <span class="keyword">this</span>-&gt;stationNum + <span class="number">1</span> || locate &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR:超出行程表范围！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;headStation != <span class="literal">NULL</span> &amp;&amp; locate &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">//new一个新站</span></span><br><span class="line">		Station* aStation = <span class="keyword">new</span> Station(_stationName, _arrivalTime, _leaveTime);</span><br><span class="line">		<span class="comment">//将新站加入列车行程表中</span></span><br><span class="line">		Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">		<span class="keyword">while</span> (locate - <span class="number">2</span>) &#123;</span><br><span class="line">			p = p-&gt;pNextStation;</span><br><span class="line">			locate--;</span><br><span class="line">		&#125;</span><br><span class="line">		aStation-&gt;pNextStation = p-&gt;pNextStation;</span><br><span class="line">		p-&gt;pNextStation = aStation;</span><br><span class="line">		<span class="keyword">this</span>-&gt;stationNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新站成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;headStation != <span class="literal">NULL</span> &amp;&amp; locate == <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="comment">//new一个新站</span></span><br><span class="line">		Station* aStation = <span class="keyword">new</span> Station(_stationName, _arrivalTime, _leaveTime);</span><br><span class="line">		<span class="comment">//将新站加入列车行程表中</span></span><br><span class="line">		Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">		<span class="keyword">this</span>-&gt;headStation = aStation;</span><br><span class="line">		aStation-&gt;pNextStation = p;</span><br><span class="line">		<span class="keyword">this</span>-&gt;stationNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新站成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//new一个新站</span></span><br><span class="line">		Station* aStation = <span class="keyword">new</span> Station(_stationName, _arrivalTime, _leaveTime);</span><br><span class="line">		<span class="comment">//将新站加入列车行程表中</span></span><br><span class="line">		<span class="keyword">this</span>-&gt;headStation = aStation;</span><br><span class="line">		<span class="keyword">this</span>-&gt;stationNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新站成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//键盘增加站点</span></span><br><span class="line"><span class="keyword">void</span> Train::keyboardInsertStation()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> locate;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入插入的位置："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; locate;</span><br><span class="line">	<span class="built_in">string</span> _stationName, _arrivalTime, _leaveTime;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请分别输入 站点名称 到达时间 出发时间 ："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; _stationName &gt;&gt; _arrivalTime &gt;&gt; _leaveTime;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;insertStation(locate, _stationName, _arrivalTime, _leaveTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除站点</span></span><br><span class="line"><span class="keyword">void</span> Train::deleteStation()&#123;</span><br><span class="line">	<span class="keyword">int</span> locate;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入插入的位置："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; locate;</span><br><span class="line">	<span class="keyword">if</span>(locate &gt; <span class="keyword">this</span>-&gt;stationNum || locate &lt; <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR:超出行程表范围！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">		<span class="keyword">while</span>(locate - <span class="number">2</span>)&#123;        <span class="comment">//到达第i-1个结点，p-&gt;pNextStation为欲删除的结点的指针</span></span><br><span class="line">			p = p-&gt;pNextStation;</span><br><span class="line">			locate--;</span><br><span class="line">		&#125;</span><br><span class="line">		Station* q = p-&gt;pNextStation;</span><br><span class="line">		p-&gt;pNextStation = p-&gt;pNextStation-&gt;pNextStation;</span><br><span class="line">		<span class="keyword">delete</span> q;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除站点完成！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//析构函数</span></span><br><span class="line">Train::~Train()&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;headStation == <span class="literal">NULL</span>)&#123;</span><br><span class="line">	&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">		Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">		Station* q;</span><br><span class="line">		<span class="keyword">while</span> (p)&#123;</span><br><span class="line">			q = p;</span><br><span class="line">			p = p-&gt;pNextStation;</span><br><span class="line">			<span class="keyword">delete</span> q;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变站点信息</span></span><br><span class="line"><span class="keyword">void</span> Train::changeStation()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> locate;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入需要改变站台所在的位置："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; locate;</span><br><span class="line">	<span class="keyword">if</span>(locate &gt; <span class="keyword">this</span>-&gt;stationNum || locate &lt; <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR:超出行程表范围！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">		<span class="keyword">while</span>(locate - <span class="number">1</span>)&#123;        </span><br><span class="line">			p = p-&gt;pNextStation;</span><br><span class="line">			locate--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"1. 站点名称\n2. 列车到达时间\n3. 列车出发时间\n"</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"站点已找到，请选择改变的信息："</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> choose;</span><br><span class="line">		<span class="built_in">string</span> changeValue;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; choose;</span><br><span class="line">		<span class="keyword">switch</span>(choose)&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>: </span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入新的站名："</span>;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; changeValue;</span><br><span class="line">				p-&gt;stationName = changeValue;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入新的到达时间："</span>;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; changeValue;</span><br><span class="line">				p-&gt;arrivalTime = changeValue;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入新的出发时间："</span>;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; changeValue;</span><br><span class="line">				p-&gt;leaveTime = changeValue;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"未更改数据，请输入正确的数字！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据站点名称查询站点信息</span></span><br><span class="line"><span class="keyword">void</span> Train::searchStationForName() &#123;</span><br><span class="line">	<span class="built_in">string</span> _stationName;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入要查询的站名："</span> ;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; _stationName;</span><br><span class="line">	Station* p = <span class="keyword">this</span>-&gt;headStation;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"行程表为空！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">1</span>;          <span class="comment">//计数器</span></span><br><span class="line">	<span class="keyword">while</span> (p) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p-&gt;stationName == _stationName) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"该站点为行程表第"</span> &lt;&lt; count &lt;&lt; <span class="string">"个站点\n站点名称为："</span></span><br><span class="line">				&lt;&lt; p-&gt;stationName &lt;&lt; <span class="string">"\n列车到达时间为："</span> </span><br><span class="line">				&lt;&lt; p-&gt;arrivalTime &lt;&lt; <span class="string">"\n列车出发时间为："</span></span><br><span class="line">				&lt;&lt; p-&gt;leaveTime &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">		p = p-&gt;pNextStation;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"未找到该站点的信息！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印该列车所有站点</span></span><br><span class="line"><span class="keyword">void</span> Train::showAllStation() &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">this</span>-&gt;trainName &lt;&lt; <span class="string">" 的行程表为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"列车信息\t站点名称\t到站时间\t出发时间"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *<span class="keyword">this</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="schedule-h"><a href="#schedule-h" class="headerlink" title="schedule.h"></a><em>schedule.h</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"train.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Schedule</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">        <span class="comment">//构造函数</span></span><br><span class="line">		Schedule(<span class="built_in">string</span> _scheduleName = <span class="string">"未命名时刻表"</span>)&#123;</span><br><span class="line">            scheduleName = _scheduleName;</span><br><span class="line">            trainNum = <span class="number">0</span>;</span><br><span class="line">			headTrain = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//析构函数</span></span><br><span class="line">		~Schedule();</span><br><span class="line">        <span class="comment">//添加列车</span></span><br><span class="line">		<span class="function">Train* <span class="title">insertTrain</span><span class="params">(<span class="keyword">int</span> locate, <span class="built_in">string</span> _trainName = <span class="string">"未命名列车"</span>)</span></span>;</span><br><span class="line">		<span class="comment">//键盘添加站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">keyboardInsertTrain</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">//文本添加站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">txtInsertTrain</span><span class="params">(<span class="built_in">string</span> filename)</span></span>;</span><br><span class="line">		<span class="comment">//文本输出站点</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">scheduleToTxt</span><span class="params">(<span class="built_in">string</span> filename)</span></span>;</span><br><span class="line">		<span class="comment">//删除列车</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">deleteTrain</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//改变列车站点信息</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">changeTrainStation</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="comment">//改变列车名称</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">changeTrainName</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//根据列车名称查询站点信息</span></span><br><span class="line">		<span class="function">Train* <span class="title">searchTrainForName</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//打印所有列车经过所有站点信息	</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">showAllTrain</span><span class="params">()</span></span>;  </span><br><span class="line">        <span class="comment">//求列车个数 </span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span></span>;         </span><br><span class="line"></span><br><span class="line">		<span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream  &amp;os, <span class="keyword">const</span> Schedule &amp;aSchedule);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="built_in">string</span> scheduleName;                       <span class="comment">//列车车次</span></span><br><span class="line">        <span class="keyword">int</span> trainNum;                         <span class="comment">//站点个数</span></span><br><span class="line">		Train* headTrain;                     <span class="comment">//头站点</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="schedule-cpp"><a href="#schedule-cpp" class="headerlink" title="schedule.cpp"></a><em>schedule.cpp</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//schedule.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"schedule.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::ifstream;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::ofstream;</span><br><span class="line"></span><br><span class="line"><span class="comment">//重载运算符</span></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream  &amp;os, <span class="keyword">const</span> Schedule &amp;aSchedule) &#123;</span><br><span class="line">	Train *p = aSchedule.headTrain;</span><br><span class="line">	<span class="keyword">while</span> (p) &#123;</span><br><span class="line">		os &lt;&lt; *p;</span><br><span class="line">		p = p-&gt;pNextTrain;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求列车长度</span></span><br><span class="line"><span class="keyword">int</span> Schedule::getLength()&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>-&gt;trainNum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加列车</span></span><br><span class="line">Train* Schedule::insertTrain(<span class="keyword">int</span> locate, <span class="built_in">string</span> _trainName)&#123;</span><br><span class="line">	<span class="keyword">if</span> (locate &gt; <span class="keyword">this</span>-&gt;trainNum + <span class="number">1</span> || locate &lt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR:超出行程表范围！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;headTrain != <span class="literal">NULL</span> &amp;&amp; locate &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">//new一个新列车</span></span><br><span class="line">		Train* aTrain = <span class="keyword">new</span> Train(_trainName);</span><br><span class="line">		<span class="comment">//将新列车加入列车行程表中</span></span><br><span class="line">		Train* p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">		<span class="keyword">while</span> (locate - <span class="number">2</span>) &#123;</span><br><span class="line">			p = p-&gt;pNextTrain;</span><br><span class="line">			locate--;</span><br><span class="line">		&#125;</span><br><span class="line">		aTrain-&gt;pNextTrain = p-&gt;pNextTrain;</span><br><span class="line">		p-&gt;pNextTrain = aTrain;</span><br><span class="line">		<span class="keyword">this</span>-&gt;trainNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新列车成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> aTrain;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;headTrain != <span class="literal">NULL</span> &amp;&amp; locate == <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="comment">//new一个新列车</span></span><br><span class="line">		Train* aTrain = <span class="keyword">new</span> Train(_trainName);</span><br><span class="line">		<span class="comment">//将新列车加入列车行程表中</span></span><br><span class="line">		Train* p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">		<span class="keyword">this</span>-&gt;headTrain = aTrain;</span><br><span class="line">		aTrain-&gt;pNextTrain = p;</span><br><span class="line">		<span class="keyword">this</span>-&gt;trainNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新列车成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> aTrain;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//new一个新列车</span></span><br><span class="line">		Train* aTrain = <span class="keyword">new</span> Train(_trainName);</span><br><span class="line">		<span class="comment">//将新站加入列车行程表中</span></span><br><span class="line">		<span class="keyword">this</span>-&gt;headTrain = aTrain;</span><br><span class="line">		<span class="keyword">this</span>-&gt;trainNum++;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"加入新列车成功！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> aTrain;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//键盘增加列车</span></span><br><span class="line"><span class="keyword">void</span> Schedule::keyboardInsertTrain()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> locate;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入插入的位置："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; locate;</span><br><span class="line">	<span class="built_in">string</span> _trainName;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入列车名称："</span> ;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; _trainName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;insertTrain(locate, _trainName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文本添加站点</span></span><br><span class="line"><span class="keyword">void</span> Schedule::txtInsertTrain(<span class="built_in">string</span> filename)&#123;</span><br><span class="line">	ifstream infile;</span><br><span class="line">	infile.open(filename + <span class="string">".txt"</span>);</span><br><span class="line">	<span class="keyword">if</span>(!infile)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR：打开 "</span> &lt;&lt; filename &lt;&lt; <span class="string">".txt 文件失败"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//_lastTrainName用于优化查找速度,但不可用于多次文本输入内存</span></span><br><span class="line">	<span class="built_in">string</span> _trainName, _stationName, _arrivalTime, _leaveTime, _lastTrainName;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>-&gt;headTrain == <span class="literal">NULL</span>)&#123;</span><br><span class="line">		_lastTrainName = <span class="string">""</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		_lastTrainName = <span class="keyword">this</span>-&gt;headTrain-&gt;trainName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(infile &gt;&gt; _trainName&gt;&gt; _stationName&gt;&gt;_arrivalTime&gt;&gt;_leaveTime)&#123;</span><br><span class="line">		<span class="keyword">if</span>(_trainName == _lastTrainName)&#123;</span><br><span class="line">			Train *p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">			<span class="keyword">while</span> (p) &#123;</span><br><span class="line">				<span class="keyword">if</span> (p-&gt;trainName == _trainName) &#123;</span><br><span class="line">					p-&gt;insertStation(p-&gt;stationNum+<span class="number">1</span>, _stationName, _arrivalTime, _leaveTime);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				p = p-&gt;pNextTrain;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			Train *p = <span class="keyword">this</span>-&gt;insertTrain(<span class="keyword">this</span>-&gt;trainNum+<span class="number">1</span>, _trainName);</span><br><span class="line">			p-&gt;insertStation(p-&gt;stationNum+<span class="number">1</span>, _stationName, _arrivalTime, _leaveTime);</span><br><span class="line">			_lastTrainName = _trainName;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	infile.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文本输出信息</span></span><br><span class="line"><span class="keyword">void</span> Schedule::scheduleToTxt(<span class="built_in">string</span> filename)&#123;</span><br><span class="line">	ofstream outfile;</span><br><span class="line">	outfile.open(filename + <span class="string">".txt"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!outfile) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR：打开 "</span> &lt;&lt; filename &lt;&lt; <span class="string">".txt 文件失败"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	outfile &lt;&lt; *<span class="keyword">this</span>;</span><br><span class="line">	outfile.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除站点</span></span><br><span class="line"><span class="keyword">void</span> Schedule::deleteTrain()&#123;</span><br><span class="line">	<span class="keyword">int</span> locate;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入插入的位置："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; locate;</span><br><span class="line">	<span class="keyword">if</span>(locate &gt; <span class="keyword">this</span>-&gt;trainNum || locate &lt; <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ERROR:超出行程表范围！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		Train* p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">		<span class="keyword">while</span>(locate - <span class="number">2</span>)&#123;        <span class="comment">//到达第i-1个结点，p-&gt;pNextTrain为欲删除的结点的指针</span></span><br><span class="line">			p = p-&gt;pNextTrain;</span><br><span class="line">			locate--;</span><br><span class="line">		&#125;</span><br><span class="line">		Train* q = p-&gt;pNextTrain;</span><br><span class="line">		p-&gt;pNextTrain = p-&gt;pNextTrain-&gt;pNextTrain;</span><br><span class="line">		<span class="keyword">delete</span> q;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除列车完成！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//析构函数</span></span><br><span class="line">Schedule::~Schedule()&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;headTrain == <span class="literal">NULL</span>) &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		Train* p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">		Train* q;</span><br><span class="line">		<span class="keyword">while</span> (p) &#123;</span><br><span class="line">			q = p;</span><br><span class="line">			p = p-&gt;pNextTrain;</span><br><span class="line">			<span class="keyword">delete</span> q;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变列车信息</span></span><br><span class="line"><span class="keyword">void</span> Schedule::changeTrainStation()</span><br><span class="line">&#123;</span><br><span class="line">	Train* p = <span class="keyword">this</span>-&gt;searchTrainForName();</span><br><span class="line">	<span class="keyword">if</span>(p != <span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   ******************************************************"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                   列车查询系统子菜单               *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                                                    *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *              您现在正在操作 "</span> &lt;&lt; p-&gt;trainName &lt;&lt; <span class="string">" 列车              *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *             请输入对应功能的数字完成操作           *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 1.添加站点信息                     *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 2.删除站点信息                     *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 3.修改站点信息                     *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 0.退出子菜单                       *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                                                    *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *          列车 "</span>&lt;&lt; p-&gt;trainName &lt;&lt; <span class="string">"    现有站台   "</span>&lt;&lt;p-&gt;getLength() &lt;&lt;<span class="string">"  个             *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"   ******************************************************"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> choice;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的选项："</span>;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; choice;</span><br><span class="line">			<span class="keyword">switch</span> (choice)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				p-&gt;keyboardInsertStation(); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				p-&gt;deleteStation();	<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				p-&gt;changeStation(); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入选项非法！请重新输入！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询列车具体信息</span></span><br><span class="line">Train* Schedule::searchTrainForName() &#123;</span><br><span class="line">	<span class="built_in">string</span> _trainName;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入要查询的列车名："</span> ;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; _trainName;</span><br><span class="line">	Train* p = <span class="keyword">this</span>-&gt;headTrain;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"行程表为空！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">1</span>;          <span class="comment">//计数器</span></span><br><span class="line">	<span class="keyword">while</span> (p) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p-&gt;trainName == _trainName) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span> p;</span><br><span class="line">		&#125;</span><br><span class="line">		count++;</span><br><span class="line">		p = p-&gt;pNextTrain;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"未找到该列车的信息！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//改变列车名称</span></span><br><span class="line"><span class="keyword">void</span> Schedule::changeTrainName()&#123;</span><br><span class="line">	Train* p = <span class="keyword">this</span>-&gt;searchTrainForName();</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"列车已找到，请输入新的列车名："</span>;</span><br><span class="line">		<span class="built_in">string</span> _trainName;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; _trainName;</span><br><span class="line">		p-&gt;trainName = _trainName;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印所有列车所有站点</span></span><br><span class="line"><span class="keyword">void</span> Schedule::showAllTrain() &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="keyword">this</span>-&gt;scheduleName &lt;&lt; <span class="string">" 的行程表为："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"列车信息\t站点名称\t到站时间\t出发时间"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a><em>main.cpp</em></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"schedule.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">operateTheSchedule</span><span class="params">(Schedule &amp;mySchedule)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> choice;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   ******************************************************"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                     列车查询系统                   *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                                                    *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *             请输入对应功能的数字完成操作           *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 1.键盘添加列车信息                 *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 2.文本添加列车信息                 *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 3.删除列车信息                     *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 4.修改列车名称信息                 *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 5.修改列车站点具体信息             *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 6.输出行程表信息                   *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                 0.退出系统                         *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                                                    *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   *                  目前共有"</span>&lt;&lt;mySchedule.getLength()&lt;&lt;<span class="string">"辆列车                   *"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"   ******************************************************"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的选项："</span>;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; choice;</span><br><span class="line">		<span class="keyword">switch</span> (choice)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				mySchedule.keyboardInsertTrain(); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入要打开的文件名："</span>;</span><br><span class="line">				<span class="built_in">string</span> filename;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; filename;</span><br><span class="line">				mySchedule.txtInsertTrain(filename);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				mySchedule.deleteTrain();	<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">				mySchedule.changeTrainName();	<span class="keyword">break</span>;			</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">				mySchedule.changeTrainStation(); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">				mySchedule.showAllTrain(); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"您需要保存该行程表吗？(Y/N)\t"</span>;</span><br><span class="line">				<span class="keyword">char</span> c;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">				<span class="keyword">if</span> (c == <span class="string">'Y'</span> || c == <span class="string">'y'</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入文件名："</span>;</span><br><span class="line">					<span class="built_in">string</span> filename;</span><br><span class="line">					<span class="built_in">cin</span> &gt;&gt; filename;</span><br><span class="line">					mySchedule.scheduleToTxt(filename);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入选项非法！请重新输入！"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Schedule <span class="title">mySchedule</span><span class="params">(<span class="string">"我的行程表"</span>)</span></span>;</span><br><span class="line">	operateTheSchedule(mySchedule);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/" title="链表实现简单列车查询系统">http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/C-文件在Html的高亮处理/" rel="next" title="C++文件在Html的高亮处理">
+                <i class="fa fa-chevron-left"></i> C++文件在Html的高亮处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/CL.png"
+                alt="从林" />
+            
+              <p class="site-author-name" itemprop="name">从林</p>
+              <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
+
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计目的"><span class="nav-number">1.</span> <span class="nav-text">设计目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计内容"><span class="nav-number">2.</span> <span class="nav-text">设计内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计要求"><span class="nav-number">3.</span> <span class="nav-text">设计要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#station-h"><span class="nav-number">4.1.</span> <span class="nav-text">station.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#train-h"><span class="nav-number">4.2.</span> <span class="nav-text">train.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#train-cpp"><span class="nav-number">4.3.</span> <span class="nav-text">train.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#schedule-h"><span class="nav-number">4.4.</span> <span class="nav-text">schedule.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#schedule-cpp"><span class="nav-number">4.5.</span> <span class="nav-text">schedule.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-cpp"><span class="nav-number">4.6.</span> <span class="nav-text">main.cpp</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CongLin</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
