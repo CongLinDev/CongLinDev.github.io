@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="算法,LeetCode," />
+  <meta name="keywords" content="LeetCode,算法," />
 
 
 
@@ -87,14 +87,14 @@
 
 
 <meta name="description" content="分享一些我在LeetCode(https://leetcode.com)的算法收获。 （持续更新）  两数之和 给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。     示例：给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]   1">
-<meta name="keywords" content="算法,LeetCode">
+<meta name="keywords" content="LeetCode,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Solutions to problems on LeetCode">
 <meta property="og:url" content="http://CongLinDev.github.io/2018/04/05/Solutions-to-problems-on-LeetCode/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
 <meta property="og:description" content="分享一些我在LeetCode(https://leetcode.com)的算法收获。 （持续更新）  两数之和 给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。     示例：给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]   1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T12:38:55.871Z">
+<meta property="og:updated_time" content="2018-04-05T13:31:03.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Solutions to problems on LeetCode">
 <meta name="twitter:description" content="分享一些我在LeetCode(https://leetcode.com)的算法收获。 （持续更新）  两数之和 给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。     示例：给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]   1">
@@ -431,6 +431,14 @@
 </blockquote>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Java</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode dummy=<span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        ListNode cur=dummy;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>((l1 != <span class="keyword">null</span>)||(l2 != <span class="keyword">null</span>)) &#123;</span><br><span class="line">            <span class="comment">//要注意两个链表的长度不同的情况，当链表为null时，设置为零</span></span><br><span class="line">            <span class="keyword">int</span> d1=(l1==<span class="keyword">null</span>? <span class="number">0</span>:l1.val);</span><br><span class="line">            <span class="keyword">int</span> d2=(l2==<span class="keyword">null</span>? <span class="number">0</span>:l2.val);</span><br><span class="line">            <span class="keyword">int</span> sum=d1 + d2 + carry;</span><br><span class="line">            <span class="comment">//carry=sum/10;</span></span><br><span class="line">            carry=sum&gt;=<span class="number">10</span>? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">            cur.next=<span class="keyword">new</span> ListNode(sum%<span class="number">10</span>);</span><br><span class="line">            cur=cur.next;</span><br><span class="line">            <span class="comment">//null无法链接next</span></span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                l1=l1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                l2=l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(carry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            cur.next=<span class="keyword">new</span> ListNode(carry);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a>无重复字符的最长子串</h2><blockquote>
+<p>给定一个字符串，找出不含有重复字符的<strong>最长子串</strong>的长度。<br>你可以假设除了数字 0 之外，这两个数字都不会以零开头。   </p>
+<blockquote>
+<p>示例：<br>给定<code>&quot;abcabcbb&quot;</code>，没有重复字符的最长子串是<code>&quot;abc&quot;</code>，那么长度就是3。<br>给定<code>&quot;bbbbb&quot;</code>，最长的子串就是<code>&quot;b&quot;</code>，长度是1。<br>给定<code>&quot;pwwkew&quot;</code>，最长子串是<code>&quot;wke&quot;</code>，长度是3。请注意答案必须是一个子串，<code>&quot;pwke&quot;</code>是子序列而不是子串。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;        <span class="comment">//记录结果</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;        <span class="comment">//记录长度</span></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;      <span class="comment">//记录开始索引</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(s.charAt(i)) &amp;&amp; map.get(s.charAt(i)) &gt;= start)&#123;</span><br><span class="line">                start = map.get(s.charAt(i)) + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            len = i - start + <span class="number">1</span>;         <span class="comment">//记录长度</span></span><br><span class="line">            map.put(s.charAt(i),i);</span><br><span class="line">            res = Math.max(res,len);       <span class="comment">//记录最大值</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+<hr>
 
       
     </div>
@@ -504,9 +512,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
             <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -700,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两数之和"><span class="nav-number">1.</span> <span class="nav-text">两数之和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两数相加"><span class="nav-number">2.</span> <span class="nav-text">两数相加</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两数之和"><span class="nav-number">1.</span> <span class="nav-text">两数之和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两数相加"><span class="nav-number">2.</span> <span class="nav-text">两数相加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无重复字符的最长子串"><span class="nav-number">3.</span> <span class="nav-text">无重复字符的最长子串</span></a></li></ol></div>
             
 
           </div>
