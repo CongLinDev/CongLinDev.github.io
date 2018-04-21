@@ -4,6 +4,14 @@
     <title><![CDATA[OperateFile-LAN-Java]]></title>
     <url>%2F2018%2F04%2F21%2FOperateFile-LAN-Java%2F</url>
     <content type="text"><![CDATA[利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。其中借助了Spring框架。 网页中不方便代码展示及维护，故托管到Github，请移步(https://github.com/CongLinDev/OperateFile-LAN-Java)。 （持续更新） 预计于2018年6月份交付。]]></content>
+      <categories>
+        <category>分布式技术</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>RMI</tag>
+        <tag>Spring</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Solutions to problems on LeetCode]]></title>
