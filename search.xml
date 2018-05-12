@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C++实现简单计算器]]></title>
+    <url>%2F2018%2F05%2F12%2FC-%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[利用编译原理中递归下降的 语法分析 和 语义分析 实现的简单计算器。 文法如下： EXP -&gt; TERM {AlphaOP TERM} AlphaOP -&gt; + | - TERM -&gt; FACTOR {BetaOP FACTOR} BetaOP -&gt; * | \ FACTOR -&gt; (EXP) | number 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;iostream&gt;#include &lt;string&gt;#include &lt;sstream&gt;using namespace std;string inputExp;string::iterator ite;void matchChar(char aToken);double matchDigit();double factor();double term();double expression();//错误处理void handleError() &#123; cerr &lt;&lt; "The Expression is error!";&#125;//匹配字符void matchChar(char token) &#123; if (*ite == token) &#123; ite++; &#125; else &#123; handleError(); &#125;&#125;//匹配数字double matchDigit() &#123; string tempString = ""; while (isdigit(*ite)) &#123; tempString += *ite; ite++; &#125; istringstream iss(tempString); double temp; iss &gt;&gt; temp; return temp;&#125;double factor() &#123; double temp; if (isdigit(*ite)) &#123; temp = matchDigit(); &#125; else if (*ite == '(') &#123; matchChar('('); //处理负数 if(*ite == '-')&#123; ite++; temp = matchDigit() * (-1); &#125; else&#123; temp = expression(); &#125; matchChar(')'); &#125; else &#123; handleError(); &#125; return temp;&#125;double term() &#123; double temp = factor(); while (*ite == '*' || *ite == '/') &#123; if (*ite == '*') &#123; matchChar('*'); temp = temp * factor(); &#125; else &#123; matchChar('/'); temp = temp / factor(); &#125; &#125; return temp;&#125;double expression() &#123; double temp = term(); while (*ite == '+' || *ite == '-') &#123; if (*ite == '+') &#123; matchChar('+'); temp = temp + factor(); &#125; else &#123; matchChar('-'); temp = temp - factor(); &#125; &#125; return temp;&#125;int main() &#123; double result = 0; cout &lt;&lt; "请输入表达式："; cin &gt;&gt; inputExp; //加上空格防止迭代器溢出 inputExp += " "; ite = inputExp.begin(); while (*ite != inputExp.back()) &#123; result = expression(); &#125; cout &lt;&lt; result &lt;&lt; endl; system("pause"); return 0;&#125;]]></content>
+      <categories>
+        <category>编译技术</category>
+      </categories>
+      <tags>
+        <tag>编译原理</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OperateFile-LAN-Java]]></title>
     <url>%2F2018%2F04%2F21%2FOperateFile-LAN-Java%2F</url>
     <content type="text"><![CDATA[利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。其中借助了Spring框架。 网页中不方便代码展示及维护，故托管到Github，请移步(https://github.com/CongLinDev/OperateFile-LAN-Java)。 （持续更新） 预计于2018年6月份交付。]]></content>
