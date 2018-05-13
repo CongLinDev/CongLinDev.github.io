@@ -561,9 +561,9 @@
         
           
           
-利用编译原理中递归下降的 语法分析 和 语义分析 实现的简单计算器。      
+利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。      
 
-文法如下： EXP     -&gt;  TERM {AlphaOP TERM} AlphaOP -&gt;  + | - TERM    -&gt;  FACTOR {BetaOP FACTOR} BetaOP 
+文法如下： EXP     -&gt;  TERM {AlphaOP TERM} TERM    -&gt;  FACTOR {BetaOP FACTOR} FACTOR  -&gt;  (EXP) 
           ...
           <!--noindex-->
           <div class="post-button text-center">
