@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Markdown文本转为Html]]></title>
     <url>%2F2018%2F06%2F17%2FMarkdown%E6%96%87%E6%9C%AC%E8%BD%AC%E4%B8%BAHtml%2F</url>
-    <content type="text"><![CDATA[利用Java语言，使用正则表达式借助编译原理的知识，制作出一个简易的将Markdown文本转为Html的程序。 网页中不方便代码展示及维护，故托管到Github，请移步 这里。 支持的操作： 标题 分割线 列表 斜体 加粗 删除线 标记 图片链接 网址链接和邮箱链接 不支持的操作： 引用片段 代码片段 表格 其他罕见功能 （持续更新）]]></content>
+    <content type="text"><![CDATA[利用Java语言，使用正则表达式借助编译原理的知识，制作出一个简易的将Markdown文本转为Html的程序。 网页中不方便代码展示及维护，故托管到Github，请移步 这里。 由于没有进行编码和解码处理，目前暂时只支持英文的转化。 支持的操作： 标题 分割线 有序列表和无序列表 斜体 加粗 删除线 标记 图片链接 网址链接和邮箱链接 不支持的操作： 引用片段 代码片段 表格 其他罕见功能 （持续更新）]]></content>
       <categories>
         <category>编译技术</category>
         <category>正则表达式</category>
@@ -28,7 +28,7 @@
   <entry>
     <title><![CDATA[OperateFile-LAN-Java]]></title>
     <url>%2F2018%2F04%2F21%2FOperateFile-LAN-Java%2F</url>
-    <content type="text"><![CDATA[利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。其中借助了Spring框架。 网页中不方便代码展示及维护，故托管到Github，请移步(https://github.com/CongLinDev/OperateFile-LAN-Java)。 （持续更新） 预计于2018年6月份交付。]]></content>
+    <content type="text"><![CDATA[利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。其中借助了Spring框架。 网页中不方便代码展示及维护，故托管到Github，请移步 [这里](https://github.com/CongLinDev/OperateFile-LAN-Java)。 （持续更新） 预计于2018年6月份交付。]]></content>
       <categories>
         <category>分布式技术</category>
       </categories>
