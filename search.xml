@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Markdown文本转为Html]]></title>
+    <url>%2F2018%2F06%2F17%2FMarkdown%E6%96%87%E6%9C%AC%E8%BD%AC%E4%B8%BAHtml%2F</url>
+    <content type="text"><![CDATA[利用Java语言，使用正则表达式借助编译原理的知识，制作出一个简易的将Markdown文本转为Html的程序。 网页中不方便代码展示及维护，故托管到Github，请移步 这里。 支持的操作： 标题 分割线 列表 斜体 加粗 删除线 标记 图片链接 网址链接和邮箱链接 不支持的操作： 引用片段 代码片段 表格 其他罕见功能 （持续更新）]]></content>
+      <categories>
+        <category>编译技术</category>
+        <category>正则表达式</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>编译原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C++实现简单计算器]]></title>
     <url>%2F2018%2F05%2F12%2FC-%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E5%99%A8%2F</url>
     <content type="text"><![CDATA[利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。 文法如下： EXP -&gt; TERM {AlphaOP TERM} TERM -&gt; FACTOR {BetaOP FACTOR} FACTOR -&gt; (EXP) | number AlphaOP -&gt; + | - BetaOP -&gt; * | \ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124#include &lt;iostream&gt;#include &lt;string&gt;#include &lt;sstream&gt;using namespace std;/* * EXP -&gt; TERM &#123;AlphaOP TERM&#125; * TERM -&gt; FACTOR &#123;BetaOP FACTOR&#125; * FACTOR -&gt; (EXP) | number * AlphaOP -&gt; + | - * BetaOP -&gt; * | \ */string inputExp;string::iterator ite;void handleError();void matchChar(char token);double matchDigit();double factor();double term();double expression();//错误处理void handleError() &#123; cerr &lt;&lt; "Error expression ! " + inputExp &lt;&lt;endl; exit(-1);&#125;//匹配字符void matchChar(char token) &#123; if (*ite == token) &#123; ite++; &#125; else &#123; handleError(); &#125;&#125;//匹配数字double matchDigit() &#123; string tempString = ""; while (isdigit(*ite)) &#123; tempString += *ite; ite++; &#125; istringstream iss(tempString); double temp; iss &gt;&gt; temp; return temp;&#125;double factor() &#123; double temp; if (isdigit(*ite)) &#123; temp = matchDigit(); &#125; else if (*ite == '(') &#123; matchChar('('); //处理负数 if(*ite == '-')&#123; ite++; temp = matchDigit() * (-1); &#125; else&#123; temp = expression(); &#125; matchChar(')'); &#125; else &#123; handleError(); &#125; return temp;&#125;double term() &#123; double temp = factor(); while (*ite == '*' || *ite == '/') &#123; if (*ite == '*') &#123; matchChar('*'); temp = temp * factor(); &#125; else &#123; matchChar('/'); temp = temp / factor(); &#125; &#125; return temp;&#125;double expression() &#123; double temp = term(); while (*ite == '+' || *ite == '-') &#123; if (*ite == '+') &#123; matchChar('+'); temp = temp + factor(); &#125; else &#123; matchChar('-'); temp = temp - factor(); &#125; &#125; return temp;&#125;int main() &#123; double result = 0; cout &lt;&lt; "请输入表达式："; cin &gt;&gt; inputExp; //加上空格防止迭代器溢出 inputExp += " "; ite = inputExp.begin(); while (*ite != inputExp.back()) &#123; result = expression(); &#125; cout &lt;&lt; result &lt;&lt; endl; system("pause"); return 0;&#125;]]></content>
