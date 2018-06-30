@@ -95,7 +95,7 @@
 <meta property="og:description" content="设计目的和内容设计目的本课程设计可以提供一个稍微具有规模的程序开发的例子，培养应用面向对象程序设计设计方法及思想解决实际问题的能力，强化使用面向对象程序设计语言C++；进一步熟悉Microsoft Visual Studio系列C++集成开发环境，熟悉基于MFC的Windows窗口应用程序的开发；综合运用所学的类、继承和多态的知识；进一步掌握程序的调试方法；提高调查研究、查阅技术资料以及编写技术文">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s1.ax1x.com/2018/06/30/Pkmyz4.png">
-<meta property="og:updated_time" content="2018-06-30T15:01:40.371Z">
+<meta property="og:updated_time" content="2018-06-30T15:06:19.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单通讯录(GUI)">
 <meta name="twitter:description" content="设计目的和内容设计目的本课程设计可以提供一个稍微具有规模的程序开发的例子，培养应用面向对象程序设计设计方法及思想解决实际问题的能力，强化使用面向对象程序设计语言C++；进一步熟悉Microsoft Visual Studio系列C++集成开发环境，熟悉基于MFC的Windows窗口应用程序的开发；综合运用所学的类、继承和多态的知识；进一步掌握程序的调试方法；提高调查研究、查阅技术资料以及编写技术文">
@@ -437,35 +437,27 @@
 <p><strong>界面设计</strong></p>
 <h2 id="关键功能的实现"><a href="#关键功能的实现" class="headerlink" title="关键功能的实现"></a><strong>关键功能的实现</strong></h2><p><img src="https://s1.ax1x.com/2018/06/30/Pkmyz4.png" alt=""></p>
 <ol>
-<li>添加记录</li>
-</ol>
-<blockquote>
+<li>添加记录<blockquote>
 <p>  对于添加记录，可以加入一个if语句，若缺少某一项，即提示不能保存重新输入。还可以利用CString类的Replace（）函数可以将输入的空格缩进，若输入一串空格，则由if语句提示输入完整信息。有效避免读取文件时的错位。</p>
 </blockquote>
-<ol>
-<li>删除记录</li>
-</ol>
-<blockquote>
+</li>
+<li>删除记录<blockquote>
 <p>  利用GetFirstSelectedItemPosition()和GetNextSelectedItem()获取点击位置，然后进行数组和CListCtrl框的数据的删除。</p>
 </blockquote>
-<ol>
-<li>修改记录</li>
-</ol>
-<blockquote>
+</li>
+<li>修改记录<blockquote>
 <p>  利用GetFirstSelectedItemPosition()和GetNextSelectedItem()获取点击位置，然后进行数组和CListCtrl框的数据的修改。（数组信息直接赋值修改，CListCtrl框的数据的修改利用SetItemText函数。）</p>
 </blockquote>
-<ol>
-<li>写入文件</li>
-</ol>
-<blockquote>
+</li>
+<li>写入文件<blockquote>
 <p>  利用ofstream流将CString输出文件。</p>
 </blockquote>
-<ol>
-<li>读取文件</li>
-</ol>
-<blockquote>
+</li>
+<li>读取文件<blockquote>
 <p>  由于CString没有重载插入符，利用char数组读取后，再利用_T将其变为宽字符赋值给新对象。同时将新对象显示在CListCtrl框。</p>
 </blockquote>
+</li>
+</ol>
 <hr>
 <p>项目已经托管到 GitHub，<a href="https://github.com/CongLinDev/AddressBook" target="_blank" rel="noopener">戳我</a> 。</p>
 
