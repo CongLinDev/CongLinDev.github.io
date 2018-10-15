@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++,图形学,填充算法," />
 
 
 
@@ -96,16 +96,18 @@
 
 
 
-<meta name="description" content="It is my personal website.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CongLin&#39;s Blog">
-<meta property="og:url" content="http://CongLinDev.github.io/archives/index.html">
+<meta name="description" content="算法描述：区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。    区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     下面给出八连通区域填充算法（四连通区域填充算法类似）1234567">
+<meta name="keywords" content="C++,图形学,填充算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图形学--区域填充算法">
+<meta property="og:url" content="http://CongLinDev.github.io/2018/10/15/图形学-区域填充算法/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="It is my personal website.">
+<meta property="og:description" content="算法描述：区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。    区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     下面给出八连通区域填充算法（四连通区域填充算法类似）1234567">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-15T13:41:14.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CongLin&#39;s Blog">
-<meta name="twitter:description" content="It is my personal website.">
+<meta name="twitter:title" content="图形学--区域填充算法">
+<meta name="twitter:description" content="算法描述：区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。    区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     下面给出八连通区域填充算法（四连通区域填充算法类似）1234567">
 
 
 
@@ -135,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/archives/"/>
+  <link rel="canonical" href="http://CongLinDev.github.io/2018/10/15/图形学-区域填充算法/"/>
 
 
 
 
 
-  <title>归档 | CongLin's Blog</title>
+  <title>图形学--区域填充算法 | CongLin's Blog</title>
   
 
 
@@ -179,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/CongLinDev"><img style
     ="position: absolute; top: 0; right: 0; border: 0;" 
@@ -307,411 +309,236 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/10/15/图形学-区域填充算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">图形学--区域填充算法</h1>
         
+
+        <div class="post-meta">
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:14:00+08:00">
+                2018-10-15
+              </time>
+            
 
-      
+            
 
-        
-        
-        
+            
+          </span>
 
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/15/图形学-区域填充算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-区域填充算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/15/图形学-扫描线种子填充算法/" itemprop="url">
-              
-                <span itemprop="name">图形学--扫描线种子填充算法</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-15T21:15:00+08:00"
-              content="2018-10-15" >
-          10-15
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/15/图形学-区域填充算法/" itemprop="url">
-              
-                <span itemprop="name">图形学--区域填充算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-15T21:14:00+08:00"
-              content="2018-10-15" >
-          10-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/15/图形学-边缘填充算法/" itemprop="url">
-              
-                <span itemprop="name">图形学--边缘填充算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-15T21:13:00+08:00"
-              content="2018-10-15" >
-          10-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/15/图形学-有效边填充算法/" itemprop="url">
-              
-                <span itemprop="name">图形学--有效边表填充算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-15T21:12:00+08:00"
-              content="2018-10-15" >
-          10-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p><strong>算法描述：</strong><br>区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。<br>区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。   </p>
+<h2 id="区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。"><a href="#区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。" class="headerlink" title="区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     "></a>区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     </h2><p><em>下面给出八连通区域填充算法（四连通区域填充算法类似）</em><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * begin_point 是起始点</span></span><br><span class="line"><span class="comment"> * boundaryColor 是边界色</span></span><br><span class="line"><span class="comment"> * fillColor 是填充色</span></span><br><span class="line"><span class="comment"> * */</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eightAdjacentPointFillingAlgorithm</span><span class="params">(CPoint begin_point, COLORREF boundaryColor, COLORREF fillColor, CDC* pDC)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">stack</span>&lt;CPoint&gt; <span class="built_in">stack</span>;<span class="comment">//使用STL自带的栈容器</span></span><br><span class="line">	<span class="built_in">stack</span>.push(begin_point);<span class="comment">//将起点先入栈</span></span><br><span class="line">	CPoint* currentPoint = <span class="literal">NULL</span>;<span class="comment">//当前操作的点</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">stack</span>.empty())<span class="comment">//栈不空时进行循环</span></span><br><span class="line">	&#123;</span><br><span class="line">		currentPoint = &amp;<span class="built_in">stack</span>.top();<span class="comment">//访问栈顶元素</span></span><br><span class="line">		<span class="built_in">stack</span>.pop();<span class="comment">//删除栈顶元素</span></span><br><span class="line">		pDC-&gt;SetPixelV(*currentPoint, fillColor);<span class="comment">//填充颜色</span></span><br><span class="line"></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x - <span class="number">1</span>, currentPoint-&gt;y, boundaryColor, fillColor, pDC);<span class="comment">//左侧点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x - <span class="number">1</span>, currentPoint-&gt;y - <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//左上点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x, currentPoint-&gt;y - <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//上侧点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x + <span class="number">1</span>, currentPoint-&gt;y + <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//右上点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x + <span class="number">1</span>, currentPoint-&gt;y, boundaryColor, fillColor, pDC);<span class="comment">//右侧点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x + <span class="number">1</span>, currentPoint-&gt;y - <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//右下点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x, currentPoint-&gt;y - <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//下侧点</span></span><br><span class="line">		isFilling(&amp;<span class="built_in">stack</span>, currentPoint-&gt;x - <span class="number">1</span>, currentPoint-&gt;y - <span class="number">1</span>, boundaryColor, fillColor, pDC);<span class="comment">//左下点</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * stack 是栈指针</span></span><br><span class="line"><span class="comment"> * boundaryColor 是边界色</span></span><br><span class="line"><span class="comment"> * fillColor 是填充色</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">isFilling</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">stack</span>&lt;CPoint&gt; *<span class="built_in">stack</span>, <span class="keyword">int</span> x, <span class="keyword">int</span> y, COLORREF boundaryColor, COLORREF fillColor, CDC* pDC)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	COLORREF currentColor = pDC-&gt;GetPixel(x, y);;<span class="comment">//获得当前操作点颜色</span></span><br><span class="line">	<span class="keyword">if</span> (currentColor != boundaryColor &amp;&amp; currentColor != fillColor)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">stack</span>-&gt;push(CPoint(x, y));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/30/大类分流软件设计/" itemprop="url">
-              
-                <span itemprop="name">大类分流软件设计</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-30T22:33:55+08:00"
-              content="2018-06-30" >
-          06-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/17/Markdown文本转为Html/" itemprop="url">
-              
-                <span itemprop="name">Markdown文本转为Html</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-17T20:05:00+08:00"
-              content="2018-06-17" >
-          06-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/12/C-实现简单计算器/" itemprop="url">
-              
-                <span itemprop="name">C++实现简单计算器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-12T20:26:00+08:00"
-              content="2018-05-12" >
-          05-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/21/OperateFile-LAN-Java/" itemprop="url">
-              
-                <span itemprop="name">OperateFile-LAN-Java</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-21T19:37:20+08:00"
-              content="2018-04-21" >
-          04-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/05/Solutions-to-problems-on-LeetCode/" itemprop="url">
-              
-                <span itemprop="name">Solutions to problems on LeetCode</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-05T20:11:00+08:00"
-              content="2018-04-05" >
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/31/链表实现简单列车查询系统/" itemprop="url">
-              
-                <span itemprop="name">链表实现简单列车查询系统</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-31T20:23:00+08:00"
-              content="2018-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2018/10/15/图形学-区域填充算法/" title="图形学--区域填充算法">http://CongLinDev.github.io/2018/10/15/图形学-区域填充算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
+          
+            <a href="/tags/填充算法/" rel="tag"><i class="fa fa-tag"></i> 填充算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/图形学-边缘填充算法/" rel="next" title="图形学--边缘填充算法">
+                <i class="fa fa-chevron-left"></i> 图形学--边缘填充算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/15/图形学-扫描线种子填充算法/" rel="prev" title="图形学--扫描线种子填充算法">
+                图形学--扫描线种子填充算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -719,6 +546,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -739,8 +575,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -823,6 +668,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。"><span class="nav-number">1.</span> <span class="nav-text">区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类算法也成为种子填充算法。     </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -959,6 +820,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -987,6 +852,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
