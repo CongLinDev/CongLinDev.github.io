@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,图形学,几何变换," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="平行投影分为正投影和斜投影。当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。    利用矩阵变换同样可以得到3D图形几何变换，我将图形学–图形几何变换一文中的矩阵类进行修改，再加上重写了一个CPoint3D类，就可以简单实现3D图形的 斜等测轴测投影图 和 斜二测轴测投影图 。    使用时，直接调用函数 CPoint3D::cavalier_project">
+<meta name="keywords" content="C++,图形学,几何变换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图形学--3D图形斜投影">
+<meta property="og:url" content="http://CongLinDev.github.io/2018/10/28/图形学-3D图形斜投影/index.html">
+<meta property="og:site_name" content="CongLin&#39;s Blog">
+<meta property="og:description" content="平行投影分为正投影和斜投影。当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。    利用矩阵变换同样可以得到3D图形几何变换，我将图形学–图形几何变换一文中的矩阵类进行修改，再加上重写了一个CPoint3D类，就可以简单实现3D图形的 斜等测轴测投影图 和 斜二测轴测投影图 。    使用时，直接调用函数 CPoint3D::cavalier_project">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-28T06:54:50.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图形学--3D图形斜投影">
+<meta name="twitter:description" content="平行投影分为正投影和斜投影。当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。    利用矩阵变换同样可以得到3D图形几何变换，我将图形学–图形几何变换一文中的矩阵类进行修改，再加上重写了一个CPoint3D类，就可以简单实现3D图形的 斜等测轴测投影图 和 斜二测轴测投影图 。    使用时，直接调用函数 CPoint3D::cavalier_project">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://CongLinDev.github.io/2018/10/28/图形学-3D图形斜投影/"/>
+
+
+
+
+
+  <title>图形学--3D图形斜投影 | CongLin's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6f823d2810f7a1836c701bfbeb347726";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/CongLinDev"><img style
+    ="position: absolute; top: 0; right: 0; border: 0;" 
+     src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CongLin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敢于直面惨淡的人生。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/10/28/图形学-3D图形斜投影/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图形学--3D图形斜投影</h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T14:39:00+08:00">
+                2018-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">图形学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/28/图形学-3D图形斜投影/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/28/图形学-3D图形斜投影/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>平行投影分为正投影和斜投影。<br>当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。   </p>
+<p>利用矩阵变换同样可以得到3D图形几何变换，我将<a href="https://conglindev.github.io/2018/10/21/%E5%9B%BE%E5%BD%A2%E5%AD%A6-%E5%9B%BE%E5%BD%A2%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2/#more">图形学–图形几何变换</a>一文中的矩阵类进行修改，再加上重写了一个<strong>CPoint3D</strong>类，就可以简单实现3D图形的 <em>斜等测轴测投影图</em> 和 <em>斜二测轴测投影图</em> 。   </p>
+<p>使用时，直接调用函数 <strong>CPoint3D::cavalier_projection</strong> 和 <strong>CPoint3D::cabinet_projection</strong> 即可。   </p>
+<h2 id="读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。"><a href="#读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。" class="headerlink" title="读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。"></a><em>读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。</em></h2><h2 id="CPoint3D-h"><a href="#CPoint3D-h" class="headerlink" title="CPoint3D.h"></a><em>CPoint3D.h</em></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CPoint3D</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CPoint3D();</span><br><span class="line">	~CPoint3D();</span><br><span class="line">	CPoint3D(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z);</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line">	<span class="keyword">int</span> z;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setZ</span><span class="params">(<span class="keyword">int</span> value)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getZ</span><span class="params">()</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CPoint3DToCPoint</span><span class="params">(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cavalier_projection</span><span class="params">(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span></span>;<span class="comment">//斜等测轴测投影图</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cabinet_projection</span><span class="params">(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span></span>; <span class="comment">//斜二测轴测投影图</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="CPoint3D-cpp"><a href="#CPoint3D-cpp" class="headerlink" title="CPoint3D.cpp"></a><em>CPoint3D.cpp</em></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CPoint3D.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"MatrixTransformation3D.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CPoint3D::CPoint3D()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>-&gt;y = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">this</span>-&gt;z = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CPoint3D::~CPoint3D()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line">CPoint3D::CPoint3D(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;x = x;</span><br><span class="line">	<span class="keyword">this</span>-&gt;y = y;</span><br><span class="line">	<span class="keyword">this</span>-&gt;z = z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CPoint3D::setX(<span class="keyword">int</span> value)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;x = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> CPoint3D::getX()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CPoint3D::setY(<span class="keyword">int</span> value)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;y = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> CPoint3D::getY()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CPoint3D::setZ(<span class="keyword">int</span> value)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;z = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> CPoint3D::getZ()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> CPoint3D::CPoint3DToCPoint(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; point_number; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		points[i].x = points_3d[i].getX();</span><br><span class="line">		points[i].y = points_3d[i].getY();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//斜等测轴测投影图</span></span><br><span class="line"><span class="keyword">void</span> CPoint3D::cavalier_projection(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.1415926535</span>;</span><br><span class="line">	<span class="function">MatrixTransformation3D <span class="title">matrix_transformation_3d</span><span class="params">(points_3d, point_number)</span></span>;</span><br><span class="line">	matrix_transformation_3d.oblique_projection(PI / <span class="number">4</span>, PI / <span class="number">4</span>); <span class="comment">//alpha = PI / 4, beta = PI / 4</span></span><br><span class="line">	matrix_transformation_3d.matrixTo3DPoint(points_3d, point_number);</span><br><span class="line">	CPoint3DToCPoint(points_3d, points, point_number);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//斜二测轴测投影图</span></span><br><span class="line"><span class="keyword">void</span> CPoint3D::cabinet_projection(CPoint3D points_3d[], CPoint points[], <span class="keyword">int</span> point_number)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.1415926535</span>;</span><br><span class="line">	<span class="function">MatrixTransformation3D <span class="title">matrix_transformation_3d</span><span class="params">(points_3d, point_number)</span></span>;</span><br><span class="line">	matrix_transformation_3d.oblique_projection(<span class="number">63.4</span> * PI / <span class="number">180</span>, PI / <span class="number">4</span>); <span class="comment">//alpha = 63.4 * PI / 180, beta = PI / 4</span></span><br><span class="line">	matrix_transformation_3d.matrixTo3DPoint(points_3d, point_number);</span><br><span class="line">	CPoint3DToCPoint(points_3d, points, point_number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MatrixTransformation3D-h"><a href="#MatrixTransformation3D-h" class="headerlink" title="MatrixTransformation3D.h"></a><em>MatrixTransformation3D.h</em></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CPoint3D.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MatrixTransformation3D</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MatrixTransformation3D();</span><br><span class="line">	~MatrixTransformation3D();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> row;<span class="comment">//矩阵行数</span></span><br><span class="line">	<span class="keyword">int</span> column;<span class="comment">//矩阵列数</span></span><br><span class="line">	<span class="keyword">double</span>* pointMatrix;<span class="comment">//点矩阵</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span> transforMatrix[<span class="number">4</span>][<span class="number">4</span>];<span class="comment">//变换矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MatrixTransformation3D(CPoint3D points[], <span class="keyword">int</span> pointNumber);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value, <span class="keyword">double</span> matrix[])</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> matrix[])</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setTransforMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">matrixMultiplication</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> value)</span></span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	CPoint3D* MatrixTransformation3D::matrixTo3DPoint(CPoint3D points[], <span class="keyword">int</span> point_number);<span class="comment">//矩阵转为点数组</span></span><br><span class="line">	<span class="keyword">void</span> MatrixTransformation3D::oblique_projection(<span class="keyword">double</span> alpha, <span class="keyword">double</span> beta);<span class="comment">//斜投影</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="MatrixTransformation3D-cpp"><a href="#MatrixTransformation3D-cpp" class="headerlink" title="MatrixTransformation3D.cpp"></a><em>MatrixTransformation3D.cpp</em></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &quot;MatrixTransformation3D.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MatrixTransformation3D::MatrixTransformation3D()</span><br><span class="line">&#123;</span><br><span class="line">	row = 0;</span><br><span class="line">	column = 0;</span><br><span class="line">	pointMatrix = NULL;</span><br><span class="line">&#125;</span><br><span class="line">MatrixTransformation3D::MatrixTransformation3D(CPoint3D points[], int pointNumber)</span><br><span class="line">&#123;</span><br><span class="line">	row = pointNumber;</span><br><span class="line">	column = 4;</span><br><span class="line">	pointMatrix = new double[row * column];</span><br><span class="line"></span><br><span class="line">	for (int i = 1; i &lt;= row; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		setMatrixElement(i, 1, points[i - 1].getX());</span><br><span class="line">		setMatrixElement(i, 2, points[i - 1].getY());</span><br><span class="line">		setMatrixElement(i, 3, points[i - 1].getZ());</span><br><span class="line">		setMatrixElement(i, 4, 1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MatrixTransformation3D::~MatrixTransformation3D()</span><br><span class="line">&#123;</span><br><span class="line">	delete[] pointMatrix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool MatrixTransformation3D::setMatrixElement(int row, int column, double value)</span><br><span class="line">&#123;</span><br><span class="line">	return setMatrixElement(row, column, value, pointMatrix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool MatrixTransformation3D::setMatrixElement(int row, int column, double value, double matrix[])</span><br><span class="line">&#123;</span><br><span class="line">	int realIndex = (row - 1) * this-&gt;column + column - 1;</span><br><span class="line">	if (realIndex &lt; this-&gt;row * this-&gt;column &amp;&amp; realIndex &gt;= 0)</span><br><span class="line">	&#123;</span><br><span class="line">		matrix[realIndex] = value;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double MatrixTransformation3D::getMatrixElement(int row, int column)</span><br><span class="line">&#123;</span><br><span class="line">	return getMatrixElement(row, column, pointMatrix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double MatrixTransformation3D::getMatrixElement(int row, int column, double matrix[])</span><br><span class="line">&#123;</span><br><span class="line">	int realIndex = (row - 1) * this-&gt;column + column - 1;</span><br><span class="line">	if (realIndex &lt; this-&gt;row * this-&gt;column &amp;&amp; realIndex &gt;= 0)</span><br><span class="line">	&#123;</span><br><span class="line">		return matrix[realIndex];</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool MatrixTransformation3D::setTransforMatrixElement(int row, int column, double value)</span><br><span class="line">&#123;</span><br><span class="line">	if (row &lt;= this-&gt;row &amp;&amp; row &gt; 0 &amp;&amp; column &lt;= this-&gt;column &amp;&amp; column &gt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		transforMatrix[row - 1][column - 1] = value;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MatrixTransformation3D::matrixMultiplication()</span><br><span class="line">&#123;</span><br><span class="line">	double* result = new double[row * column];</span><br><span class="line">	double tempResult;</span><br><span class="line">	for (int m = 0; m &lt; row; m++)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int s = 0; s &lt; column; s++)</span><br><span class="line">		&#123;</span><br><span class="line">			tempResult = 0.0; //变量使用前初始化,否则结果具有不确定性</span><br><span class="line">			for (int n = 0; n &lt; column; n++)</span><br><span class="line">			&#123;</span><br><span class="line">				tempResult += getMatrixElement(m + 1, n + 1) * transforMatrix[n][s];</span><br><span class="line">			&#125;</span><br><span class="line">			setMatrixElement(m + 1, s + 1, tempResult, result);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	double* tempPointer = this-&gt;pointMatrix;</span><br><span class="line">	this-&gt;pointMatrix = result;</span><br><span class="line">	delete[] tempPointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int MatrixTransformation3D::round(double value)</span><br><span class="line">&#123;</span><br><span class="line">	return (int)(value + 0.5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CPoint3D* MatrixTransformation3D::matrixTo3DPoint(CPoint3D points[], int point_number)</span><br><span class="line">&#123;</span><br><span class="line">	for (int i = 1; i &lt;= point_number; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		points[i - 1].setX(round(getMatrixElement(i, 1)));</span><br><span class="line">		points[i - 1].setY(round(getMatrixElement(i, 2)));</span><br><span class="line">		points[i - 1].setZ(round(getMatrixElement(i, 3)));</span><br><span class="line">	&#125;</span><br><span class="line">	return points;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//斜投影</span><br><span class="line">void MatrixTransformation3D::oblique_projection(double alpha, double beta)</span><br><span class="line">&#123;</span><br><span class="line">	setTransforMatrixElement(1, 1, 1);</span><br><span class="line">	setTransforMatrixElement(1, 2, 0);</span><br><span class="line">	setTransforMatrixElement(1, 3, 0);</span><br><span class="line">	setTransforMatrixElement(1, 4, 0);</span><br><span class="line">	setTransforMatrixElement(2, 1, 0);</span><br><span class="line">	setTransforMatrixElement(2, 2, 1);</span><br><span class="line">	setTransforMatrixElement(2, 3, 0);</span><br><span class="line">	setTransforMatrixElement(2, 4, 0);</span><br><span class="line">	setTransforMatrixElement(3, 1, -cos(beta) / tan(alpha));</span><br><span class="line">	setTransforMatrixElement(3, 2, -sin(beta) / tan(alpha));</span><br><span class="line">	setTransforMatrixElement(3, 3, 0);</span><br><span class="line">	setTransforMatrixElement(3, 4, 0);</span><br><span class="line">	setTransforMatrixElement(4, 1, 0);</span><br><span class="line">	setTransforMatrixElement(4, 2, 0);</span><br><span class="line">	setTransforMatrixElement(4, 3, 0);</span><br><span class="line">	setTransforMatrixElement(4, 4, 1);</span><br><span class="line"></span><br><span class="line">	matrixMultiplication();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2018/10/28/图形学-3D图形斜投影/" title="图形学--3D图形斜投影">http://CongLinDev.github.io/2018/10/28/图形学-3D图形斜投影/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
+          
+            <a href="/tags/几何变换/" rel="tag"><i class="fa fa-tag"></i> 几何变换</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/21/图形学-图形几何变换/" rel="next" title="图形学--图形几何变换">
+                <i class="fa fa-chevron-left"></i> 图形学--图形几何变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/CL.png"
+                alt="从林" />
+            
+              <p class="site-author-name" itemprop="name">从林</p>
+              <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
+
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。"><span class="nav-number">1.</span> <span class="nav-text">读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPoint3D-h"><span class="nav-number">2.</span> <span class="nav-text">CPoint3D.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPoint3D-cpp"><span class="nav-number">3.</span> <span class="nav-text">CPoint3D.cpp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixTransformation3D-h"><span class="nav-number">4.</span> <span class="nav-text">MatrixTransformation3D.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixTransformation3D-cpp"><span class="nav-number">5.</span> <span class="nav-text">MatrixTransformation3D.cpp</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CongLin</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
