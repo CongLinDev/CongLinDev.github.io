@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="C++,图形学,填充算法," />
+  <meta name="keywords" content="Linux,C语言," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="算法描述：边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。    边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然">
-<meta name="keywords" content="C++,图形学,填充算法">
+<meta name="description" content="利用Linux C实现简单的ls功能，其中包括：  -a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)。 -l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出。 -R 若目录下有文件，则以下之文件亦皆递归依序列出。 -d 显示目录名称而非其内容。 -i 显示文件和目录的inode编号。   1234567891011121314151617">
+<meta name="keywords" content="Linux,C语言">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图形学--边缘填充算法">
-<meta property="og:url" content="http://CongLinDev.github.io/2018/10/15/图形学-边缘填充算法/index.html">
+<meta property="og:title" content="Linux--实现简单的ls功能">
+<meta property="og:url" content="http://CongLinDev.github.io/2018/11/18/Linux-实现简单的ls功能/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="算法描述：边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。    边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然">
+<meta property="og:description" content="利用Linux C实现简单的ls功能，其中包括：  -a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)。 -l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出。 -R 若目录下有文件，则以下之文件亦皆递归依序列出。 -d 显示目录名称而非其内容。 -i 显示文件和目录的inode编号。   1234567891011121314151617">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-15T13:30:30.208Z">
+<meta property="og:updated_time" content="2018-11-18T08:48:47.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图形学--边缘填充算法">
-<meta name="twitter:description" content="算法描述：边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。    边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然">
+<meta name="twitter:title" content="Linux--实现简单的ls功能">
+<meta name="twitter:description" content="利用Linux C实现简单的ls功能，其中包括：  -a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)。 -l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出。 -R 若目录下有文件，则以下之文件亦皆递归依序列出。 -d 显示目录名称而非其内容。 -i 显示文件和目录的inode编号。   1234567891011121314151617">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2018/10/15/图形学-边缘填充算法/"/>
+  <link rel="canonical" href="http://CongLinDev.github.io/2018/11/18/Linux-实现简单的ls功能/"/>
 
 
 
 
 
-  <title>图形学--边缘填充算法 | CongLin's Blog</title>
+  <title>Linux--实现简单的ls功能 | CongLin's Blog</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/10/15/图形学-边缘填充算法/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/11/18/Linux-实现简单的ls功能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图形学--边缘填充算法</h1>
+          <h1 class="post-title" itemprop="name headline">Linux--实现简单的ls功能</h1>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:13:00+08:00">
-                2018-10-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T16:41:00+08:00">
+                2018-11-18
               </time>
             
 
@@ -364,6 +364,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -372,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/15/图形学-边缘填充算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-边缘填充算法/" itemprop="commentCount"></span>
+                <a href="/2018/11/18/Linux-实现简单的ls功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/18/Linux-实现简单的ls功能/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,9 +423,16 @@
       
 
       
-        <p><strong>算法描述：</strong><br>边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。<br>按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。   </p>
-<h2 id="边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB-255-255-255-（白色）的像素置为RGB-0-0-0-（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。"><a href="#边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB-255-255-255-（白色）的像素置为RGB-0-0-0-（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。" class="headerlink" title="边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。   "></a>边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。   </h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * points 是点数组</span></span><br><span class="line"><span class="comment"> * point_num 是点的个数</span></span><br><span class="line"><span class="comment"> * foregroundColor 是前景色</span></span><br><span class="line"><span class="comment"> * backgroundColor 是背景色</span></span><br><span class="line"><span class="comment"> * fence 是栅栏</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">edgeFillingAlgorithm</span><span class="params">(CPoint points[], <span class="keyword">int</span> point_num,</span></span></span><br><span class="line"><span class="function"><span class="params"> COLORREF foregroundColor, COLORREF backgroundColor, <span class="keyword">int</span> fence, CDC *pDC)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> yMin, yMax;<span class="comment">//边的最小y和最大y</span></span><br><span class="line">	<span class="comment">//x,y为当前点x、y坐标，reciprocalOfSlope为斜率分之一，1/k</span></span><br><span class="line">	<span class="keyword">double</span> x, reciprocalOfSlope;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; point_num; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> j = (i + <span class="number">1</span>) % point_num;<span class="comment">//j为相对于i的下一个点</span></span><br><span class="line">		<span class="keyword">if</span> (points[i].y - points[j].y != <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			reciprocalOfSlope = (points[i].x - points[j].x) * <span class="number">1.0</span> / (points[i].y - points[j].y);</span><br><span class="line"></span><br><span class="line">			<span class="comment">//TODO：以下处理，得到每条边的y的最大值和最小值</span></span><br><span class="line">			<span class="keyword">if</span> (points[i].y &lt; points[j].y)<span class="comment">//斜率不为0时</span></span><br><span class="line">			&#123;</span><br><span class="line">				yMin = points[i].y;</span><br><span class="line">				yMax = points[j].y;</span><br><span class="line">				x = points[i].x;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				yMin = points[j].y;</span><br><span class="line">				yMax = points[i].y;</span><br><span class="line">				x = points[j].x;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (y = yMin; y &lt; yMax; y++)<span class="comment">//沿每条扫描线处理</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//对每条扫描线与边的交点的右侧像素循环，其中max_X是包围圈的右边界</span></span><br><span class="line">				<span class="keyword">if</span>(x &lt; fence)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> tempX = Round(x); tempX &lt; fence; tempX++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span> (pDC-&gt;GetPixel(tempX, y) == foregroundColor)</span><br><span class="line">						&#123;</span><br><span class="line">							pDC-&gt;SetPixelV(tempX, y, backgroundColor);</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span></span><br><span class="line">						&#123;</span><br><span class="line">							pDC-&gt;SetPixelV(tempX, y, foregroundColor);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> tempX = fence; tempX &lt; x; tempX++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span> (pDC-&gt;GetPixel(tempX, y) == foregroundColor)</span><br><span class="line">						&#123;</span><br><span class="line">							pDC-&gt;SetPixelV(tempX, y, backgroundColor);</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">else</span></span><br><span class="line">						&#123;</span><br><span class="line">							pDC-&gt;SetPixelV(tempX, y, foregroundColor);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				x = x + reciprocalOfSlope;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>			<span class="comment">//斜率为0时</span></span><br><span class="line">		&#123; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p>利用<code>Linux C</code>实现简单的ls功能，其中包括：</p>
+<ol>
+<li><code>-a</code> 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)。</li>
+<li><code>-l</code> 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出。</li>
+<li><code>-R</code> 若目录下有文件，则以下之文件亦皆递归依序列出。</li>
+<li><code>-d</code> 显示目录名称而非其内容。</li>
+<li><code>-i</code> 显示文件和目录的inode编号。</li>
+</ol>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ls_command.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PARAM_TYPE_NUM  6<span class="comment">//参数种类</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DESTINATION_PARAM 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> a_PARAM  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> d_PARAM  2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> i_PARAM  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> l_PARAM  4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> R_PARAM  5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handle_params</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">bool</span> params[], <span class="keyword">char</span>* optstring)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handle_ls_command</span><span class="params">(<span class="keyword">bool</span> params[], <span class="keyword">char</span>* argv[])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printDir</span><span class="params">(<span class="keyword">char</span> *dir, <span class="keyword">int</span> depth, <span class="keyword">bool</span> params[])</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handle_params</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">bool</span> params[], <span class="keyword">char</span>* optstring)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> opt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>((opt = getopt(argc, argv, optstring)) != <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">switch</span>(opt)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">                params[a_PARAM] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">                params[d_PARAM] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">                params[i_PARAM] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'l'</span>:</span><br><span class="line">                params[l_PARAM] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'R'</span>:</span><br><span class="line">                params[R_PARAM] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'?'</span>:</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"ls: unknown option:  %c\n"</span>, optopt);</span><br><span class="line">                optind--;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(optind &lt; argc)&#123;</span><br><span class="line">        params[DESTINATION_PARAM] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handle_ls_command</span><span class="params">(<span class="keyword">bool</span> params[], <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(params[DESTINATION_PARAM] != <span class="literal">true</span>)&#123;</span><br><span class="line">        printDir(<span class="string">"."</span>, <span class="number">0</span>, params);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        printDir(argv[optind], <span class="number">0</span>, params);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printDir</span><span class="params">(<span class="keyword">char</span> *dir, <span class="keyword">int</span> depth, <span class="keyword">bool</span> params[])</span></span>&#123;</span><br><span class="line">    DIR *destination_directory = opendir(dir);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(destination_directory == <span class="literal">NULL</span>)&#123;<span class="comment">//如果打开失败，给出提示，并退出。</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"ls: 打开文件夹 %s 失败。\n"</span>, dir);</span><br><span class="line">       <span class="comment">// exit(-1);</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">entry</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">statbuf</span>;</span></span><br><span class="line">    chdir(dir);<span class="comment">//更换工作路径</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>((entry = readdir(destination_directory)) != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        lstat(entry-&gt;d_name, &amp;statbuf);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//-d 显示目录名称而非其内容</span></span><br><span class="line">        <span class="keyword">if</span>(params[d_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%*s%s/ \n"</span>, depth, <span class="string">" "</span>, dir);</span><br><span class="line">            <span class="comment">//-i 显示文件和目录的索引节点号</span></span><br><span class="line">            <span class="keyword">if</span>(params[i_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld\n"</span>, depth, <span class="string">" inode:"</span>, statbuf.st_ino);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出</span></span><br><span class="line">            <span class="keyword">if</span>(params[l_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 权限："</span>, statbuf.st_mode);<span class="comment">//权限</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 拥有者："</span>, statbuf.st_uid);<span class="comment">//拥有者</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 组ID："</span>, statbuf.st_gid);<span class="comment">//组名</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld 字节\n"</span>, depth, <span class="string">" 文件大小："</span>, statbuf.st_size);<span class="comment">//文件大小</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(S_ISDIR(statbuf.st_mode))&#123;<span class="comment">//如果是目录</span></span><br><span class="line">            <span class="keyword">if</span>(params[a_PARAM] == <span class="literal">false</span> &amp;&amp;</span><br><span class="line">                (<span class="built_in">strcmp</span>(entry-&gt;d_name, <span class="string">"."</span>)==<span class="number">0</span> || <span class="built_in">strcmp</span>(entry-&gt;d_name, <span class="string">".."</span>)==<span class="number">0</span>) )&#123;</span><br><span class="line">                <span class="comment">//不显示 . 和 .. 文件夹</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%*s%s/ \n"</span>, depth, <span class="string">" "</span>, entry-&gt;d_name);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//-i 显示文件和目录的索引节点号</span></span><br><span class="line">            <span class="keyword">if</span>(params[i_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld\n"</span>, depth, <span class="string">" inode:"</span>, statbuf.st_ino);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出</span></span><br><span class="line">            <span class="keyword">if</span>(params[l_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 权限："</span>, statbuf.st_mode);<span class="comment">//权限</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 拥有者："</span>, statbuf.st_uid);<span class="comment">//拥有者</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 组ID："</span>, statbuf.st_gid);<span class="comment">//组名</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld 字节\n"</span>, depth, <span class="string">" 文件大小："</span>, statbuf.st_size);<span class="comment">//文件大小</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//-R 若目录下有文件，则以下之文件亦皆递归依序列出</span></span><br><span class="line">            <span class="comment">//若没有，直接跳出第一次循环即可</span></span><br><span class="line">            <span class="keyword">if</span>(params[R_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                printDir(entry-&gt;d_name, depth + <span class="number">4</span>, params);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">//一般文件</span></span><br><span class="line">            <span class="comment">//如果没有 -a 则忽略以.开头的文件</span></span><br><span class="line">            <span class="keyword">if</span>(params[a_PARAM] == <span class="literal">false</span> &amp;&amp; (entry-&gt;d_name[<span class="number">0</span>] == <span class="string">'.'</span>))&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%*s%s \n"</span>, depth, <span class="string">" "</span>, entry-&gt;d_name);<span class="comment">//只列出名字</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//-l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出</span></span><br><span class="line">            <span class="keyword">if</span>(params[l_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 权限："</span>, statbuf.st_mode);<span class="comment">//权限</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 拥有者："</span>, statbuf.st_uid);<span class="comment">//拥有者</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%d\t"</span>, depth, <span class="string">" 组ID："</span>, statbuf.st_gid);<span class="comment">//组名</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld 字节\n"</span>, depth, <span class="string">" 文件大小："</span>, statbuf.st_size);<span class="comment">//文件大小</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//-i 显示文件和目录的索引节点号</span></span><br><span class="line">            <span class="keyword">if</span>(params[i_PARAM] == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%*s%ld\n"</span>, depth, <span class="string">" inode:"</span>, statbuf.st_ino);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    chdir(<span class="string">".."</span>);</span><br><span class="line">    closedir(destination_directory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> params[PARAM_TYPE_NUM] = &#123;<span class="literal">false</span>&#125;;<span class="comment">//首先全部设为false</span></span><br><span class="line">    handle_params(argc, argv, params, <span class="string">"alRdi::"</span>);</span><br><span class="line">    handle_ls_command(params, argv);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -452,7 +481,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2018/10/15/图形学-边缘填充算法/" title="图形学--边缘填充算法">http://CongLinDev.github.io/2018/10/15/图形学-边缘填充算法/</a>
+    <a href="http://CongLinDev.github.io/2018/11/18/Linux-实现简单的ls功能/" title="Linux--实现简单的ls功能">http://CongLinDev.github.io/2018/11/18/Linux-实现简单的ls功能/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -476,11 +505,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           
-            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
-          
-            <a href="/tags/填充算法/" rel="tag"><i class="fa fa-tag"></i> 填充算法</a>
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
           
         </div>
       
@@ -493,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/图形学-有效边填充算法/" rel="next" title="图形学--有效边表填充算法">
-                <i class="fa fa-chevron-left"></i> 图形学--有效边表填充算法
+              <a href="/2018/10/28/图形学-3D图形斜投影/" rel="next" title="图形学--3D图形斜投影">
+                <i class="fa fa-chevron-left"></i> 图形学--3D图形斜投影
               </a>
             
           </div>
@@ -502,10 +529,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/15/图形学-区域填充算法/" rel="prev" title="图形学--区域填充算法">
-                图形学--区域填充算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -575,17 +598,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -668,22 +682,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB-255-255-255-（白色）的像素置为RGB-0-0-0-（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。"><span class="nav-number">1.</span> <span class="nav-text">边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）的像素置为RGB(0,0,0)（黑色），反之亦然；对于彩色图像，求补就是将背景色置为填充色，反之亦然。求补的一条基本性质是一个像素求补两次就恢复为原色。如果多边形内部的像素被求补偶数次，保持原色，如果被求补奇数次，显示填充色。   </span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
