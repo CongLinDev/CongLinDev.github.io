@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 ###安装libpcap库  Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件">
+<meta name="description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 安装libpcap库 Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件夹，执行">
 <meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="抓取简单的Pcap文件并读出信息">
 <meta property="og:url" content="http://CongLinDev.github.io/2018/12/15/抓取简单的Pcap文件并读出信息/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 ###安装libpcap库  Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件">
+<meta property="og:description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 安装libpcap库 Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件夹，执行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-15T13:14:16.287Z">
+<meta property="og:updated_time" content="2018-12-15T13:19:18.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="抓取简单的Pcap文件并读出信息">
-<meta name="twitter:description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 ###安装libpcap库  Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件">
+<meta name="twitter:description" content="以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。 安装libpcap库 Libpcap下载。 解压下载的压缩包 tar -zxvf filename.tar.gz （filename是下载的文件名） 配置生成makefile文件。进入解压的文件夹，执行">
 
 
 
@@ -425,16 +425,14 @@
       
         <p>以下开发均基于<strong>Linux</strong>平台，以Ubuntu为例进行讲解，具体源码移步<a href="https://github.com/CongLinDev/SimplePcapFileAnalyzer" target="_blank" rel="noopener">这里</a>。</p>
 <h2 id="抓取Pcap文件"><a href="#抓取Pcap文件" class="headerlink" title="抓取Pcap文件"></a>抓取Pcap文件</h2><p>笔者使用<strong>libpcap</strong>库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。</p>
-<p>###安装libpcap库</p>
-<ol>
+<h3 id="安装libpcap库"><a href="#安装libpcap库" class="headerlink" title="安装libpcap库"></a>安装libpcap库</h3><ol>
 <li>Libpcap<a href="http://www.tcpdump.org/#latest-release" target="_blank" rel="noopener">下载</a>。</li>
 <li>解压下载的压缩包 <code>tar -zxvf filename.tar.gz</code> （filename是下载的文件名）</li>
 <li>配置生成makefile文件。进入解压的文件夹，执行 <code>./configure</code>。这里可能会提示缺少flex，使用<code>sudo apt-get install flex</code>即可。</li>
 <li>执行<code>make</code>。这里可能会提示缺少yacc，使用<code>sudo apt-get install yacc</code>即可。</li>
 <li>执行<code>sudo make install</code>。</li>
 </ol>
-<p>###使用库函数抓包</p>
-<ol>
+<h3 id="使用库函数抓包"><a href="#使用库函数抓包" class="headerlink" title="使用库函数抓包"></a>使用库函数抓包</h3><ol>
 <li>pcap_lookupdev()：函数用于查找网络设备，返回可被 pcap_open_live() 函数调用的网络设备名指针。</li>
 <li>pcap_lookupnet()：函数获得指定网络设备的网络号和掩码。</li>
 <li>pcap_open_live()： 函数用于打开网络设备，并且返回用于捕获网络数据包的数据包捕获描述字。对于此网络设备的操作都要基于此网络设备描述字。</li>
@@ -652,7 +650,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#抓取Pcap文件"><span class="nav-number">1.</span> <span class="nav-text">抓取Pcap文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析Pcap文件"><span class="nav-number">2.</span> <span class="nav-text">分析Pcap文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#抓取Pcap文件"><span class="nav-number">1.</span> <span class="nav-text">抓取Pcap文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装libpcap库"><span class="nav-number">1.1.</span> <span class="nav-text">安装libpcap库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用库函数抓包"><span class="nav-number">1.2.</span> <span class="nav-text">使用库函数抓包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析Pcap文件"><span class="nav-number">2.</span> <span class="nav-text">分析Pcap文件</span></a></li></ol></div>
             
 
           </div>
