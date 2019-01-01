@@ -2,25 +2,25 @@
 
 
 
-
-
-
-
-
-
-
-
-
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
-
 
 
 
@@ -29,8 +29,16 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -49,7 +57,7 @@
 
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -57,64 +65,45 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=6.7.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    fastclick: ,
-    lazyload: ,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
+  <meta name="keywords" content="算法,Google,">
 
 
 
 
-  <meta name="description" content="Google有一道扔鸡蛋的面试题目：  You work in a 100 floor building and you get 2 identical eggs.You need to figure out the highest floor an egg can be dropped without breaking.The question is how many throws you ne">
+
+
+
+
+
+
+<meta name="description" content="Google有一道扔鸡蛋的面试题目：  You work in a 100 floor building and you get 2 identical eggs.You need to figure out the highest floor an egg can be dropped without breaking.The question is how many throws you ne">
 <meta name="keywords" content="算法,Google">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扔鸡蛋问题">
 <meta property="og:url" content="http://CongLinDev.github.io/2018/02/28/扔鸡蛋问题/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
 <meta property="og:description" content="Google有一道扔鸡蛋的面试题目：  You work in a 100 floor building and you get 2 identical eggs.You need to figure out the highest floor an egg can be dropped without breaking.The question is how many throws you ne">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="data:image/*;base64,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">
 <meta property="og:image" content="data:image/*;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAASAKwDASIAAhEBAxEB/8QAHAAAAwADAQEBAAAAAAAAAAAAAAQFAgYIAwEH/8QAOBAAAgEEAAQEBQIADwAAAAAAAQIDAAQFEQYSITETIkFRFGFxgZEHMggWIzQ3UlR1kpWhsbKz4//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD9T4ovL+PLcPY7G381pLeXbCbw0jYGBIy7nzq2jsKo1r9/0rLIXt5gs5hYnyEt5a5O5a0eOeNA0beGzq6FFXp5CCDv9wI1o7WkXJvx6MlJhrySxs7FrW2dZIPNI8gaRgDIDrUaAbAPfpTQxd5kuILfOX0CwrZQuthaM4YpI408shXoDyjlAUsACTsltANporUsPxFeX11YRXHwojvEuJVKBgfDSRVjfZJHnDKeX5nROqv5C0+OsZbbltmEmulzD4sZ6g9U2N9vfvQPUVqn8UD/AGfhr/JP/WruOtPgbKO35bdeQEat4fCj7k9F2dd/c0CFnMb7iHJEuTFj2S2RT6SsgkZvn5ZI1Htpvc1D4hzb2nG2Px7cQjFWQspbq852gUEAqsejIpIJJcnrrSfWq+Hj+Ezufhc+ae4jvI9eqNCkf/KF/wAikMNZZK44m4hvspjbiCC7SG3txJJEwMManY8rsQS0kh1rtrrugqYyG7N38W2VurvHzW6PGk8cS6YknflRT210O6u1AymRu7PKY2ytRbclyX8Uyg/yUaISz6BHQN4a69efuNdWeH8k+WwNlfy8gkuIVkZUB0vMAQNHqOhHQ9aCtRUWTh2zmd2afJgsxYhcncqPsBIND5DpTtljYceGEL3LBjs+PdSTa+nOx19qCBx7krrGYKBrHJnH3lzewWsM3LGVBdwGLc4I0E52+1Z2jTZKSK5xfEdxd28N1yTACBopAB1XmVN9yBsHYIIPY15ZqDJXvGWCZMdO+MsGlmlnEkXKZWTw06Fw2lDyEnW960DVLOXMmDwV1d2UULTrtkSQHUkjN5V6erMQu/Te+utELlFa/j8rcy3GUheJLhrOcRKsHlLEojMBzto65x12B3GgRqqMN9cSShJMZdwqe7yNEQP8Lk/6UD9Fa1wvGIr/AIkjUuQuU0Od2Y/zeA9yT71WvsXBflDNJdqUB14F3LDv68jDf3oH68J/HaIi3kjjf+tIhcfgEf71PhwVrBMk0c+RLIdgPkbh1381ZyCPkRT9zNJBbtJHby3LDtFEVDN9OYgfk0EHhi5m4j4Fxd3kJC895aJJK8YCHmI3sa7EHqNdiBXOv61X0uR4oxk0zo1xHjvh52PlDSxXE8bkD0BZCR9a6H4Itb3FcFYuwyVm9ncWdrHDKskiMNqvUgqxGvrqub/1hieLiPGyOGHxVlJeKCNELNd3Eqgj3CuAfmDQdc0UUUCMNlaxyQ8ltCvgJ4cPLGB4a6XovsPkKcoooMqKKKCVddMlYuP3c0y79daJ19NqPwPaqtFFAtNDE15FI0aGRYnVWKjYBK7APsdD8Cs7a3htbZIbeGOGJV8qRqFUfYUUUHtRRRQFLXUccsSLIiuviRtphsbDqQfsQDRRQeVvBDHd3MiRIryOvOwUAtpPU+tPUUUE2wx9lZ3V1Ja2dvA80xaRoolUueVepIHU1SoooPlFFFBMzYBxrIQCryKjA9mUnRB9xXOv8Iv+kKw/uqP/ALZaKKD/2Q==">
 <meta property="og:image" content="data:image/*;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAASARgDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAQFBgECAwf/xAA+EAACAgIBAgQEAwQEDwAAAAABAgMEBREAEiEGEyIxFDJBUQdhgWJxkbMVIyRCFiUzNDU3Q0RSc3ShorLh/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APZj4hxqSzw+e5mrr1SxrC7Mq9x1aAJK7UjqGxsa3zaDO4y3NVSCyHFpC9d1VuiUAbPS2uknX0B32P25A2cLlmxviyWvDGuQyP8AZ6enACQiJY0P2Gi0j6/a1xpsNPXz2FNOBWx+NqNXiBYAIxKLth79o0IXQPdzvQ78CRyHiHGY0WPirfStYK05SNnEQb5Q3SDontoe52Ne452uZijjmAtTNGpYL1lW6QSdAE60CToAfXY+/Ko+CyqYp6HwhsPNmjety+av9fD8R5ihdn36BGpB0AFYAntt/J1ctlLVAS4xY69bIR2ZjHOreeqR7VgDrREvTsE/KgIJJ0AbvZmK/WowUJ2DXrzUvMAZShjDtKO+irdMUig+4Oj9ObeLrr4Pwdk7tWRoJa9c/DGJFJEntGoBBGixVda9uYzcbefgr8ulWrkOqQL7hZI5IR/5Sps+3ueLeMK+RyTYqlVxlixTW/DZuOjxBfLiJcJ6nBJLrH9Na334HPLvl/D3hOxlZMzLat4+p58sc8cQjnKrth6UDDq0QCD2JHYjsbVBMJ68cyghZEDgH3AI3yt5fH3PFddcbapy0sW8itcEsiGSwqkHylCMwCkj1MSDoEAerY6yQiP8QqLK7+rF2iQXYjtJXHtvQ/QDgWXlV8UWr6Zjw9jsdkJas124wl6EjYGBIy7k9ato7CqNa+fk1Wuy2L9yvLVaAQOvlOXDCZGHzaHy+oMNHv6d+x5X5kyb+PRkpMPbkpVKLVqrK8HqkeQGRhuQEDpjjA2Ae7cDtfuXMFncNE1+W3WydlqjxzIgaJvLZ1ZSir29BBB38wI1o7teuVdMRZzHiCvmcghrJSidKNcMGdHcaeVyNr1dPpUAsACTsltKtgqK1/EEktOfpqpRFcb11W5Fb1TELoHp2B1aHUXP0AJC48So3fjVsER9HkzvD8299J1v/wCcxbx0N4r50llejevIsyQ+/wB+hhv2+vIPD+Ha8aXPNfJpu3KV3kbI2vV2Pz99/f68CySrKY2ETKsmvSWXqA/eNjf8eQfhPIXMljrst2VZJoslbrBlQKOmOZkXQ/co9yT+fJyVmjjZljaQgdkUjbfkNkD+J5WfB0GRo4/IR3cdPXklyFuzEJJIm6lkmZ1G0Y6OmG9/XgWvlQwsmSzOa8QuMzbjoVroq1USOHsVRTIdmMkjqYgbJ+Xk1XyNmxhkuPjZls9PrprIhcODplDbCnRB77A7cr/hVMziPDVetPhLByczSWLDSTwiPzpHaRiWVmbQLEbCsdAduBI+HMpZt2szjbcnny4u4IBYChfNRo1dSQOwYBtHQAJGwBvQsnKfVwdfD0YKs/Tey121Nccv1pFYssjdXX0hgqBeyhgQOhfdgDx/wXJHJ4QxvlSzSrHF5JeYaYshKH6nttTrue2u54Erkrv9H0Xs+X5nSVHT1a9yB7/rxzlX8QYGG1jbDxtkWmeRG6Yr0+vnBOlDa179gND6cl6eKgpyM8Ultiw0RNclmH6B2IB/McBa2uRsZN60Mk1KotdWSzF5R6pCzBlKsrH0gKR2APUe/bnDwbmLee8JUMlcSNZ51bqMYIV9Oyh1B+jABh+R4r4pmycssdCvgruQoSoTaevPBH1jf+SPmSKdEe5A9joHudO1slegpY/zsM9cyzmGWFZY/wCyIdiMnpJDf3AQpOurfsOBIZCwlLHWLMsrQxxRtI8qgEoANkjYI7AH35W8DHnrvg2jeuZ6wmSnqLYYNBD5asw6lVgIwdDYB0QTo6I9+M+OoMlkPDFnF42hYsPeAgleJ418uJmAkJ62XZKFtAb7++ub5SDI5nFSYerTlx0E6eTLZmdCUiI0wjVS22K7A3oDe++ukg94ayxz/hrG5Z4vJa3XSZo97CkgEgH6jfseTPKP4jaDGUcbj4EnrVKduhHEkUMjK48+MBNhSCAo9tnZP3XvcLNdLcDQyNIqt7mKRo2/RlII/Q8Dl8b/AI3NHo9oBN19X7RGtfpx3lVXw7W/widg+S8sU1Af+kLPzdbdt9f/AG3yw1qy1oFijaRgu9NJI0jfqzEk/wAeBVJsjmquXwtNbMFi9Yst8fUi0Y4q/SxMgPSGBB8sDZOyxHf35dOUjIYvPZaLw9XmXpvUL0Nm1kvQisqA9YjVWLesErogDRO/sbNVuzT3rleWq8IgdfKcuGEyEfNofL6gw0e/p37HgSPDkVLdvCvkHjxUjyQE/DR+eg+KHSDsEnS+olfV9t+x4wZ7C3oYhUYwPEzPOZF/q2BXS9PudgsdjsOn8+B4l+Ok5g8LSYhmLLXylazAP+CGWKwAv6PHJr7AqPpw5r+PaGbGWbqncS3aVMbH99I7UjEfcamQfvVh9OHA984cOHAOHDhwFL6LJTsRuoZGhYFWGwex+nMY1mfH12YliY17k7+nDhwG+JtjqL5OK81Ku1xYyq2DEpkA7dg2t64cOBrS/wA9yX/UD+UnH+HDgaP8h5F43w/hcRakkxmIx9J3TTtWrJGWGz7lQN8OHAluB4cOBnhw4cBDC/6Eo/8AIT/1HH+HDgcLVWvbiEdiCKZN/LIgYfwPNq8McFeOKGNI41UBVRQAB+QHDhwOvDhw4BxDIAGzj9j/AHg/y34cOA/w4cOAlkMfSyMMaXadeysciOgniVwrb9xsdj+fHOHDgZ5jhw4GeIUQBdyOh/t1/lJw4cB/hw4cDwz8bf8AVPh/2shG5/NjHOSf3k9yeHDhwP/Z">
@@ -133,6 +122,29 @@
 
 
 
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
 
 
@@ -140,11 +152,7 @@
 
 
 
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
+
 
   <title>扔鸡蛋问题 | CongLin's Blog</title>
   
@@ -153,8 +161,7 @@
 
 
 
-
-  <script>
+  <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -167,37 +174,18 @@
 
 
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -206,10 +194,10 @@
 
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
-
+    <a href="https://github.com/CongLinDev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
@@ -219,16 +207,13 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
       
         <p class="site-subtitle">敢于直面惨淡的人生。</p>
       
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
+    <button>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -236,100 +221,64 @@
   </div>
 </div>
 
-
-
 <nav class="site-nav">
+  
+
   
     <ul id="menu" class="menu">
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-
-    
-
-    <a href="/" rel="section">首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-
-    
-
-    <a href="/tags/" rel="section">标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-
-    
-
-    <a href="/categories/" rel="section">分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-
-    
-
-    <a href="/archives/" rel="section">归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-
-    
-
-    <a href="/about/" rel="section">关于</a>
-
-  </li>
-
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+            搜索
+          </a>
         </li>
       
     </ul>
-  
-
   
 
   
@@ -358,23 +307,12 @@
 
 
 
-  
-
-
-
-</div>
+ </div>
     </header>
-
-    
-
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-            
-
-          
           <div id="content" class="content">
             
 
@@ -387,8 +325,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -398,8 +334,8 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -411,20 +347,12 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">扔鸡蛋问题
-
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">扔鸡蛋问题</h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -432,12 +360,11 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
+                2018-02-28
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-02-28 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">2018-02-28</time>
             
 
             
@@ -455,7 +382,11 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
 
                 
                 
@@ -471,7 +402,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/02/28/扔鸡蛋问题/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/28/扔鸡蛋问题/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/28/扔鸡蛋问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -571,9 +502,6 @@
 
       
     </div>
-
-    
-
     
     
     
@@ -581,19 +509,72 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2018/02/28/扔鸡蛋问题/" title="扔鸡蛋问题">http://CongLinDev.github.io/2018/02/28/扔鸡蛋问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
       
+        <div>
     
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
     
-
+</div>
     
+    </div>
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
-            <a href="/tags/Google/" rel="tag"># Google</a>
+            <a href="/tags/Google/" rel="tag"><i class="fa fa-tag"></i> Google</a>
           
         </div>
       
@@ -634,10 +615,30 @@
   </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
   </div>
 
 
           </div>
+          
+
+
           
 
   
@@ -678,63 +679,94 @@
         </ul>
       
 
-      <div class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/CL.png" alt="从林">
             
               <p class="site-author-name" itemprop="name">从林</p>
               <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
           </div>
 
-          
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
           
             <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/CongLinDev" title="GitHub &rarr; https://github.com/CongLinDev" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:conglindev@live.com" title="E-Mail &rarr; mailto:conglindev@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
             </div>
           
 
           
-
-          
           
 
           
-            
           
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="52" src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
+
+
           
 
         </div>
-      </div>
+      </section>
 
       
       <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-            
-            
+              
             
 
             
@@ -742,7 +774,7 @@
             
 
           </div>
-        </div>
+        </section>
       <!--/noindex-->
       
 
@@ -765,13 +797,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CongLin</span>
-
-  
 
   
 </div>
@@ -792,7 +822,6 @@
 
 
 
-
         
       </div>
     </footer>
@@ -801,14 +830,11 @@
 
     
 
-    
-
-    
   </div>
 
   
 
-<script>
+<script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -822,9 +848,6 @@
 
 
 
-
-
-
   
 
 
@@ -838,51 +861,80 @@
 
 
 
-
-
-
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script src="/js/src/utils.js?v=6.7.0"></script>
-
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
 
   
   
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
-
-
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
   
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
 
 
 
@@ -890,11 +942,10 @@
 
 
 
+
+
   
-    <script>
-      window.livereOptions = {
-        refer: '2018/02/28/扔鸡蛋问题/'
-      };
+    <script type="text/javascript">
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
         if (typeof LivereTower === 'function') { return; }
@@ -913,38 +964,35 @@
 
 
 
-  
-  
-  
-  
-  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  <script>
+  
+  <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item) > -1;
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
     });
     new Valine({
-      el: '#comments' ,
-      verify: false,
-      notify: false,
-      appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
-      appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
-      placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
-      avatar: 'mm',
-      meta:guest,
-      pageSize: '10' || 10,
-      visitor: 
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
     });
   </script>
 
 
 
-
   
 
-  <script>
+  <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -993,8 +1041,6 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
-      
-
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1028,9 +1074,8 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1199,9 +1244,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1273,42 +1318,31 @@
   
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-      }
-      else {
+    }
+    else {
         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
+  
   
 
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
 
-  
-
-  
-
-  
-  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
-  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
-
-
-  
-
-  
-
-  
 
   
 

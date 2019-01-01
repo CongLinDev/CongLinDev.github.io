@@ -2,25 +2,25 @@
 
 
 
-
-
-
-
-
-
-
-
-
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
-
 
 
 
@@ -29,8 +29,16 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -49,7 +57,7 @@
 
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -57,40 +65,64 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=6.7.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-<script id="hexo.configurations">
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="It is my personal website.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CongLin&#39;s Blog">
+<meta property="og:url" content="http://CongLinDev.github.io/index.html">
+<meta property="og:site_name" content="CongLin&#39;s Blog">
+<meta property="og:description" content="It is my personal website.">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CongLin&#39;s Blog">
+<meta name="twitter:description" content="It is my personal website.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '6.7.0',
+    version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
-    fastclick: ,
-    lazyload: ,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -102,36 +134,12 @@
 </script>
 
 
-  
-
-
-
-
-  <meta name="description" content="It is my personal website.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CongLin&#39;s Blog">
-<meta property="og:url" content="http://CongLinDev.github.io/index.html">
-<meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="It is my personal website.">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CongLin&#39;s Blog">
-<meta name="twitter:description" content="It is my personal website.">
-
-
-
-
-
 
   <link rel="canonical" href="http://CongLinDev.github.io/">
 
 
 
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
+
 
   <title>CongLin's Blog</title>
   
@@ -140,8 +148,7 @@
 
 
 
-
-  <script>
+  <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -154,37 +161,18 @@
 
 
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -194,10 +182,10 @@
   <div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
-
+    <a href="https://github.com/CongLinDev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
@@ -207,16 +195,13 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
       
         <p class="site-subtitle">敢于直面惨淡的人生。</p>
       
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
+    <button>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -224,100 +209,64 @@
   </div>
 </div>
 
-
-
 <nav class="site-nav">
+  
+
   
     <ul id="menu" class="menu">
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
-
-    
-    
-    
-
-    
-
-    <a href="/" rel="section">首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-
-    
-
-    <a href="/tags/" rel="section">标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-
-    
-
-    <a href="/categories/" rel="section">分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-
-    
-
-    <a href="/archives/" rel="section">归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-
-    
-
-    <a href="/about/" rel="section">关于</a>
-
-  </li>
-
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+            搜索
+          </a>
         </li>
       
     </ul>
-  
-
   
 
   
@@ -346,23 +295,12 @@
 
 
 
-  
-
-
-
-</div>
+ </div>
     </header>
-
-    
-
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-            
-
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -375,8 +313,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -386,8 +322,8 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -401,20 +337,16 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/02/26/hello-world/" class="post-title-link" itemprop="url">Hello World!</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/02/26/hello-world/" itemprop="url">Hello World!</a></h1>
         
 
         <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color="7D26CD">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -422,12 +354,11 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T00:00:00+08:00">
+                2018-02-26
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-26T00:00:00+08:00">2018-02-26</time>
             
 
             
@@ -443,7 +374,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/02/26/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/26/hello-world/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/26/hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -473,19 +404,18 @@
       
         
           
-            <p>
-              &ensp;&ensp;&ensp;&ensp;2018年2月26日，基于Hexo框架并托管在GitHub服务器上，我建立了第一个自己的博客网站 (https://conglindev.github.io/)&ensp;&ensp;&ensp;&ensp;虽然功能不完善，但是具有了博客的基本的功能。
-              ...
-            </p>
+          &ensp;&ensp;&ensp;&ensp;2018年2月26日，基于Hexo框架并托管在GitHub服务器上，我建立了第一个自己的博客网站 (https://conglindev.github.io/)&ensp;&ensp;&ensp;&ensp;虽然功能不完善，但是具有了博客的基本的功能。
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/26/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -493,11 +423,11 @@
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -527,8 +457,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -538,8 +466,8 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -553,20 +481,12 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2019/01/01/飞机大战游戏设计/" class="post-title-link" itemprop="url">飞机大战游戏设计</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2019/01/01/飞机大战游戏设计/" itemprop="url">飞机大战游戏设计</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -574,12 +494,11 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-01T09:51:00+08:00">
+                2019-01-01
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 09:51:00" itemprop="dateCreated datePublished" datetime="2019-01-01T09:51:00+08:00">2019-01-01</time>
             
 
             
@@ -595,7 +514,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2019/01/01/飞机大战游戏设计/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/飞机大战游戏设计/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/飞机大战游戏设计/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -625,21 +544,20 @@
       
         
           
-            <p>
-              本项目基于 Python3 进行开发，使用了 pygame 模块。
+          本项目基于 Python3 进行开发，使用了 pygame 模块。
 开发这个项目的目的不是为了做游戏，而是熟悉 设计模式 。
 源代码源码已经托管在Github，戳我 查看源码。你也可以通过使用命令 git clone git@github.com:CongLinDev/AirplaneWarGame
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/01/飞机大战游戏设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -647,11 +565,11 @@
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -681,8 +599,6 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -692,8 +608,8 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -707,20 +623,12 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/12/15/抓取简单的Pcap文件并读出信息/" class="post-title-link" itemprop="url">抓取简单的Pcap文件并读出信息</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/12/15/抓取简单的Pcap文件并读出信息/" itemprop="url">抓取简单的Pcap文件并读出信息</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -728,12 +636,11 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-15T20:50:00+08:00">
+                2018-12-15
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-12-15 20:50:00" itemprop="dateCreated datePublished" datetime="2018-12-15T20:50:00+08:00">2018-12-15</time>
             
 
             
@@ -751,7 +658,11 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
 
                 
                 
@@ -767,7 +678,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/12/15/抓取简单的Pcap文件并读出信息/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/15/抓取简单的Pcap文件并读出信息/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/15/抓取简单的Pcap文件并读出信息/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -797,23 +708,22 @@
       
         
           
-            <p>
-              以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。
+          以下开发均基于Linux平台，以Ubuntu为例进行讲解，具体源码移步这里。
 抓取Pcap文件笔者使用libpcap库（libpcap是unix/linux平台下的网络数据包捕获函数包）进行抓包。
 安装libpcap库
 Libpcap下载。
 解压下载的压缩包 tar -zxvf filename.t
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/15/抓取简单的Pcap文件并读出信息/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -821,11 +731,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -855,8 +765,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -866,8 +774,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -881,20 +789,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/11/18/Linux-实现简单的ls功能/" class="post-title-link" itemprop="url">Linux--实现简单的ls功能</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/11/18/Linux-实现简单的ls功能/" itemprop="url">Linux--实现简单的ls功能</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -902,12 +802,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T16:41:00+08:00">
+                2018-11-18
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-11-18 16:41:00" itemprop="dateCreated datePublished" datetime="2018-11-18T16:41:00+08:00">2018-11-18</time>
             
 
             
@@ -925,7 +824,11 @@ Libpcap下载。
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
 
                 
                 
@@ -941,7 +844,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/11/18/Linux-实现简单的ls功能/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/18/Linux-实现简单的ls功能/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/18/Linux-实现简单的ls功能/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -971,24 +874,23 @@ Libpcap下载。
       
         
           
-            <p>
-              利用Linux C实现简单的ls功能，其中包括：
+          利用Linux C实现简单的ls功能，其中包括：
 
 -a 显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出)。
 -l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出。
 -R 若目录下有文件，则以下之文件亦皆递归依序列出。
 -d 显示目录名称而非其内
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/18/Linux-实现简单的ls功能/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -996,11 +898,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1030,8 +932,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1041,8 +941,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1056,20 +956,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/28/图形学-3D图形斜投影/" class="post-title-link" itemprop="url">图形学--3D图形斜投影</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/28/图形学-3D图形斜投影/" itemprop="url">图形学--3D图形斜投影</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1077,12 +969,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T14:39:00+08:00">
+                2018-10-28
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-28 14:39:00" itemprop="dateCreated datePublished" datetime="2018-10-28T14:39:00+08:00">2018-10-28</time>
             
 
             
@@ -1100,7 +991,11 @@ Libpcap下载。
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/图形学/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">图形学</span>
+                  </a>
+                </span>
 
                 
                 
@@ -1116,7 +1011,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/28/图形学-3D图形斜投影/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/28/图形学-3D图形斜投影/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/28/图形学-3D图形斜投影/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1146,20 +1041,19 @@ Libpcap下载。
       
         
           
-            <p>
-              平行投影分为正投影和斜投影。当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。   
+          平行投影分为正投影和斜投影。当投影线与投影面不垂直，也就是说，投影线与投影面相倾斜时，所得到的物体的投影叫做斜投影。   
 利用矩阵变换同样可以得到3D图形几何变换，我将图形学–图形几何变换一文中的矩阵类进行修改，再加上重写了一个CPoint3D类，就可以简单实现3D图形的 斜等测轴测投影图 和 斜
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/28/图形学-3D图形斜投影/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1167,11 +1061,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1201,8 +1095,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1212,8 +1104,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1227,20 +1119,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/21/图形学-图形几何变换/" class="post-title-link" itemprop="url">图形学--图形几何变换</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/21/图形学-图形几何变换/" itemprop="url">图形学--图形几何变换</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1248,12 +1132,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T22:08:00+08:00">
+                2018-10-21
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-21 22:08:00" itemprop="dateCreated datePublished" datetime="2018-10-21T22:08:00+08:00">2018-10-21</time>
             
 
             
@@ -1269,7 +1152,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/21/图形学-图形几何变换/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/图形学-图形几何变换/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/图形学-图形几何变换/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1299,19 +1182,18 @@ Libpcap下载。
       
         
           
-            <p>
-              二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。 
-              ...
-            </p>
+          二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。 
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/21/图形学-图形几何变换/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1319,11 +1201,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1353,8 +1235,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1364,8 +1244,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1379,20 +1259,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/15/图形学-扫描线种子填充算法/" class="post-title-link" itemprop="url">图形学--扫描线种子填充算法</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/15/图形学-扫描线种子填充算法/" itemprop="url">图形学--扫描线种子填充算法</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1400,12 +1272,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:15:00+08:00">
+                2018-10-15
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 21:15:00" itemprop="dateCreated datePublished" datetime="2018-10-15T21:15:00+08:00">2018-10-15</time>
             
 
             
@@ -1421,7 +1292,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/15/图形学-扫描线种子填充算法/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-扫描线种子填充算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-扫描线种子填充算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1451,20 +1322,19 @@ Libpcap下载。
       
         
           
-            <p>
-              算法描述：种子填充算法原理和程序都很简单, 但由于多次递归, 费时、费内存, 效率不高。为了减少递归次数, 提高效率可以采用扫描线种子填充算法。    
+          算法描述：种子填充算法原理和程序都很简单, 但由于多次递归, 费时、费内存, 效率不高。为了减少递归次数, 提高效率可以采用扫描线种子填充算法。    
 算法的基本过程如下: 当给定种子点 (x, y) 时, 首先填充种子点所在扫描线上的位于给定区域的一个区段, 然后确定与这一区段相连通的上、下两条
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/图形学-扫描线种子填充算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1472,11 +1342,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1506,8 +1376,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1517,8 +1385,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1532,20 +1400,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/15/图形学-区域填充算法/" class="post-title-link" itemprop="url">图形学--区域填充算法</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/15/图形学-区域填充算法/" itemprop="url">图形学--区域填充算法</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1553,12 +1413,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:14:00+08:00">
+                2018-10-15
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 21:14:00" itemprop="dateCreated datePublished" datetime="2018-10-15T21:14:00+08:00">2018-10-15</time>
             
 
             
@@ -1574,7 +1433,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/15/图形学-区域填充算法/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-区域填充算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-区域填充算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1604,20 +1463,19 @@ Libpcap下载。
       
         
           
-            <p>
-              算法描述：区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。   
+          算法描述：区域填充是指从区域内的某一个象素点（种子点）开始，由内向外将填充色扩展到整个区域内的过程。区域是指已经表示成点阵形式的填充图形，它是相互连通的一组像素的集合。   
 区域填充算法（边界填充算法和泛填充算法）是根据区域内的一个已知象素点（种子点）出发，找到区域内其他象素点的过程，所以把这一类
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/图形学-区域填充算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1625,11 +1483,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1659,8 +1517,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1670,8 +1526,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1685,20 +1541,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/15/图形学-边缘填充算法/" class="post-title-link" itemprop="url">图形学--边缘填充算法</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/15/图形学-边缘填充算法/" itemprop="url">图形学--边缘填充算法</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1706,12 +1554,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:13:00+08:00">
+                2018-10-15
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 21:13:00" itemprop="dateCreated datePublished" datetime="2018-10-15T21:13:00+08:00">2018-10-15</time>
             
 
             
@@ -1727,7 +1574,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/15/图形学-边缘填充算法/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-边缘填充算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-边缘填充算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1757,20 +1604,19 @@ Libpcap下载。
       
         
           
-            <p>
-              算法描述：边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。   
+          算法描述：边缘填充算法是先求出多边形的每条边与扫描线的交点，然后将交点右侧的所有像素颜色全部取为补色（或反色）。按任意顺序处理完多边形的所有边后，就完成了多边形的填充任务。   
 边缘填充算法利用了图像处理中的求“补”或求“反”的概念，对于黑白图像，求补就是把RGB(255,255,255)（白色）
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/图形学-边缘填充算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1778,11 +1624,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1812,8 +1658,6 @@ Libpcap下载。
   
   
 
-  
-
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1823,8 +1667,8 @@ Libpcap下载。
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="It is my personal website.">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/CL.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1838,20 +1682,12 @@ Libpcap下载。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/15/图形学-有效边填充算法/" class="post-title-link" itemprop="url">图形学--有效边表填充算法</a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/10/15/图形学-有效边填充算法/" itemprop="url">图形学--有效边表填充算法</a></h1>
         
 
         <div class="post-meta">
+          
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1859,12 +1695,11 @@ Libpcap下载。
               
                 <span class="post-meta-item-text">发表于</span>
               
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T21:12:00+08:00">
+                2018-10-15
+              </time>
+            
 
-              
-                
-              
-
-              <time title="创建时间：2018-10-15 21:12:00" itemprop="dateCreated datePublished" datetime="2018-10-15T21:12:00+08:00">2018-10-15</time>
             
 
             
@@ -1882,7 +1717,11 @@ Libpcap下载。
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/图形学/" itemprop="url" rel="index"><span itemprop="name">图形学</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">图形学</span>
+                  </a>
+                </span>
 
                 
                 
@@ -1898,7 +1737,7 @@ Libpcap下载。
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/15/图形学-有效边填充算法/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-有效边填充算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/图形学-有效边填充算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1928,20 +1767,19 @@ Libpcap下载。
       
         
           
-            <p>
-              算法描述：有效边表填充算法通过维护边表和有效边表，避开了扫描线与多边形所有边求交的复杂运算。   
+          算法描述：有效边表填充算法通过维护边表和有效边表，避开了扫描线与多边形所有边求交的复杂运算。   
 填充原理是按照扫描线从小到大的移动顺序，计算当前扫描线与有效边的交点，然后把这些交点按x值递增的顺序进行排序、配对，以确定填充区间，最后用指定颜色填充区间内的所有像素，即完成填充工作。有效边表填充算法
-              ...
-            </p>
+          ...
           <!--noindex-->
-          
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/15/图形学-有效边填充算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
           <!--/noindex-->
         
       
     </div>
-
-    
-
     
     
     
@@ -1949,11 +1787,11 @@ Libpcap下载。
     
 
     
+
+    
+    <div>
       
-    
-    
-
-    
+    </div>
 
     <footer class="post-footer">
       
@@ -1979,12 +1817,15 @@ Libpcap下载。
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
 
           </div>
+          
+
+
           
 
         </div>
@@ -2007,54 +1848,86 @@ Libpcap下载。
 
       
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/CL.png" alt="从林">
             
               <p class="site-author-name" itemprop="name">从林</p>
               <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
           </div>
 
-          
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
 
           
             <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/CongLinDev" title="GitHub &rarr; https://github.com/CongLinDev" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="mailto:conglindev@live.com" title="E-Mail &rarr; mailto:conglindev@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
-                </span>
-              
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
             </div>
           
 
           
-
-          
           
 
           
-            
           
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="52" src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
+
+
           
 
         </div>
-      </div>
+      </section>
 
       
 
@@ -2077,13 +1950,11 @@ Libpcap下载。
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CongLin</span>
-
-  
 
   
 </div>
@@ -2104,7 +1975,6 @@ Libpcap下载。
 
 
 
-
         
       </div>
     </footer>
@@ -2113,14 +1983,11 @@ Libpcap下载。
 
     
 
-    
-
-    
   </div>
 
   
 
-<script>
+<script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2134,6 +2001,95 @@ Libpcap下载。
 
 
 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
 
 
 
@@ -2148,97 +2104,33 @@ Libpcap下载。
 
 
 
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script src="/js/src/utils.js?v=6.7.0"></script>
-
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
-
-
-
-  
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  <script>
+  
+  <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item) > -1;
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
     });
     new Valine({
-      el: '#comments' ,
-      verify: false,
-      notify: false,
-      appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
-      appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
-      placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
-      avatar: 'mm',
-      meta:guest,
-      pageSize: '10' || 10,
-      visitor: 
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
     });
   </script>
 
 
 
-
   
 
-  <script>
+  <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2287,8 +2179,6 @@ Libpcap下载。
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
-      
-
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -2322,9 +2212,8 @@ Libpcap下载。
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2493,9 +2382,9 @@ Libpcap下载。
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -2567,42 +2456,31 @@ Libpcap下载。
   
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-      }
-      else {
+    }
+    else {
         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 
+  
   
 
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
 
-  
-
-  
-
-  
-  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
-  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
-
-
-  
-
-  
-
-  
 
   
 
