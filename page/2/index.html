@@ -2,25 +2,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误');
-                history.back();
-            }
-        }
-    })();
-</script>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+
 
 
 
@@ -29,16 +29,8 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
 
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -57,7 +49,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
 
 
 
@@ -65,27 +57,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=6.7.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=6.7.0">
 
 
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
@@ -93,36 +79,18 @@
 
 
 
-
-
-
-<meta name="description" content="It is my personal website.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CongLin&#39;s Blog">
-<meta property="og:url" content="http://CongLinDev.github.io/page/2/index.html">
-<meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="It is my personal website.">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CongLin&#39;s Blog">
-<meta name="twitter:description" content="It is my personal website.">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
+    version: '6.7.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
+    fastclick: ,
+    lazyload: ,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -134,12 +102,36 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://CongLinDev.github.io/page/2/"/>
-
+  
 
 
 
+
+  <meta name="description" content="It is my personal website.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CongLin&#39;s Blog">
+<meta property="og:url" content="http://CongLinDev.github.io/page/2/index.html">
+<meta property="og:site_name" content="CongLin&#39;s Blog">
+<meta property="og:description" content="It is my personal website.">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CongLin&#39;s Blog">
+<meta name="twitter:description" content="It is my personal website.">
+
+
+
+
+
+
+  <link rel="canonical" href="http://CongLinDev.github.io/page/2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>CongLin's Blog</title>
   
@@ -148,7 +140,8 @@
 
 
 
-  <script type="text/javascript">
+
+  <script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -161,18 +154,37 @@
 
 
 
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-
-
-
-
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -182,28 +194,29 @@
   <div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
-    <a href="https://github.com/CongLinDev"><img style
-    ="position: absolute; top: 0; right: 0; border: 0;" 
-     src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">CongLin's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">敢于直面惨淡的人生。</p>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -211,64 +224,100 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+
+    
+
+    <a href="/tags/" rel="section">标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+
+    
+
+    <a href="/categories/" rel="section">分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+
+    
+
+    <a href="/archives/" rel="section">归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+
+    
+
+    <a href="/about/" rel="section">关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
-            
-            搜索
-          </a>
+            搜索</a>
         </li>
       
     </ul>
+  
+
   
 
   
@@ -283,9 +332,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -299,12 +346,23 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -317,20 +375,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/06/30/大类分流软件设计/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -341,12 +401,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/30/大类分流软件设计/" itemprop="url">大类分流软件设计</a></h1>
+                
+                <a href="/2018/06/30/大类分流软件设计/" class="post-title-link" itemprop="url">大类分流软件设计</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -354,18 +422,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-30T22:33:55+08:00">
-                2018-06-30
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-06-30 22:33:55" itemprop="dateCreated datePublished" datetime="2018-06-30T22:33:55+08:00">2018-06-30</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -376,11 +445,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
 
                 
                 
@@ -396,7 +461,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/30/大类分流软件设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/30/大类分流软件设计/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/06/30/大类分流软件设计/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -426,21 +491,22 @@
       
         
           
-          大类分流基本思想是将6个文件模拟为一个按绩点顺序存放的队列，按排行和志愿顺序对队首元素分配专业。
+            <p>
+              大类分流基本思想是将6个文件模拟为一个按绩点顺序存放的队列，按排行和志愿顺序对队首元素分配专业。
 将队首元素按志愿顺序映射为一个数组。对队首每个元素，如果当前志愿的专业人数达到人数限制，则判断下一个志愿。如果所有志愿人数都已满，则放入另一个未处理学生的队列中，等一轮分配完再处理。下面是具体算法。
 
 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/30/大类分流软件设计/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -448,11 +514,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -482,20 +548,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/06/17/Markdown文本转为Html/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -506,12 +574,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/17/Markdown文本转为Html/" itemprop="url">Markdown文本转为Html</a></h1>
+                
+                <a href="/2018/06/17/Markdown文本转为Html/" class="post-title-link" itemprop="url">Markdown文本转为Html</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -519,18 +595,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T20:05:00+08:00">
-                2018-06-17
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-06-17 20:05:00" itemprop="dateCreated datePublished" datetime="2018-06-17T20:05:00+08:00">2018-06-17</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -541,11 +618,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译技术/" itemprop="url" rel="index">
-                    <span itemprop="name">编译技术</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编译技术/" itemprop="url" rel="index"><span itemprop="name">编译技术</span></a></span>
 
                 
                 
@@ -561,7 +634,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/17/Markdown文本转为Html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/17/Markdown文本转为Html/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/06/17/Markdown文本转为Html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -591,7 +664,8 @@
       
         
           
-          利用Java语言，使用正则表达式借助编译原理的知识，制作出一个简易的将Markdown文本转为Html的程序。
+            <p>
+              利用Java语言，使用正则表达式借助编译原理的知识，制作出一个简易的将Markdown文本转为Html的程序。
 网页中不方便代码展示及维护，故托管到Github，请移步 这里。
 已经支持中文！~由于没有进行编码和解码处理，目前暂时只支持英文的转化。~
 
@@ -602,17 +676,17 @@
 分割线
 
 有序列表和无
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/17/Markdown文本转为Html/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -620,11 +694,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -654,20 +728,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -678,12 +754,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/12/C-实现简单计算器/" itemprop="url">C++实现简单计算器</a></h1>
+                
+                <a href="/2018/05/12/C-实现简单计算器/" class="post-title-link" itemprop="url">C++实现简单计算器</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -691,18 +775,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T20:26:00+08:00">
-                2018-05-12
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-05-12 20:26:00" itemprop="dateCreated datePublished" datetime="2018-05-12T20:26:00+08:00">2018-05-12</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -713,11 +798,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译技术/" itemprop="url" rel="index">
-                    <span itemprop="name">编译技术</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编译技术/" itemprop="url" rel="index"><span itemprop="name">编译技术</span></a></span>
 
                 
                 
@@ -733,7 +814,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/05/12/C-实现简单计算器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/12/C-实现简单计算器/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/05/12/C-实现简单计算器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -763,21 +844,22 @@
       
         
           
-          
+            <p>
+              
 利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。      
 
 文法如下： EXP     -&gt;  TERM {AlphaOP TERM} TERM    -&gt;  FACTOR {BetaOP FACTOR} FACTOR  -&gt;  (EXP) 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/12/C-实现简单计算器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -785,11 +867,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -819,20 +901,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/04/21/OperateFile-LAN-Java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -843,12 +927,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/21/OperateFile-LAN-Java/" itemprop="url">OperateFile-LAN-Java</a></h1>
+                
+                <a href="/2018/04/21/OperateFile-LAN-Java/" class="post-title-link" itemprop="url">OperateFile-LAN-Java</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -856,18 +948,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T19:37:20+08:00">
-                2018-04-21
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-04-21 19:37:20" itemprop="dateCreated datePublished" datetime="2018-04-21T19:37:20+08:00">2018-04-21</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -878,11 +971,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式技术/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式技术</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/分布式技术/" itemprop="url" rel="index"><span itemprop="name">分布式技术</span></a></span>
 
                 
                 
@@ -898,7 +987,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/04/21/OperateFile-LAN-Java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/21/OperateFile-LAN-Java/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/04/21/OperateFile-LAN-Java/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -928,22 +1017,23 @@
       
         
           
-          利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。
+            <p>
+              利用Java RMI实现LAN（局域网）内服务端和客户端的文件传输及文件简单操作。
 网页中不方便代码展示及维护，故托管到Github，请移步 [这里](https://github.com/CongLinDev/OperateFile-LAN-Java) 。
 （持续更新）
 
 预计于2018年6月份交
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/21/OperateFile-LAN-Java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -951,11 +1041,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -985,20 +1075,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/04/05/Solutions-to-problems-on-LeetCode/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -1009,12 +1101,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/05/Solutions-to-problems-on-LeetCode/" itemprop="url">Solutions to problems on LeetCode</a></h1>
+                
+                <a href="/2018/04/05/Solutions-to-problems-on-LeetCode/" class="post-title-link" itemprop="url">Solutions to problems on LeetCode</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1022,18 +1122,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T20:11:00+08:00">
-                2018-04-05
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-04-05 20:11:00" itemprop="dateCreated datePublished" datetime="2018-04-05T20:11:00+08:00">2018-04-05</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1044,11 +1145,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
 
                 
                 
@@ -1064,7 +1161,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/04/05/Solutions-to-problems-on-LeetCode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/05/Solutions-to-problems-on-LeetCode/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/04/05/Solutions-to-problems-on-LeetCode/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1094,24 +1191,25 @@
       
         
           
-          分享一些我在LeetCode(https://leetcode.com)的算法收获。使用C++ / Java 语言解决问题
+            <p>
+              分享一些我在LeetCode(https://leetcode.com)的算法收获。使用C++ / Java 语言解决问题
 （持续更新）
 
 两数之和
 给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。   
 
 示例：给定 nums = [2, 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/05/Solutions-to-problems-on-LeetCode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1119,11 +1217,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -1153,20 +1251,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/03/31/链表实现简单列车查询系统/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -1177,12 +1277,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/31/链表实现简单列车查询系统/" itemprop="url">链表实现简单列车查询系统</a></h1>
+                
+                <a href="/2018/03/31/链表实现简单列车查询系统/" class="post-title-link" itemprop="url">链表实现简单列车查询系统</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1190,18 +1298,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T20:23:00+08:00">
-                2018-03-31
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-03-31 20:23:00" itemprop="dateCreated datePublished" datetime="2018-03-31T20:23:00+08:00">2018-03-31</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1212,11 +1321,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
 
                 
                 
@@ -1232,7 +1337,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/31/链表实现简单列车查询系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/31/链表实现简单列车查询系统/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/31/链表实现简单列车查询系统/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1262,23 +1367,24 @@
       
         
           
-          利用C++链表知识实现简单的列车查询系统。
+            <p>
+              利用C++链表知识实现简单的列车查询系统。
 设计目的综合运用链表知识解决实际问题的能力。 
 
 设计内容设计火车售票处的计算机系统，可以为客户提供下列各项服务：
 
 查询列车信息：根据旅客提出的起始站和终点站名，或者列车车次，输出下列信息：列车车次、发车时刻、到达时刻、运行时间，以及每个途经站点的站名、
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/31/链表实现简单列车查询系统/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1286,11 +1392,11 @@
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -1320,20 +1426,22 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/03/17/C-文件在Html的高亮处理/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -1344,12 +1452,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/17/C-文件在Html的高亮处理/" itemprop="url">C++文件在Html的高亮处理</a></h1>
+                
+                <a href="/2018/03/17/C-文件在Html的高亮处理/" class="post-title-link" itemprop="url">C++文件在Html的高亮处理</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1357,18 +1473,19 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T20:18:00+08:00">
-                2018-03-17
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-03-17 20:18:00" itemprop="dateCreated datePublished" datetime="2018-03-17T20:18:00+08:00">2018-03-17</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1379,11 +1496,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译技术/" itemprop="url" rel="index">
-                    <span itemprop="name">编译技术</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/编译技术/" itemprop="url" rel="index"><span itemprop="name">编译技术</span></a></span>
 
                 
                 
@@ -1399,7 +1512,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/17/C-文件在Html的高亮处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/17/C-文件在Html的高亮处理/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/17/C-文件在Html的高亮处理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1429,23 +1542,24 @@
       
         
           
-          编译原理最基础的问题便是词法分析器了。下面是我使用C++语言利用迭代器实现的将C++源码转为HTML文件，并实现HighLight。   
+            <p>
+              编译原理最基础的问题便是词法分析器了。下面是我使用C++语言利用迭代器实现的将C++源码转为HTML文件，并实现HighLight。   
 （长期更新，直至成熟）（较为成熟，不再更新）
 
 版本记录
 V-0.2.1 (20180326)  添加对制表符（\t）的支持。  
 V-0.2.0 (20180
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/17/C-文件在Html的高亮处理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1453,11 +1567,11 @@ V-0.2.0 (20180
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -1487,20 +1601,22 @@ V-0.2.0 (20180
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/02/28/扔鸡蛋问题/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/CL.png">
+      <meta itemprop="description" content="It is my personal website.">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CongLin's Blog">
     </span>
 
@@ -1511,12 +1627,20 @@ V-0.2.0 (20180
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/28/扔鸡蛋问题/" itemprop="url">扔鸡蛋问题</a></h1>
+                
+                <a href="/2018/02/28/扔鸡蛋问题/" class="post-title-link" itemprop="url">扔鸡蛋问题</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
-          
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1524,18 +1648,19 @@ V-0.2.0 (20180
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
-                2018-02-28
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建时间：2018-02-28 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">2018-02-28</time>
             
 
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1546,11 +1671,7 @@ V-0.2.0 (20180
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -1566,7 +1687,7 @@ V-0.2.0 (20180
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/02/28/扔鸡蛋问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/28/扔鸡蛋问题/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/02/28/扔鸡蛋问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1596,20 +1717,21 @@ V-0.2.0 (20180
       
         
           
-          Google有一道扔鸡蛋的面试题目：
+            <p>
+              Google有一道扔鸡蛋的面试题目：
 
 You work in a 100 floor building and you get 2 identical eggs.You need to figure out the highest floor an egg can be dropped witho
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/28/扔鸡蛋问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1617,11 +1739,11 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
     
 
     
-
-    
-    <div>
       
-    </div>
+    
+    
+
+    
 
     <footer class="post-footer">
       
@@ -1647,15 +1769,12 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1678,88 +1797,54 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/CL.png"
-                alt="从林" />
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">从林</p>
               <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i></a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i></a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/CongLinDev" title="GitHub &rarr; https://github.com/CongLinDev" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:conglindev@live.com" title="E-Mail &rarr; mailto:conglindev@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
             </div>
           
 
           
-          
 
           
           
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
-
-
+          
+            
+          
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -1782,11 +1867,13 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CongLin</span>
+
+  
 
   
 </div>
@@ -1807,6 +1894,7 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
 
 
+
         
       </div>
     </footer>
@@ -1815,11 +1903,14 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1833,95 +1924,6 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
 
 
 
@@ -1936,33 +1938,97 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
+  <script>
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
     });
     new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
-        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
-        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+      appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+      placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: 
     });
   </script>
 
 
 
+
   
 
-  <script type="text/javascript">
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2011,6 +2077,8 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -2044,8 +2112,9 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2214,9 +2283,9 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -2288,31 +2357,42 @@ You work in a 100 floor building and you get 2 identical eggs.You need to figure
   
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
+      }
+      else {
         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
-
-  
-  
 
   
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
 
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
 
   
 
