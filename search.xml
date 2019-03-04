@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从1到n整数中1出现的次数]]></title>
+    <url>%2F2019%2F03%2F04%2F%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目输入一个整数n，求从1到n这n个整数的十进制表示中1出现的次数。例如输入12，从1到12这些整数中包含1的数字有1,10,11和12，1一共出现了5次。 思路设N = abcde ,其中abcde分别为十进制中各位上的数字。 如果要计算百位上1出现的次数，它要受到3方面的影响：百位上的数字，百位以下（低位）的数字，百位以上（高位）的数字。 如果百位上数字为0，百位上可能出现1的次数由更高位决定。比如：12013，则可以知道百位出现1的情况可能是：100~199，1100~1199,2100~2199，，…，11100~11199，一共1200个。可以看出是由更高位数字（12）决定，并且等于更高位数字（12）乘以 当前位数（100）。 如果百位上数字为1，百位上可能出现1的次数不仅受更高位影响还受低位影响。比如：12113，则可以知道百位受高位影响出现的情况是：100~199，1100~1199,2100~2199，，….，11100~11199，一共1200个。和上面情况一样，并且等于更高位数字（12）乘以 当前位数（100）。但同时它还受低位影响，百位出现1的情况是：12100~12113,一共114个，等于低位数字（113）+1。 如果百位上数字大于1（2~9），则百位上出现1的情况仅由更高位决定，比如12213，则百位出现1的情况是：100~199,1100~1199，2100~2199，…，11100~11199,12100~12199,一共有1300个，并且等于更高位数字+1（12+1）乘以当前位数（100）。 代码12345678910111213141516171819202122232425public class Solution &#123; public int countDigitOne(int n) &#123; int count = 0;//1的个数 int i = 1;//当前位 int current = 0,after = 0,before = 0; while((n/i)!= 0)&#123; current = (n/i)%10; //高位数字 before = n/(i*10); //当前位数字 after = n-(n/i)*i; //低位数字 //如果为0,出现1的次数由高位决定,等于高位数字 * 当前位数 if (current == 0) count += before*i; //如果为1,出现1的次数由高位和低位决定,高位*当前位+低位+1 else if(current == 1) count += before * i + after + 1; //如果大于1,出现1的次数由高位决定,//（高位数字+1）* 当前位数 else&#123; count += (before + 1) * i; &#125; //前移一位 i = i*10; &#125; return count; &#125;&#125; 简洁版 123456public static int countDigitOne(int n) &#123; int ones = 0; for (long m = 1; m &lt;= n; m *= 10) ones += (n/m + 8) / 10 * m + (n/m % 10 == 1 ? n%m + 1 : 0); return ones;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[简单博客系统(Web)]]></title>
     <url>%2F2019%2F03%2F03%2F%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F-Web%2F</url>
     <content type="text"><![CDATA[Serendipity简介Serendipity （意为发现美好）是一个简单的微型博客项目，由 Spring Boot(Maven) 构建，其中使用了 Spring MVC Spring Security Spring Data Jpa , 数据库使用了 MySQL。 项目功能包含： 用户注册 用户登陆 发布信息 删除信息 注：该项目中，用户称为 Serendipper 信息称为 Serendimsg 。 源码源码已经托管在Github，戳我 查看源码。 详细介绍实体用户（Serendipper）在包含了一些必要属性的前提下，使用 @OneToMany 关联到 信息（Serendimsg）。 信息（Serendimsg）在包含了一些必要属性的前提下，使用 @CreatedBy 关联到 用户（Serendipper），以及 @CreatedDate 确定发送时间。 Controller调用 Service 提供的接口实现功能。 由于时间紧迫，没有编写 RESTful 风格的 Controller。而是使用传统的 Thymeleaf 模板引擎进行渲染。 Service接口 SerendipperService 和 SerendimsgService 为 Controller 层服务。 SerendipperServiceImpl 和 SerendimsgServiceImpl 实现了接口。 DAO接口 SerendipperRepository 和 SerendimsgRepository 继承 JpaRepository 为 Service 层服务。 因此不用特意实现这两个接口，只需要根据 Spring Data 的规定编写接口即可。 SecuritySecurity 使用Spring Security 控制。具体设置位于类 conglin.serendipity.config.WebSecurityConfig 中。 下载1git clone git@github.com:CongLinDev/Serendipity.git]]></content>
@@ -141,8 +153,8 @@
         <category>编译技术</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>编译原理</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
