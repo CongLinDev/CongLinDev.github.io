@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[分布式ID生成算法-SnowFlake]]></title>
+    <url>%2F2019%2F08%2F05%2F%E5%88%86%E5%B8%83%E5%BC%8FID%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95-SnowFlake%2F</url>
+    <content type="text"><![CDATA[概述分布式id生成算法的有很多种，Twitter的SnowFlake就是其中经典的一种。SnowFlake算法生成id的结果是一个64bit大小的整数，它的结构如下图 结构 1位，不用。二进制中最高位为1的都是负数，但是我们生成的id一般都使用整数，所以这个最高位固定是0 41位，用来记录时间戳（毫秒）。 41位可以表示 2^(41)-1 个数字， 如果只用来表示正整数（计算机中正数包含0），可以表示的数值范围是：0 至 $2^{41}-1$，减1是因为可表示的数值范围是从0开始算的，而不是1。 也就是说41位可以表示 2^(41)-1 个毫秒的值，转化成单位年则是 (2^(41)-1) / (1000 60 60 24 365) = 69年 10位，用来记录工作机器id。 可以部署在 2^(10) = 1024 个节点，包括5位 datacenterId 和5位 workerId 5位（bit）可以表示的最大正整数是 2^(5)-1 = 31，即可以用0、1、2、3、….31这32个数字，来表示不同的 datecenterId 或 workerId 12位，序列号，用来记录同毫秒内产生的不同id。 12位（bit）可以表示的最大正整数是 2^(12)-1 = 4095，即可以用0、1、2、3、….4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号 由于在Java中64bit的整数是long类型，所以在Java中SnowFlake算法生成的id就是long来存储的。 SnowFlake可以保证： 所有生成的id按时间趋势递增 整个分布式系统内不会产生重复id（因为有datacenterId和workerId来做区分）]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>分布式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Http缓存优先级问题]]></title>
+    <url>%2F2019%2F08%2F05%2FHttp%E7%BC%93%E5%AD%98%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[HTTP缓存分为强缓存和对比缓存（也叫协商缓存）。 强缓存强缓存：只要请求了一次，在有效时间内，不会再请求服务器（请求都不会发起），直接从浏览器本地缓存中获取资源。 主要字段有 expires：date（过期日期） cache-control： max-age=time（秒数，多久之后过期） | no-cache|no-store 如果expires和cache-control同时存在，cache-control会覆盖expires。 这里建议两个都写，cache-control是 Http 1.1 的头字段，expires是 Http 1.0 的头字段，都写的话兼容会好点。 对比缓存对比缓存：无论是否变化，是否过期都会发起请求，如果内容没过期，直接返回304，从浏览器缓存中拉取文件，否则直接返回更新后的内容。 主要字段有 服务器端返回字段 Etag： xxxx (一般为md5值) 其对应客户端匹配字段为， If-None-Match: w/xxx(xxx的值和上面的etag的xxx一样的话则返回304，否则返回200以及修改后的资源) 服务器端返回字段：Last-Modifieddate（日期）,对应客户端匹配字段If-Modified-Since:date（如果服务器date小于等于客户端请求date则返回304，否则返回200以及修改后的资源） 优先级同时存在各种缓存头时，各缓存头优先级及生效情况为： 强缓存和对比缓存同时存在，如果强缓存还在生效期则强制缓存覆盖对比缓存，对比缓存不生效；如果强缓存不在有效期，对比缓存生效。即：强缓存优先级 &gt; 对比缓存优先级 强缓存expires和cache-control同时存在时，则cache-control会覆盖expires，expires无论有没有过期，都无效。 即：cache-control优先级 &gt; expires优先级。 对比缓存Etag和Last-Modified同时存在时，则Etag会覆盖Last-Modified，Last-Modified不会生效。即：ETag优先级 &gt; Last-Modified优先级。]]></content>
+      <categories>
+        <category>Http</category>
+      </categories>
+      <tags>
+        <tag>Http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[从1到n整数中1出现的次数]]></title>
     <url>%2F2019%2F03%2F04%2F%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%2F</url>
     <content type="text"><![CDATA[题目输入一个整数n，求从1到n这n个整数的十进制表示中1出现的次数。例如输入12，从1到12这些整数中包含1的数字有1,10,11和12，1一共出现了5次。 思路设N = abcde ,其中abcde分别为十进制中各位上的数字。 如果要计算百位上1出现的次数，它要受到3方面的影响：百位上的数字，百位以下（低位）的数字，百位以上（高位）的数字。 如果百位上数字为0，百位上可能出现1的次数由更高位决定。比如：12013，则可以知道百位出现1的情况可能是：100~199，1100~1199,2100~2199，，…，11100~11199，一共1200个。可以看出是由更高位数字（12）决定，并且等于更高位数字（12）乘以 当前位数（100）。 如果百位上数字为1，百位上可能出现1的次数不仅受更高位影响还受低位影响。比如：12113，则可以知道百位受高位影响出现的情况是：100~199，1100~1199,2100~2199，，….，11100~11199，一共1200个。和上面情况一样，并且等于更高位数字（12）乘以 当前位数（100）。但同时它还受低位影响，百位出现1的情况是：12100~12113,一共114个，等于低位数字（113）+1。 如果百位上数字大于1（2~9），则百位上出现1的情况仅由更高位决定，比如12213，则百位出现1的情况是：100~199,1100~1199，2100~2199，…，11100~11199,12100~12199,一共有1300个，并且等于更高位数字+1（12+1）乘以当前位数（100）。 代码12345678910111213141516171819202122232425public class Solution &#123; public int countDigitOne(int n) &#123; int count = 0;//1的个数 int i = 1;//当前位 int current = 0,after = 0,before = 0; while((n/i)!= 0)&#123; current = (n/i)%10; //高位数字 before = n/(i*10); //当前位数字 after = n-(n/i)*i; //低位数字 //如果为0,出现1的次数由高位决定,等于高位数字 * 当前位数 if (current == 0) count += before*i; //如果为1,出现1的次数由高位和低位决定,高位*当前位+低位+1 else if(current == 1) count += before * i + after + 1; //如果大于1,出现1的次数由高位决定,//（高位数字+1）* 当前位数 else&#123; count += (before + 1) * i; &#125; //前移一位 i = i*10; &#125; return count; &#125;&#125; 简洁版 123456public static int countDigitOne(int n) &#123; int ones = 0; for (long m = 1; m &lt;= n; m *= 10) ones += (n/m + 8) / 10 * m + (n/m % 10 == 1 ? n%m + 1 : 0); return ones;&#125;]]></content>
