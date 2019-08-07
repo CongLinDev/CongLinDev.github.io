@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="分布式,事务,">
 
 
 
@@ -96,17 +96,23 @@
 
 
 
-<meta name="description" content="2018年2月26日，基于Hexo框架并托管在GitHub服务器上，我建立了第一个自己的博客网站 (https://conglindev.github.io/)。 虽然功能不完善，但是具有了博客的基本的功能。以后我会尽量完善和美化这个网站的。 Hello world!">
+<meta name="description" content="分布式事务的实现主要有以下 5 种方案。 XA 方案所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）的事务，事务管理器先问问各个数据库你准备好了吗？如果每个数据库都回复 ok，那么就正式提交事务，在各个数据库上执行操作；如果任何其中一个数据库回答不 ok，那么就回滚事务。 这种分布式事务方案，比较适合单块应用里，跨多个库的分布式事务，而且因为严重依赖于数">
+<meta name="keywords" content="分布式,事务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World!">
-<meta property="og:url" content="http://CongLinDev.github.io/2018/02/26/hello-world/index.html">
+<meta property="og:title" content="分布式事务实现方案">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/08/07/分布式事务实现方案/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="2018年2月26日，基于Hexo框架并托管在GitHub服务器上，我建立了第一个自己的博客网站 (https://conglindev.github.io/)。 虽然功能不完善，但是具有了博客的基本的功能。以后我会尽量完善和美化这个网站的。 Hello world!">
+<meta property="og:description" content="分布式事务的实现主要有以下 5 种方案。 XA 方案所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）的事务，事务管理器先问问各个数据库你准备好了吗？如果每个数据库都回复 ok，那么就正式提交事务，在各个数据库上执行操作；如果任何其中一个数据库回答不 ok，那么就回滚事务。 这种分布式事务方案，比较适合单块应用里，跨多个库的分布式事务，而且因为严重依赖于数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-05T11:25:35.224Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/07/Zs3apNqnEekh8cg.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/07/SGb971qrPnzLNoC.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/07/j9kovGfixIy7MBC.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/07/69Ylf2jduIPGwhF.png">
+<meta property="og:updated_time" content="2019-08-07T14:05:59.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World!">
-<meta name="twitter:description" content="2018年2月26日，基于Hexo框架并托管在GitHub服务器上，我建立了第一个自己的博客网站 (https://conglindev.github.io/)。 虽然功能不完善，但是具有了博客的基本的功能。以后我会尽量完善和美化这个网站的。 Hello world!">
+<meta name="twitter:title" content="分布式事务实现方案">
+<meta name="twitter:description" content="分布式事务的实现主要有以下 5 种方案。 XA 方案所谓的 XA 方案，即：两阶段提交，有一个事务管理器的概念，负责协调多个数据库（资源管理器）的事务，事务管理器先问问各个数据库你准备好了吗？如果每个数据库都回复 ok，那么就正式提交事务，在各个数据库上执行操作；如果任何其中一个数据库回答不 ok，那么就回滚事务。 这种分布式事务方案，比较适合单块应用里，跨多个库的分布式事务，而且因为严重依赖于数">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/07/Zs3apNqnEekh8cg.png">
 
 
 
@@ -136,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2018/02/26/hello-world/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/08/07/分布式事务实现方案/">
 
 
 
 
 
-  <title>Hello World! | CongLin's Blog</title>
+  <title>分布式事务实现方案 | CongLin's Blog</title>
   
 
 
@@ -318,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/02/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/08/07/分布式事务实现方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -335,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World!</h1>
+          <h1 class="post-title" itemprop="name headline">分布式事务实现方案</h1>
         
 
         <div class="post-meta">
@@ -348,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T00:00:00+08:00">
-                2018-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T21:49:00+08:00">
+                2019-08-07
               </time>
             
 
@@ -359,6 +365,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -367,8 +395,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/26/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/26/hello-world/" itemprop="commentCount"></span>
+                <a href="/2019/08/07/分布式事务实现方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/07/分布式事务实现方案/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,9 +424,48 @@
       
 
       
-        <p>2018年2月26日，<strong>基于Hexo框架并托管在GitHub服务器上</strong>，我建立了第一个自己的<a href="https://conglindev.github.io/">博客网站</a> (<a href="https://conglindev.github.io/">https://conglindev.github.io/</a>)。</p>
-<p>虽然功能不完善，但是具有了博客的基本的功能。以后我会尽量完善和美化这个网站的。</p>
-<p><strong>Hello world!</strong></p>
+        <p>分布式事务的实现主要有以下 5 种方案。</p>
+<h2 id="XA-方案"><a href="#XA-方案" class="headerlink" title="XA 方案"></a>XA 方案</h2><p>所谓的 XA 方案，即：两阶段提交，有一个<strong>事务管理器</strong>的概念，负责协调多个数据库（资源管理器）的事务，事务管理器先问问各个数据库你准备好了吗？如果每个数据库都回复 ok，那么就正式提交事务，在各个数据库上执行操作；如果任何其中一个数据库回答不 ok，那么就回滚事务。</p>
+<p>这种分布式事务方案，比较适合单块应用里，跨多个库的分布式事务，而且因为严重依赖于数据库层面来搞定复杂的事务，效率很低，绝对不适合高并发的场景。如果要玩儿，那么基于 Spring + JTA 就可以搞定，自己随便搜个 demo 看看就知道了。</p>
+<p>这个方案，我们很少用，一般来说<em>某个系统内部如果出现跨多个库</em>的这么一个操作，是<strong>不合规</strong>的。我可以给大家介绍一下， 现在微服务，一个大的系统分成几十个甚至几百个服务。一般来说，<strong>每个服务只能操作自己对应的一个数据库</strong>。</p>
+<p>如果你要操作别的服务对应的库，不允许直连别的服务的库，违反微服务架构的规范，你随便交叉胡乱访问，几百个服务的话，全体乱套，这样的一套服务是没法管理的，没法治理的，可能会出现数据被别人改错，自己的库被别人写挂等情况。</p>
+<p>如果你要操作别人的服务的库，你必须是通过调用别的服务的接口来实现，绝对不允许交叉访问别人的数据库。</p>
+<p><img src="https://i.loli.net/2019/08/07/Zs3apNqnEekh8cg.png" alt="distributed-transaction-XA.png"></p>
+<h2 id="TCC-方案"><a href="#TCC-方案" class="headerlink" title="TCC 方案"></a>TCC 方案</h2><p>TCC 的全称是：<code>Try</code>、<code>Confirm</code>、<code>Cancel</code>。</p>
+<ul>
+<li>Try 阶段：这个阶段说的是对各个服务的资源做检测以及对资源进行<strong>锁定或者预留</strong>。</li>
+<li>Confirm 阶段：这个阶段说的是在各个服务中<strong>执行实际的操作</strong>。</li>
+<li>Cancel 阶段：如果任何一个服务的业务方法执行出错，那么这里就需要<strong>进行补偿</strong>，就是执行已经执行成功的业务逻辑的回滚操作。（把那些执行成功的回滚）。</li>
+</ul>
+<p>这种方案说实话几乎很少人使用，一般来说跟钱相关的，跟钱打交道的，支付、交易相关的场景，会用 TCC，严格保证分布式事务要么全部成功，要么全部自动回滚，严格保证资金的正确性，保证在资金上不会出现问题。而且最好是你的各个业务执行的时间都比较短。但是说实话，自己手写回滚逻辑，或者是补偿逻辑，实在太恶心了，那个业务代码是很难维护的。</p>
+<p><img src="https://i.loli.net/2019/08/07/SGb971qrPnzLNoC.png" alt="distributed-transaction-TCC.png"></p>
+<h2 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h2><p>本地消息表。</p>
+<ol>
+<li>A 系统在自己本地一个事务里操作同时，插入一条数据到消息表；</li>
+<li>接着 A 系统将这个消息发送到 MQ 中去；</li>
+<li>B 系统接收到消息之后，在一个事务里，往自己本地消息表里插入一条数据，同时执行其他的业务操作，如果这个消息已经被处理过了，那么此时这个事务会回滚，这样保证不会重复处理消息；</li>
+<li>B 系统执行成功之后，就会更新自己本地消息表的状态以及 A 系统消息表的状态；</li>
+<li>如果 B 系统处理失败了，那么就不会更新消息表状态，那么此时 A 系统会定时扫描自己的消息表，如果有未处理的消息，会再次发送到 MQ 中去，让 B 再次处理；</li>
+<li>这个方案保证了最终一致性，哪怕 B 事务失败了，但是 A 会不断重发消息，直到 B 那边成功为止。</li>
+</ol>
+<p>这个方案说实话最大的问题就在于严重依赖于数据库的消息表来管理事务，如果是高并发场景咋办呢？咋扩展呢？所以一般确实很少用。</p>
+<p><img src="https://i.loli.net/2019/08/07/j9kovGfixIy7MBC.png" alt="distributed-transaction-local-message-table.png"></p>
+<h2 id="可靠消息最终一致性方案"><a href="#可靠消息最终一致性方案" class="headerlink" title="可靠消息最终一致性方案"></a>可靠消息最终一致性方案</h2><p>可靠消息最终一致性方案。</p>
+<p>这个的意思，就是干脆不要用本地的消息表了，直接基于 MQ 来实现事务。比如阿里的 RocketMQ 就支持消息事务。</p>
+<ol>
+<li>A 系统先发送一个 prepared 消息到 mq，如果这个 prepared 消息发送失败那么就直接取消操作别执行了；</li>
+<li>如果这个消息发送成功过了，那么接着执行本地事务，如果成功就告诉 mq 发送确认消息，如果失败就告诉 mq 回滚消息；</li>
+<li>如果发送了确认消息，那么此时 B 系统会接收到确认消息，然后执行本地的事务；</li>
+<li>mq 会自动定时轮询所有 prepared 消息回调你的接口，问你，这个消息是不是本地事务处理失败了，所有没发送确认的消息，是继续重试还是回滚？一般来说这里你就可以查下数据库看之前本地事务是否执行，如果回滚了，那么这里也回滚吧。这个就是避免可能本地事务执行成功了，而确认消息却发送失败了。</li>
+<li>这个方案里，要是系统 B 的事务失败了咋办？重试咯，自动不断重试直到成功，如果实在是不行，要么就是针对重要的资金类业务进行回滚，比如 B 系统本地回滚后，想办法通知系统 A 也回滚；或者是发送报警由人工来手工回滚和补偿。</li>
+</ol>
+<p><img src="https://i.loli.net/2019/08/07/69Ylf2jduIPGwhF.png" alt="distributed-transaction-reliable-message.png"></p>
+<h2 id="最大努力通知方案"><a href="#最大努力通知方案" class="headerlink" title="最大努力通知方案"></a>最大努力通知方案</h2><p>最大努力通知方案。</p>
+<ol>
+<li>系统 A 本地事务执行完之后，发送个消息到 MQ；</li>
+<li>这里会有个专门消费 MQ 的最大努力通知服务，这个服务会消费 MQ 然后写入数据库中记录下来，或者是放入个内存队列也可以，接着调用系统 B 的接口；</li>
+<li>要是系统 B 执行成功就 ok 了；要是系统 B 执行失败了，那么最大努力通知服务就定时尝试重新调用系统 B，反复 N 次，最后还是不行就放弃。</li>
+</ol>
 
       
     </div>
@@ -448,7 +515,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2018/02/26/hello-world/" title="Hello World!">http://CongLinDev.github.io/2018/02/26/hello-world/</a>
+    <a href="http://CongLinDev.github.io/2019/08/07/分布式事务实现方案/" title="分布式事务实现方案">http://CongLinDev.github.io/2019/08/07/分布式事务实现方案/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -470,6 +537,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/事务/" rel="tag"><i class="fa fa-tag"></i> 事务</a>
+          
+        </div>
+      
 
       
       
@@ -479,15 +554,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/05/分布式ID生成算法-SnowFlake/" rel="next" title="分布式ID生成算法-SnowFlake">
+                <i class="fa fa-chevron-left"></i> 分布式ID生成算法-SnowFlake
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/28/扔鸡蛋问题/" rel="prev" title="扔鸡蛋问题">
-                扔鸡蛋问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,8 +632,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -639,6 +723,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XA-方案"><span class="nav-number">1.</span> <span class="nav-text">XA 方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC-方案"><span class="nav-number">2.</span> <span class="nav-text">TCC 方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地消息表"><span class="nav-number">3.</span> <span class="nav-text">本地消息表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可靠消息最终一致性方案"><span class="nav-number">4.</span> <span class="nav-text">可靠消息最终一致性方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大努力通知方案"><span class="nav-number">5.</span> <span class="nav-text">最大努力通知方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
