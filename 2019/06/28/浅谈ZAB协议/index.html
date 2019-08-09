@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="分布式,事务,ZooKeeper,">
 
 
 
@@ -96,16 +96,18 @@
 
 
 
-<meta name="description" content="It is my personal website.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CongLin&#39;s Blog">
-<meta property="og:url" content="http://CongLinDev.github.io/categories/Http/index.html">
+<meta name="description" content="众所周知，ZooKeeper 是一个开源的分布式协调服务，很多分布式的应用都是基于 ZooKeeper 来实现分布式锁、服务管理、通知订阅等功能。 那么 ZooKeeper 自身是如何在分布式环境下实现数据的一致性的呢？ 答案就是ZooKeeper Atomic Broadcast(ZAB,zookeeper原子消息广播协议)。 谈ZAB之前我们先聊一聊 2PC。 2PC两阶段提交（Two-pha">
+<meta name="keywords" content="分布式,事务,ZooKeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈ZAB协议">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/06/28/浅谈ZAB协议/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="It is my personal website.">
+<meta property="og:description" content="众所周知，ZooKeeper 是一个开源的分布式协调服务，很多分布式的应用都是基于 ZooKeeper 来实现分布式锁、服务管理、通知订阅等功能。 那么 ZooKeeper 自身是如何在分布式环境下实现数据的一致性的呢？ 答案就是ZooKeeper Atomic Broadcast(ZAB,zookeeper原子消息广播协议)。 谈ZAB之前我们先聊一聊 2PC。 2PC两阶段提交（Two-pha">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-09T12:29:21.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CongLin&#39;s Blog">
-<meta name="twitter:description" content="It is my personal website.">
+<meta name="twitter:title" content="浅谈ZAB协议">
+<meta name="twitter:description" content="众所周知，ZooKeeper 是一个开源的分布式协调服务，很多分布式的应用都是基于 ZooKeeper 来实现分布式锁、服务管理、通知订阅等功能。 那么 ZooKeeper 自身是如何在分布式环境下实现数据的一致性的呢？ 答案就是ZooKeeper Atomic Broadcast(ZAB,zookeeper原子消息广播协议)。 谈ZAB之前我们先聊一聊 2PC。 2PC两阶段提交（Two-pha">
 
 
 
@@ -135,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/categories/Http/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/06/28/浅谈ZAB协议/">
 
 
 
 
 
-  <title>分类: Http | CongLin's Blog</title>
+  <title>浅谈ZAB协议 | CongLin's Blog</title>
   
 
 
@@ -179,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/CongLinDev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,53 +305,293 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Http<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/06/28/浅谈ZAB协议/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/CL.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/05/Http缓存优先级问题/" itemprop="url">
-              
-                <span itemprop="name">Http缓存优先级问题</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">浅谈ZAB协议</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-05T14:27:00+08:00" content="2019-04-05">
-          04-05
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T20:09:00+08:00">
+                2019-06-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/28/浅谈ZAB协议/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/28/浅谈ZAB协议/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，ZooKeeper 是一个开源的分布式协调服务，很多分布式的应用都是基于 ZooKeeper 来实现分布式锁、服务管理、通知订阅等功能。</p>
+<p>那么 ZooKeeper 自身是如何在分布式环境下实现数据的一致性的呢？</p>
+<p>答案就是<strong>ZooKeeper Atomic Broadcast(ZAB,zookeeper原子消息广播协议)</strong>。</p>
+<p>谈ZAB之前我们先聊一聊 2PC。</p>
+<h2 id="2PC"><a href="#2PC" class="headerlink" title="2PC"></a>2PC</h2><p>两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。</p>
+<h3 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h3><ol>
+<li><strong>准备阶段</strong>：协调者询问参与者事务是否执行成功，参与者发回事务执行结果。</li>
+<li><strong>提交阶段</strong>：如果事务在每个参与者上都执行成功，事务协调者发送通知让参与者提交事务；否则，协调者发送通知让参与者回滚事务。</li>
+</ol>
+<p><em>需要注意的是，在准备阶段，参与者执行了事务，但是还未提交。只有在提交阶段接收到协调者发来的通知后，才进行提交或者回滚。</em></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li><strong>同步阻塞</strong>：所有事务参与者在等待其它参与者响应的时候都处于同步阻塞状态，无法进行其它操作。</li>
+<li><strong>单点问题</strong>：协调者在 2PC 中起到非常大的作用，发生故障将会造成很大影响。特别是在阶段二发生故障，所有参与者会一直等待，无法完成其它操作。</li>
+<li><strong>数据不一致</strong>：在阶段二，如果协调者只发送了部分 Commit 消息，此时网络发生异常，那么只有部分参与者接收到 Commit 消息，也就是说只有部分参与者提交了事务，使得系统数据不一致。</li>
+<li><strong>太过保守</strong>：任意一个节点失败就会导致整个事务失败，没有完善的容错机制。</li>
+</ol>
+<h2 id="ZAB"><a href="#ZAB" class="headerlink" title="ZAB"></a>ZAB</h2><p>现在再来看看ZAB是怎么解决上面的问题的。在我看来，ZAB就是 <strong>2PC变种 + 崩溃恢复</strong>，其中 <strong>崩溃恢复</strong>是解决协调者崩溃后发生的问题。</p>
+<h3 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h3><p>ZAB协议与二阶段提交协议不同的是，ZAB协议在二阶段提交过程中，移除了中断逻辑。</p>
+<p>ZAB协议在有过半的Follower服务器已经反馈Ack之后就开始提交Proposal了，而不需要等待集群中所有Follower服务器都反馈响应。</p>
+<p>关于ZAB在Leader出现单点宕机如果保证事务提交，保证数据一致性，则引入崩溃恢复模式来解决这个问题。</p>
+<p>ZAB的消息广播协议是基于具有FIFO（先进先出）特性的TCP协议来进行网络通信，保证消息广播过程中消息的接收与发送的顺序性。</p>
+<p>在整个消息广播过程中，Leader服务器会为每一个事务请求处理步骤：</p>
+<ol>
+<li>Leader服务器会为事务请求生成一个全局的的递增事务ID（即ZXID），保证每个消息的因果关系的顺序。</li>
+<li>Leader服务器会为该事务生成对应的Proposal，进行广播。</li>
+<li>Leader服务器会为每一个Follower服务器都各自分配一个单独的队列，让后将需要广播的事务Proposal依次放入这些队列中去，并根据FIFO策略进行消息发送。</li>
+<li>每一个Follower服务器在接收到这个事务Proposal之后，首先以日志形式写入本地磁盘，并且成功写入后反馈给Leader服务器一个Ack响应</li>
+<li>当Leader服务器接收超过半数的Follower的Ack响应，Leader自身也会完成对事务的提交。同时就会广播一个Commit消息给所有的Follower服务器以通知进行事务提交。每一个Follower服务器在接收到Commit消息后，也会完成对事务的提交。</li>
+</ol>
+<h3 id="崩溃恢复"><a href="#崩溃恢复" class="headerlink" title="崩溃恢复"></a>崩溃恢复</h3><p>确保当Leader出现单点问题，在新选举出Leader后，保证数据一致性。</p>
+<p>保证一致性的关键在于下面两点：</p>
+<ol>
+<li>ZAB协议需要确保那些已经在Leader服务器上提交的事务最终被所有服务器都提交。</li>
+<li>ZAB协议需要确保丢弃那些只在Leader服务器上被提出的事务。</li>
+</ol>
+<p>对于1来说，只需要通过选举找到当前集群中持有事务ID最大的那台机器，其他的服务器同步这台机器即可。</p>
+<p>对于2来说， Zab 通过巧妙的设计 zxid 来实现这一目的。一个 zxid 是64位，高 32 是纪元（epoch）编号，每经过一次 leader 选举产生一个新的 leader，新 leader 会将 epoch 号 +1。低 32 位是消息计数器，每接收到一条消息这个值 +1，新 leader 选举后这个值重置为 0。这样设计的好处是旧的 leader 挂了后重启，它不会立即被重新选举为 leader，因为此时它的 zxid 肯定小于当前的新 leader。当旧的 leader 作为 follower 接入新的 leader 后，新的 leader 会让它将所有的拥有旧的 epoch 号的未被 COMMIT 的 proposal 清除。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2019/06/28/浅谈ZAB协议/" title="浅谈ZAB协议">http://CongLinDev.github.io/2019/06/28/浅谈ZAB协议/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/事务/" rel="tag"><i class="fa fa-tag"></i> 事务</a>
+          
+            <a href="/tags/ZooKeeper/" rel="tag"><i class="fa fa-tag"></i> ZooKeeper</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/17/clrpc-简单的RPC工具/" rel="next" title="clrpc-简单的RPC工具">
+                <i class="fa fa-chevron-left"></i> clrpc-简单的RPC工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/05/分布式ID生成算法-SnowFlake/" rel="prev" title="分布式ID生成算法-SnowFlake">
+                分布式ID生成算法-SnowFlake <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -357,6 +599,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -377,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -459,6 +719,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC"><span class="nav-number">1.</span> <span class="nav-text">2PC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行过程"><span class="nav-number">1.1.</span> <span class="nav-text">运行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.2.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAB"><span class="nav-number">2.</span> <span class="nav-text">ZAB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息广播"><span class="nav-number">2.1.</span> <span class="nav-text">消息广播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#崩溃恢复"><span class="nav-number">2.2.</span> <span class="nav-text">崩溃恢复</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -595,6 +871,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -623,6 +903,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -104,12 +104,12 @@
 <meta property="og:site_name" content="CongLin&#39;s Blog">
 <meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找服务后调用服务( 同步服务 和 异步服务 )。 项目地址戳我 开始服务端12345678910111213// 创建服务端RpcServerBootstrap bootstrap =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2019/08/01/5d42f7632279d91273.png">
-<meta property="og:updated_time" content="2019-08-05T11:25:32.984Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/09/7B2nMXNZJS1cmDH.png">
+<meta property="og:updated_time" content="2019-08-09T07:23:07.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clrpc-简单的RPC工具">
 <meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找服务后调用服务( 同步服务 和 异步服务 )。 项目地址戳我 开始服务端12345678910111213// 创建服务端RpcServerBootstrap bootstrap =">
-<meta name="twitter:image" content="https://i.loli.net/2019/08/01/5d42f7632279d91273.png">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/09/7B2nMXNZJS1cmDH.png">
 
 
 
@@ -431,7 +431,7 @@
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务端</span></span><br><span class="line">RpcServerBootstrap bootstrap = <span class="keyword">new</span> RpcServerBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 添加服务并开启服务端</span></span><br><span class="line">    bootstrap.addService(<span class="string">"service1"</span>, ServiceBean1.class)</span><br><span class="line">             .addService(<span class="string">"service2"</span>, <span class="keyword">new</span> ServiceBean2())</span><br><span class="line">             .addService(Interface3.class, Implement3.class)</span><br><span class="line">             .start();</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">// 关闭服务端</span></span><br><span class="line">    bootstrap.stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建客户端</span></span><br><span class="line">RpcClientBootstrap bootstrap = <span class="keyword">new</span> RpcClientBootstrap();</span><br><span class="line"><span class="comment">// 开启客户端</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取同步服务</span></span><br><span class="line">Interface1 i1 = bootstrap.getService(<span class="string">"service1"</span>);</span><br><span class="line">Interface2 i2 = bootstrap.getService(Interface2.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取异步服务</span></span><br><span class="line">ObjectProxy proxy = bootstrap.getAsynchronousService(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭客户端</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
 <h3 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = RpcMonitorBootstrapFactory.getRpcMonitorBootstrap(MonitorType.CONSOLE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line">    <span class="comment">// 并开启监视器</span></span><br><span class="line">    bootstrap.monitor().monitorService().start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭监视器</span></span><br><span class="line">    bootstrap.stop();</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="comment">// 处理中断异常</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="https://i.loli.net/2019/08/01/5d42f7632279d91273.png" alt="architecture.png"></p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="https://i.loli.net/2019/08/09/7B2nMXNZJS1cmDH.png" alt="architecture.png"></p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置文件名为 <code>clrpc-config.yml</code>，位置默认在项目根目录下。</p>
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/clrpc-config.yml" target="_blank" rel="noopener">配置文件模板</a>。</p>
 <h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><p>文件位置默认在项目根目录下。</p>
@@ -598,9 +598,9 @@
 <li>内存: 12.0 GB</li>
 </ol>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ol>
-<li>本机基础上，且只有一台服务器的情况下，1000次的<em>同步请求</em>大约在 <strong>1300毫秒</strong> 内完成。</li>
-<li>本机基础上，且只有一台服务器的情况下，10000次的<em>同步请求</em>大约在 <strong>3700毫秒</strong> 内完成。</li>
-<li>本机基础上，且只有一台服务器的情况下，100000次的<em>同步请求</em>大约在 <strong>25000毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，1000次的<em>同步请求</em>大约在 <strong>650毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，10000次的<em>同步请求</em>大约在 <strong>3300毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，100000次的<em>同步请求</em>大约在 <strong>23000毫秒</strong> 内完成。</li>
 </ol>
 <h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p><code>clrpc</code> 自身暂时不支持 熔断、服务降级等功能。</p>
 <p>你可以使用诸如 <a href="https://github.com/resilience4j/resilience4j" target="_blank" rel="noopener">resilience4j</a> 、 <a href="https://github.com/Netflix/Hystrix" target="_blank" rel="noopener">Hystrix</a> 等框架或库进行 <strong>熔断</strong>、<strong>高频控制</strong>、<strong>隔离</strong>、<strong>限流</strong>、<strong>限时</strong>、<strong>重试</strong>。</p>
@@ -704,8 +704,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/05/分布式ID生成算法-SnowFlake/" rel="prev" title="分布式ID生成算法-SnowFlake">
-                分布式ID生成算法-SnowFlake <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/28/浅谈ZAB协议/" rel="prev" title="浅谈ZAB协议">
+                浅谈ZAB协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -803,7 +803,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -825,7 +825,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
