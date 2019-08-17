@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="算法,">
+  <meta name="keywords" content="Java,">
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="问题0-1背包是在 n 件物品取出若干件放在空间为 w 的背包里，每件物品的重量为 w1，w2至wn，与之相对应的价值为p1,p2至pn。0-1背包是背包问题中最简单的问题。0-1背包的约束条件是给定几种物品，每种物品有且只有一个，并且有权值和重量两个属性。在0-1背包问题中，因为每种物品只有一个，对于每个物品只需要考虑选与不选两种情况。如果不选择将其放入背包中，则不需要处理。如果选择将其放入背包">
-<meta name="keywords" content="算法">
+<meta name="description" content="在理解这两个区别前，需要弄清楚java类的加载机制。 类加载机制 加载。加载过程完成以下三件事： 通过类的完全限定名称获取定义该类的二进制字节流。 将该字节流表示的静态存储结构转换为方法区的运行时存储结构。 在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。   验证。确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。 准">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0-1背包问题">
-<meta property="og:url" content="http://CongLinDev.github.io/2019/05/05/0-1背包问题/index.html">
+<meta property="og:title" content="浅谈Class.forName()和classLoader.loadClass()的区别">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="问题0-1背包是在 n 件物品取出若干件放在空间为 w 的背包里，每件物品的重量为 w1，w2至wn，与之相对应的价值为p1,p2至pn。0-1背包是背包问题中最简单的问题。0-1背包的约束条件是给定几种物品，每种物品有且只有一个，并且有权值和重量两个属性。在0-1背包问题中，因为每种物品只有一个，对于每个物品只需要考虑选与不选两种情况。如果不选择将其放入背包中，则不需要处理。如果选择将其放入背包">
+<meta property="og:description" content="在理解这两个区别前，需要弄清楚java类的加载机制。 类加载机制 加载。加载过程完成以下三件事： 通过类的完全限定名称获取定义该类的二进制字节流。 将该字节流表示的静态存储结构转换为方法区的运行时存储结构。 在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。   验证。确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。 准">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T14:18:33.710Z">
+<meta property="og:updated_time" content="2019-08-17T14:39:40.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="0-1背包问题">
-<meta name="twitter:description" content="问题0-1背包是在 n 件物品取出若干件放在空间为 w 的背包里，每件物品的重量为 w1，w2至wn，与之相对应的价值为p1,p2至pn。0-1背包是背包问题中最简单的问题。0-1背包的约束条件是给定几种物品，每种物品有且只有一个，并且有权值和重量两个属性。在0-1背包问题中，因为每种物品只有一个，对于每个物品只需要考虑选与不选两种情况。如果不选择将其放入背包中，则不需要处理。如果选择将其放入背包">
+<meta name="twitter:title" content="浅谈Class.forName()和classLoader.loadClass()的区别">
+<meta name="twitter:description" content="在理解这两个区别前，需要弄清楚java类的加载机制。 类加载机制 加载。加载过程完成以下三件事： 通过类的完全限定名称获取定义该类的二进制字节流。 将该字节流表示的静态存储结构转换为方法区的运行时存储结构。 在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。   验证。确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。 准">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2019/05/05/0-1背包问题/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/">
 
 
 
 
 
-  <title>0-1背包问题 | CongLin's Blog</title>
+  <title>浅谈Class.forName()和classLoader.loadClass()的区别 | CongLin's Blog</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/05/05/0-1背包问题/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">0-1背包问题</h1>
+          <h1 class="post-title" itemprop="name headline">浅谈Class.forName()和classLoader.loadClass()的区别</h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T21:54:00+08:00">
-                2019-05-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-17T22:18:00+08:00">
+                2019-05-17
               </time>
             
 
@@ -372,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -390,8 +390,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/05/05/0-1背包问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/05/0-1背包问题/" itemprop="commentCount"></span>
+                <a href="/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -419,15 +419,26 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>0-1背包是在 <code>n</code> 件物品取出若干件放在空间为 <code>w</code> 的背包里，每件物品的重量为 w1，w2至wn，与之相对应的价值为p1,p2至pn。0-1背包是背包问题中最简单的问题。0-1背包的约束条件是给定几种物品，每种物品有且只有一个，并且有权值和重量两个属性。在0-1背包问题中，因为每种物品只有一个，对于每个物品只需要考虑选与不选两种情况。如果不选择将其放入背包中，则不需要处理。如果选择将其放入背包中，由于不清楚之前放入的物品占据了多大的空间，需要枚举将这个物品放入背包后可能占据背包空间的所有情况。</p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>0-1背包问题是很明显的动态规划问题。</p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>设物品重量为 <code>weights[]</code> ，其相对应的价值 <code>values[]</code>。</p>
-<p>共有 <code>n</code> 件物品。最大承重量为 <code>w</code>。</p>
-<p>详细见解法1注释。</p>
-<h3 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bag</span><span class="params">(<span class="keyword">int</span>[] weights, <span class="keyword">int</span>[] values, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">     <span class="comment">// dp[i][j] 代表前 i 件放入容量为 j的背包中的最大价值</span></span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>][w + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt;= weights[i])&#123; <span class="comment">// 如果当前容量可以放入第 i 件物品</span></span><br><span class="line">                <span class="comment">// 根据最大价值原则，决定是否放入当前这件物品</span></span><br><span class="line">                dp[i][j] = Math.max(dp[i - <span class="number">1</span>][j], dp[i - <span class="number">1</span>][j - weights[i]] + values[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 放不下的话就不放</span></span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n][w];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h3><p>解法1的空间占用较大，经过分析，对于解法1的 <code>dp[i][j]</code> 我们只需要知道左上角的值 <code>dp[i - 1][j - weights[i]]</code> 即可。所以使用一维数组即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bag</span><span class="params">(<span class="keyword">int</span>[] weights, <span class="keyword">int</span>[] values, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[w + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = w; j &gt;= w; j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt;= weights[i])&#123; <span class="comment">// 如果当前容量可以放入第 i 件物品</span></span><br><span class="line">                <span class="comment">// 根据最大价值原则，决定是否放入当前这件物品</span></span><br><span class="line">                dp[j] = Math.max(dp[j], dp[j - weights[i]] + values[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[w];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p>在理解这两个区别前，需要弄清楚java类的加载机制。</p>
+<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><ol>
+<li>加载。加载过程完成以下三件事：<ul>
+<li>通过类的完全限定名称获取定义该类的二进制字节流。</li>
+<li>将该字节流表示的静态存储结构转换为方法区的运行时存储结构。</li>
+<li>在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。</li>
+</ul>
+</li>
+<li>验证。确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</li>
+<li>准备。类变量是被 static 修饰的变量，准备阶段为类变量分配内存并设置初始值（一般为 <code>0</code> 或 <code>false</code> 或 <code>null</code>），使用的是方法区的内存。实例变量不会在这阶段分配内存，它会在对象实例化时随着对象一起被分配在堆中。应该注意到，实例化不是类加载的一个过程，类加载发生在所有实例化操作之前，并且类加载只进行一次，实例化可以进行多次。<em>特别的，类静态常量直接设置值。</em></li>
+<li>解析。将常量池的符号引用替换为直接引用的过程。其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。</li>
+<li>初始化。初始化阶段才真正开始执行类中定义的 Java 程序代码。初始化阶段是虚拟机执行类构造器 <code>&lt;clinit&gt;()</code> 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。</li>
+</ol>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>二者均是调用了 <code>ClassLoad</code> 的 <code>loadClass(String name, boolean resolve)</code> 方法。</p>
+<p>不同的是 参数 <code>resolve</code> 取值不同。 <code>Class.forName(String name)</code> 取 <code>true</code> ，<code>loadClass(String name)</code> 取 <code>false</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Loads the class with the specified &lt;a href="#binary-name"&gt;binary name&lt;/a&gt;.  The</span></span><br><span class="line"><span class="comment"> * default implementation of this method searches for classes in the</span></span><br><span class="line"><span class="comment"> * following order:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;ol&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   &lt;li&gt;&lt;p&gt; Invoke &#123;<span class="doctag">@link</span> #findLoadedClass(String)&#125; to check if the class</span></span><br><span class="line"><span class="comment"> *   has already been loaded.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   &lt;li&gt;&lt;p&gt; Invoke the &#123;<span class="doctag">@link</span> #loadClass(String) loadClass&#125; method</span></span><br><span class="line"><span class="comment"> *   on the parent class loader.  If the parent is &#123;<span class="doctag">@code</span> null&#125; the class</span></span><br><span class="line"><span class="comment"> *   loader built into the virtual machine is used, instead.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   &lt;li&gt;&lt;p&gt; Invoke the &#123;<span class="doctag">@link</span> #findClass(String)&#125; method to find the</span></span><br><span class="line"><span class="comment"> *   class.  &lt;/p&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;/ol&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; If the class was found using the above steps, and the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> resolve&#125; flag is true, this method will then invoke the &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment"> * #resolveClass(Class)&#125; method on the resulting &#123;<span class="doctag">@code</span> Class&#125; object.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Subclasses of &#123;<span class="doctag">@code</span> ClassLoader&#125; are encouraged to override &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment"> * #findClass(String)&#125;, rather than this method.  &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Unless overridden, this method synchronizes on the result of</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #getClassLoadingLock getClassLoadingLock&#125; method</span></span><br><span class="line"><span class="comment"> * during the entire class loading process.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  name</span></span><br><span class="line"><span class="comment"> *         The &lt;a href="#binary-name"&gt;binary name&lt;/a&gt; of the class</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  resolve</span></span><br><span class="line"><span class="comment"> *         If &#123;<span class="doctag">@code</span> true&#125; then resolve the class</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  The resulting &#123;<span class="doctag">@code</span> Class&#125; object</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span>  ClassNotFoundException</span></span><br><span class="line"><span class="comment"> *          If the class could not be found</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">    <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">        <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">        Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    c = findBootstrapClassOrNull(name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                <span class="comment">// to find the class.</span></span><br><span class="line">                <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                c = findClass(name);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">                PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">                PerfCounter.getFindClasses().increment();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">            resolveClass(c);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>resolve默认是<code>false</code>不链接，不进行链接意味着不进行上述2、3、4步骤，那么静态块和静态对象就不会得到执行。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"1-----------------------"</span>);</span><br><span class="line">            ClassLoader.getSystemClassLoader().loadClass(<span class="string">"X"</span>);</span><br><span class="line">            System.out.println(<span class="string">"2-----------------------"</span>);</span><br><span class="line">            ClassLoader.getSystemClassLoader().loadClass(<span class="string">"X"</span>);</span><br><span class="line">            System.out.println(<span class="string">"3-----------------------"</span>);</span><br><span class="line">            ClassLoader.getSystemClassLoader().loadClass(<span class="string">"X"</span>);</span><br><span class="line">            System.out.println(<span class="string">"4-----------------------"</span>);</span><br><span class="line">            Class.forName(<span class="string">"X"</span>);</span><br><span class="line">            System.out.println(<span class="string">"5-----------------------"</span>);</span><br><span class="line">            Class.forName(<span class="string">"X"</span>);</span><br><span class="line">            System.out.println(<span class="string">"6-----------------------"</span>);</span><br><span class="line">            Class.forName(<span class="string">"X"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1-----------------------</span><br><span class="line">2-----------------------</span><br><span class="line">3-----------------------</span><br><span class="line">4-----------------------</span><br><span class="line">hello</span><br><span class="line">5-----------------------</span><br><span class="line">6-----------------------</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -476,7 +487,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2019/05/05/0-1背包问题/" title="0-1背包问题">http://CongLinDev.github.io/2019/05/05/0-1背包问题/</a>
+    <a href="http://CongLinDev.github.io/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/" title="浅谈Class.forName()和classLoader.loadClass()的区别">http://CongLinDev.github.io/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -500,7 +511,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
         </div>
       
@@ -513,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/27/缓存与数据库的双写一致性问题/" rel="next" title="缓存与数据库的双写一致性问题">
-                <i class="fa fa-chevron-left"></i> 缓存与数据库的双写一致性问题
+              <a href="/2019/05/05/0-1背包问题/" rel="next" title="0-1背包问题">
+                <i class="fa fa-chevron-left"></i> 0-1背包问题
               </a>
             
           </div>
@@ -523,8 +534,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/" rel="prev" title="浅谈Class.forName()和classLoader.loadClass()的区别">
-                浅谈Class.forName()和classLoader.loadClass()的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/17/clrpc-简单的RPC工具/" rel="prev" title="clrpc-简单的RPC工具">
+                clrpc-简单的RPC工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -696,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法1"><span class="nav-number">3.1.</span> <span class="nav-text">解法1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法2"><span class="nav-number">3.2.</span> <span class="nav-text">解法2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载机制"><span class="nav-number">1.</span> <span class="nav-text">类加载机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.</span> <span class="nav-text">测试</span></a></li></ol></div>
             
 
           </div>

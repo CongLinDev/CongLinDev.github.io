@@ -20,8 +20,8 @@
         <category>分布式</category>
       </categories>
       <tags>
-        <tag>分布式</tag>
         <tag>算法</tag>
+        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
@@ -48,6 +48,17 @@
         <tag>Java</tag>
         <tag>RPC</tag>
         <tag>分布式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[浅谈Class.forName()和classLoader.loadClass()的区别]]></title>
+    <url>%2F2019%2F05%2F17%2F%E6%B5%85%E8%B0%88Class-forName-%E5%92%8CclassLoader-loadClass-%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[在理解这两个区别前，需要弄清楚java类的加载机制。 类加载机制 加载。加载过程完成以下三件事： 通过类的完全限定名称获取定义该类的二进制字节流。 将该字节流表示的静态存储结构转换为方法区的运行时存储结构。 在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。 验证。确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。 准备。类变量是被 static 修饰的变量，准备阶段为类变量分配内存并设置初始值（一般为 0 或 false 或 null），使用的是方法区的内存。实例变量不会在这阶段分配内存，它会在对象实例化时随着对象一起被分配在堆中。应该注意到，实例化不是类加载的一个过程，类加载发生在所有实例化操作之前，并且类加载只进行一次，实例化可以进行多次。特别的，类静态常量直接设置值。 解析。将常量池的符号引用替换为直接引用的过程。其中解析过程在某些情况下可以在初始化阶段之后再开始，这是为了支持 Java 的动态绑定。 初始化。初始化阶段才真正开始执行类中定义的 Java 程序代码。初始化阶段是虚拟机执行类构造器 &lt;clinit&gt;() 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。 区别二者均是调用了 ClassLoad 的 loadClass(String name, boolean resolve) 方法。 不同的是 参数 resolve 取值不同。 Class.forName(String name) 取 true ，loadClass(String name) 取 false。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879/** * Loads the class with the specified &lt;a href="#binary-name"&gt;binary name&lt;/a&gt;. The * default implementation of this method searches for classes in the * following order: * * &lt;ol&gt; * * &lt;li&gt;&lt;p&gt; Invoke &#123;@link #findLoadedClass(String)&#125; to check if the class * has already been loaded. &lt;/p&gt;&lt;/li&gt; * * &lt;li&gt;&lt;p&gt; Invoke the &#123;@link #loadClass(String) loadClass&#125; method * on the parent class loader. If the parent is &#123;@code null&#125; the class * loader built into the virtual machine is used, instead. &lt;/p&gt;&lt;/li&gt; * * &lt;li&gt;&lt;p&gt; Invoke the &#123;@link #findClass(String)&#125; method to find the * class. &lt;/p&gt;&lt;/li&gt; * * &lt;/ol&gt; * * &lt;p&gt; If the class was found using the above steps, and the * &#123;@code resolve&#125; flag is true, this method will then invoke the &#123;@link * #resolveClass(Class)&#125; method on the resulting &#123;@code Class&#125; object. * * &lt;p&gt; Subclasses of &#123;@code ClassLoader&#125; are encouraged to override &#123;@link * #findClass(String)&#125;, rather than this method. &lt;/p&gt; * * &lt;p&gt; Unless overridden, this method synchronizes on the result of * &#123;@link #getClassLoadingLock getClassLoadingLock&#125; method * during the entire class loading process. * * @param name * The &lt;a href="#binary-name"&gt;binary name&lt;/a&gt; of the class * * @param resolve * If &#123;@code true&#125; then resolve the class * * @return The resulting &#123;@code Class&#125; object * * @throws ClassNotFoundException * If the class could not be found */ protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException&#123; synchronized (getClassLoadingLock(name)) &#123; // First, check if the class has already been loaded Class&lt;?&gt; c = findLoadedClass(name); if (c == null) &#123; long t0 = System.nanoTime(); try &#123; if (parent != null) &#123; c = parent.loadClass(name, false); &#125; else &#123; c = findBootstrapClassOrNull(name); &#125; &#125; catch (ClassNotFoundException e) &#123; // ClassNotFoundException thrown if class not found // from the non-null parent class loader &#125; if (c == null) &#123; // If still not found, then invoke findClass in order // to find the class. long t1 = System.nanoTime(); c = findClass(name); // this is the defining class loader; record the stats PerfCounter.getParentDelegationTime().addTime(t1 - t0); PerfCounter.getFindClassTime().addElapsedTimeFrom(t1); PerfCounter.getFindClasses().increment(); &#125; &#125; if (resolve) &#123; resolveClass(c); &#125; return c; &#125;&#125; resolve默认是false不链接，不进行链接意味着不进行上述2、3、4步骤，那么静态块和静态对象就不会得到执行。 测试1234567891011121314151617181920212223242526public class Test&#123; public static void main(String[] args) &#123; try &#123; System.out.println("1-----------------------"); ClassLoader.getSystemClassLoader().loadClass("X"); System.out.println("2-----------------------"); ClassLoader.getSystemClassLoader().loadClass("X"); System.out.println("3-----------------------"); ClassLoader.getSystemClassLoader().loadClass("X"); System.out.println("4-----------------------"); Class.forName("X"); System.out.println("5-----------------------"); Class.forName("X"); System.out.println("6-----------------------"); Class.forName("X"); &#125; catch (ClassNotFoundException e) &#123; e.printStackTrace(); &#125; &#125;&#125;class X&#123; static&#123; System.out.println("hello"); &#125;&#125; 输出为： 12345671-----------------------2-----------------------3-----------------------4-----------------------hello5-----------------------6-----------------------]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -130,8 +141,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>算法</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
