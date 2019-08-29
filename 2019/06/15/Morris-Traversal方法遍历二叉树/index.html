@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法,图形学,几何变换,">
+  <meta name="keywords" content="算法,">
 
 
 
@@ -96,18 +96,22 @@
 
 
 
-<meta name="description" content="二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。     下面给出C++实现二维图形基本几何变换的具体代码。算法中只包含平移和旋转两种变换。使用时，直">
-<meta name="keywords" content="C++,算法,图形学,几何变换">
+<meta name="description" content="通常，实现二叉树的前序（preorder）、中序（inorder）、后序（postorder）遍历有两个常用的方法：一是递归(recursive)，二是使用栈实现的迭代版本(stack+iterative)。这两种方法都是O(n)或者O(logn)的空间复杂度（递归本身占用stack空间或者用户自定义的stack），所以不满足要求。（用这两种方法实现的中序遍历实现可以参考这里。） Morris T">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图形学--图形几何变换">
-<meta property="og:url" content="http://CongLinDev.github.io/2018/10/21/图形学-图形几何变换/index.html">
+<meta property="og:title" content="Morris Traversal方法遍历二叉树">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/06/15/Morris-Traversal方法遍历二叉树/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。     下面给出C++实现二维图形基本几何变换的具体代码。算法中只包含平移和旋转两种变换。使用时，直">
+<meta property="og:description" content="通常，实现二叉树的前序（preorder）、中序（inorder）、后序（postorder）遍历有两个常用的方法：一是递归(recursive)，二是使用栈实现的迭代版本(stack+iterative)。这两种方法都是O(n)或者O(logn)的空间复杂度（递归本身占用stack空间或者用户自定义的stack），所以不满足要求。（用这两种方法实现的中序遍历实现可以参考这里。） Morris T">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-05T13:30:49.775Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/29/FiHbG5yJlaNpdzQ.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/29/TItRYUZnlSXvVp5.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/08/29/xGLS9jVTBXCnIcP.jpg">
+<meta property="og:updated_time" content="2019-08-29T12:31:24.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图形学--图形几何变换">
-<meta name="twitter:description" content="二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。     下面给出C++实现二维图形基本几何变换的具体代码。算法中只包含平移和旋转两种变换。使用时，直">
+<meta name="twitter:title" content="Morris Traversal方法遍历二叉树">
+<meta name="twitter:description" content="通常，实现二叉树的前序（preorder）、中序（inorder）、后序（postorder）遍历有两个常用的方法：一是递归(recursive)，二是使用栈实现的迭代版本(stack+iterative)。这两种方法都是O(n)或者O(logn)的空间复杂度（递归本身占用stack空间或者用户自定义的stack），所以不满足要求。（用这两种方法实现的中序遍历实现可以参考这里。） Morris T">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/29/FiHbG5yJlaNpdzQ.jpg">
 
 
 
@@ -137,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2018/10/21/图形学-图形几何变换/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/06/15/Morris-Traversal方法遍历二叉树/">
 
 
 
 
 
-  <title>图形学--图形几何变换 | CongLin's Blog</title>
+  <title>Morris Traversal方法遍历二叉树 | CongLin's Blog</title>
   
 
 
@@ -319,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/10/21/图形学-图形几何变换/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/06/15/Morris-Traversal方法遍历二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -336,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图形学--图形几何变换</h1>
+          <h1 class="post-title" itemprop="name headline">Morris Traversal方法遍历二叉树</h1>
         
 
         <div class="post-meta">
@@ -349,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T22:08:00+08:00">
-                2018-10-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-15T20:14:00+08:00">
+                2019-06-15
               </time>
             
 
@@ -360,6 +364,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -368,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/21/图形学-图形几何变换/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/21/图形学-图形几何变换/" itemprop="commentCount"></span>
+                <a href="/2019/06/15/Morris-Traversal方法遍历二叉树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/15/Morris-Traversal方法遍历二叉树/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,11 +423,49 @@
       
 
       
-        <p>二维图形基本几何变换是指相对于坐标原点和坐标轴进行的几何变换，包括平移（Translate）、比例（Scale）、旋转（Rotate）、反射（Reflect）和错切（shear）5种变换。物体变换物体变换是通过变换物体上每一个顶点实现的，因此以点的二维基本几何变换为例讲解二维图形基本几何变换矩阵。   </p>
-<hr>
-<p>下面给出<strong>C++</strong>实现二维图形基本几何变换的具体代码。算法中只包含<strong>平移</strong>和<strong>旋转</strong>两种变换。使用时，直接调用函数<strong>translation</strong> 和 <strong>whirling</strong> 即可。<br><em>读者若有其他变换需求，只需模仿这两种变换，将变换矩阵的值进行修改即可。</em>   </p>
-<h2 id="MatrixTransformation-h"><a href="#MatrixTransformation-h" class="headerlink" title="MatrixTransformation.h"></a><em>MatrixTransformation.h</em></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MatrixTransformation</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MatrixTransformation();</span><br><span class="line">	~MatrixTransformation();</span><br><span class="line">	</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> row;<span class="comment">//矩阵行数</span></span><br><span class="line">	<span class="keyword">int</span> column;<span class="comment">//矩阵列数</span></span><br><span class="line">	<span class="keyword">double</span>* pointMatrix;<span class="comment">//点矩阵</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span> transforMatrix[<span class="number">3</span>][<span class="number">3</span>];<span class="comment">//变换矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MatrixTransformation(CPoint points[], <span class="keyword">int</span> pointNumber);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value, <span class="keyword">double</span> matrix[])</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> matrix[])</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">setTransforMatrixElement</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">matrixMultiplication</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">CPoint* <span class="title">matrixToPoint</span><span class="params">(CPoint points[], <span class="keyword">int</span> point_number)</span></span>;<span class="comment">//矩阵转为点数组</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">translation</span><span class="params">(<span class="keyword">int</span> offset_x, <span class="keyword">int</span> offset_y)</span></span>;<span class="comment">//平移</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">whirling</span><span class="params">(<span class="keyword">double</span> angle)</span></span>;<span class="comment">//旋转</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">whirling</span><span class="params">(<span class="keyword">int</span> offset_x, <span class="keyword">int</span> offset_y, <span class="keyword">double</span> angle)</span></span>;<span class="comment">//绕点(offset_x, offset_y)旋转</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="MatrixTransformation-cpp"><a href="#MatrixTransformation-cpp" class="headerlink" title="MatrixTransformation.cpp"></a><em>MatrixTransformation.cpp</em></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">MatrixTransformation::MatrixTransformation()</span><br><span class="line">&#123;</span><br><span class="line">	row = <span class="number">0</span>;</span><br><span class="line">	column = <span class="number">0</span>;</span><br><span class="line">	pointMatrix = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line">MatrixTransformation::MatrixTransformation(CPoint points[], <span class="keyword">int</span> pointNumber)</span><br><span class="line">&#123;</span><br><span class="line">	row = pointNumber;</span><br><span class="line">	column = <span class="number">3</span>;</span><br><span class="line">	pointMatrix = <span class="keyword">new</span> <span class="keyword">double</span>[row * column];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= row; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		setMatrixElement(i, <span class="number">1</span>, points[i - <span class="number">1</span>].x);</span><br><span class="line">		setMatrixElement(i, <span class="number">2</span>, points[i - <span class="number">1</span>].y);</span><br><span class="line">		setMatrixElement(i, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MatrixTransformation::~MatrixTransformation()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span>[] pointMatrix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> MatrixTransformation::setMatrixElement(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> setMatrixElement(row, column, value, pointMatrix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> MatrixTransformation::setMatrixElement(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value, <span class="keyword">double</span> matrix[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> realIndex = (row - <span class="number">1</span>) * <span class="keyword">this</span>-&gt;column + column - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (realIndex &lt; <span class="keyword">this</span>-&gt;row * <span class="keyword">this</span>-&gt;column &amp;&amp; realIndex &gt;= <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		matrix[realIndex] = value;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> MatrixTransformation::getMatrixElement(<span class="keyword">int</span> row, <span class="keyword">int</span> column)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> getMatrixElement(row, column, pointMatrix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> MatrixTransformation::getMatrixElement(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> matrix[])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> realIndex = (row - <span class="number">1</span>) * <span class="keyword">this</span>-&gt;column + column - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (realIndex &lt; <span class="keyword">this</span>-&gt;row * <span class="keyword">this</span>-&gt;column &amp;&amp; realIndex &gt;= <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> matrix[realIndex];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> MatrixTransformation::setTransforMatrixElement(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">double</span> value)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (row &lt;= <span class="number">3</span> &amp;&amp; row &gt; <span class="number">0</span> &amp;&amp; column &lt;= <span class="number">3</span> &amp;&amp; column &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		transforMatrix[row - <span class="number">1</span>][column - <span class="number">1</span>] = value;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MatrixTransformation::matrixMultiplication()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">double</span>* result = <span class="keyword">new</span> <span class="keyword">double</span>[row * column];</span><br><span class="line">	<span class="keyword">int</span> tempResult;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; row; m++) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; column; s++) </span><br><span class="line">		&#123;</span><br><span class="line">			tempResult = <span class="number">0</span>; <span class="comment">//变量使用前初始化,否则结果具有不确定性</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; column; n++) </span><br><span class="line">			&#123;</span><br><span class="line">				tempResult += getMatrixElement(m + <span class="number">1</span>, n + <span class="number">1</span>) * transforMatrix[n][s];</span><br><span class="line">			&#125;</span><br><span class="line">			setMatrixElement(m + <span class="number">1</span>, s + <span class="number">1</span>, tempResult, result);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span>* tempPointer = <span class="keyword">this</span>-&gt;pointMatrix;</span><br><span class="line">	<span class="keyword">this</span>-&gt;pointMatrix = result;</span><br><span class="line">	<span class="keyword">delete</span>[] tempPointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CPoint* MatrixTransformation::matrixToPoint(CPoint points[], <span class="keyword">int</span> point_number)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= point_number; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		points[i - <span class="number">1</span>].x = getMatrixElement(i, <span class="number">1</span>);</span><br><span class="line">		points[i - <span class="number">1</span>].y = getMatrixElement(i, <span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> points;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MatrixTransformation::translation(<span class="keyword">int</span> offset_x, <span class="keyword">int</span> offset_y)</span><br><span class="line">&#123;</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>); </span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">1</span>, offset_x);</span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">2</span>, offset_y);</span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	matrixMultiplication();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MatrixTransformation::whirling(<span class="keyword">double</span> angle)</span><br><span class="line">&#123;</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">1</span>, <span class="built_in">cos</span>(angle));</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">2</span>, <span class="built_in">sin</span>(angle));</span><br><span class="line">	setTransforMatrixElement(<span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">1</span>, -<span class="built_in">sin</span>(angle));</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">2</span>, <span class="built_in">cos</span>(angle));</span><br><span class="line">	setTransforMatrixElement(<span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">	setTransforMatrixElement(<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	matrixMultiplication();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MatrixTransformation::whirling(<span class="keyword">int</span> offset_x, <span class="keyword">int</span> offset_y, <span class="keyword">double</span> angle)</span><br><span class="line">&#123;</span><br><span class="line">	translation(-offset_x, -offset_y);</span><br><span class="line">	whirling(angle);</span><br><span class="line">	translation(offset_x, offset_y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>通常，实现二叉树的前序（preorder）、中序（inorder）、后序（postorder）遍历有两个常用的方法：一是递归(recursive)，二是使用栈实现的迭代版本(stack+iterative)。这两种方法都是O(n)或者O(logn)的空间复杂度（递归本身占用stack空间或者用户自定义的stack），所以不满足要求。（用这两种方法实现的中序遍历实现可以参考这里。）</p>
+<p>Morris Traversal方法可以做到这两点，与前两种方法的不同在于该方法只需要O(1)空间，而且同样可以在O(n)时间内完成。</p>
+<p>要使用O(1)空间进行遍历，最大的难点在于，遍历到子节点的时候怎样重新返回到父节点（假设节点中没有指向父节点的p指针），由于不能用栈作为辅助空间。为了解决这个问题，Morris方法用到了线索二叉树（threaded binary tree）的概念。在Morris方法中不需要为每个节点额外分配指针指向其前驱（predecessor）和后继节点（successor），只需要利用叶子节点中的左右空指针指向某种顺序遍历下的前驱节点或后继节点就可以了。</p>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>步骤：</p>
+<ol>
+<li>如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。</li>
+<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。 <ol>
+<li>如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。 </li>
+<li>如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空（恢复树的形状）。输出当前节点。当前节点更新为当前节点的右孩子。</li>
+</ol>
+</li>
+<li>重复以上1、2直到当前节点为空。</li>
+</ol>
+<p>下图为每一步迭代的结果（从左至右，从上到下），cur代表当前节点，深色节点表示该节点已输出。</p>
+<p><img src="https://i.loli.net/2019/08/29/FiHbG5yJlaNpdzQ.jpg" alt="1.jpg"></p>
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><p>前序遍历与中序遍历相似，代码上只有一行不同，不同就在于输出的顺序。</p>
+<p>步骤：</p>
+<ol>
+<li>如果当前节点的左孩子为空，则输出当前节点并将其右孩子作为当前节点。</li>
+<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。<ol>
+<li>如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。输出当前节点（在这里输出，这是与中序遍历唯一一点不同）。当前节点更新为当前节点的左孩子。</li>
+<li>如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。当前节点更新为当前节点的右孩子。</li>
+</ol>
+</li>
+<li>重复以上1、2直到当前节点为空。</li>
+</ol>
+<p>图示：</p>
+<p>下图为每一步迭代的结果（从左至右，从上到下），cur代表当前节点，深色节点表示该节点已输出。</p>
+<p><img src="https://i.loli.net/2019/08/29/TItRYUZnlSXvVp5.jpg" alt="2.jpg"></p>
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p>后续遍历稍显复杂，需要建立一个临时节点dump，令其左孩子是root。并且还需要一个子过程，就是倒序输出某两个节点之间路径上的各个节点。</p>
+<p>步骤：</p>
+<p>当前节点设置为临时节点dump。</p>
+<ol>
+<li>如果当前节点的左孩子为空，则将其右孩子作为当前节点。</li>
+<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点。<ol>
+<li>如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。</li>
+<li>如果前驱节点的右孩子为当前节点，将它的右孩子重新设为空。倒序输出从当前节点的左孩子到该前驱节点这条路径上的所有节点。当前节点更新为当前节点的右孩子。</li>
+</ol>
+</li>
+<li>重复以上1、2直到当前节点为空。</li>
+</ol>
+<p>图示：</p>
+<p><img src="https://i.loli.net/2019/08/29/xGLS9jVTBXCnIcP.jpg" alt="3.jpg"></p>
 
       
     </div>
@@ -451,7 +515,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2018/10/21/图形学-图形几何变换/" title="图形学--图形几何变换">http://CongLinDev.github.io/2018/10/21/图形学-图形几何变换/</a>
+    <a href="http://CongLinDev.github.io/2019/06/15/Morris-Traversal方法遍历二叉树/" title="Morris Traversal方法遍历二叉树">http://CongLinDev.github.io/2019/06/15/Morris-Traversal方法遍历二叉树/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -475,13 +539,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
-          
             <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
-            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
-          
-            <a href="/tags/几何变换/" rel="tag"><i class="fa fa-tag"></i> 几何变换</a>
           
         </div>
       
@@ -494,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/图形学-扫描线种子填充算法/" rel="next" title="图形学--扫描线种子填充算法">
-                <i class="fa fa-chevron-left"></i> 图形学--扫描线种子填充算法
+              <a href="/2019/06/02/Java内存模型的小总结/" rel="next" title="Java内存模型的小总结">
+                <i class="fa fa-chevron-left"></i> Java内存模型的小总结
               </a>
             
           </div>
@@ -504,8 +562,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/28/图形学-3D图形斜投影/" rel="prev" title="图形学--3D图形斜投影">
-                图形学--3D图形斜投影 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/17/clrpc-简单的RPC工具/" rel="prev" title="clrpc-简单的RPC工具">
+                clrpc-简单的RPC工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -677,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixTransformation-h"><span class="nav-number">1.</span> <span class="nav-text">MatrixTransformation.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixTransformation-cpp"><span class="nav-number">2.</span> <span class="nav-text">MatrixTransformation.cpp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中序遍历"><span class="nav-number">1.</span> <span class="nav-text">中序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前序遍历"><span class="nav-number">2.</span> <span class="nav-text">前序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后序遍历"><span class="nav-number">3.</span> <span class="nav-text">后序遍历</span></a></li></ol></div>
             
 
           </div>
