@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="算法,">
 
 
 
@@ -96,16 +96,18 @@
 
 
 
-<meta name="description" content="It is my personal website.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CongLin&#39;s Blog">
-<meta property="og:url" content="http://CongLinDev.github.io/archives/page/2/index.html">
+<meta name="description" content="背景有某个朋友在朋友圈咨询微信红包的架构。 概况2014年微信红包使用数据库硬抗整个流量，2015年使用cache抗流量。 问题微信的金额什么时候算？微信金额是拆的时候实时算出来，不是预先分配的，采用的是纯内存计算，不需要预算空间存储。 采取实时计算金额的考虑：预算需要占存储，实时效率很高，预算才效率低。 实时性：为什么明明抢到红包，点开后发现没有？2014年的红包一点开就知道金额，分两次操作，先">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信红包的架构设计简介">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/09/04/微信红包的架构设计简介/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="It is my personal website.">
+<meta property="og:description" content="背景有某个朋友在朋友圈咨询微信红包的架构。 概况2014年微信红包使用数据库硬抗整个流量，2015年使用cache抗流量。 问题微信的金额什么时候算？微信金额是拆的时候实时算出来，不是预先分配的，采用的是纯内存计算，不需要预算空间存储。 采取实时计算金额的考虑：预算需要占存储，实时效率很高，预算才效率低。 实时性：为什么明明抢到红包，点开后发现没有？2014年的红包一点开就知道金额，分两次操作，先">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-12T13:53:25.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CongLin&#39;s Blog">
-<meta name="twitter:description" content="It is my personal website.">
+<meta name="twitter:title" content="微信红包的架构设计简介">
+<meta name="twitter:description" content="背景有某个朋友在朋友圈咨询微信红包的架构。 概况2014年微信红包使用数据库硬抗整个流量，2015年使用cache抗流量。 问题微信的金额什么时候算？微信金额是拆的时候实时算出来，不是预先分配的，采用的是纯内存计算，不需要预算空间存储。 采取实时计算金额的考虑：预算需要占存储，实时效率很高，预算才效率低。 实时性：为什么明明抢到红包，点开后发现没有？2014年的红包一点开就知道金额，分两次操作，先">
 
 
 
@@ -135,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/archives/page/2/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/09/04/微信红包的架构设计简介/">
 
 
 
 
 
-  <title>归档 | CongLin's Blog</title>
+  <title>微信红包的架构设计简介 | CongLin's Blog</title>
   
 
 
@@ -179,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/CongLinDev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,390 +305,275 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 38 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/09/04/微信红包的架构设计简介/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/CL.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">微信红包的架构设计简介</h1>
         
 
-        
+        <div class="post-meta">
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/17/浅谈Class-forName-和classLoader-loadClass-的区别/" itemprop="url">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-                <span itemprop="name">浅谈Class.forName()和classLoader.loadClass()的区别</span>
+                <span class="post-meta-item-text">发表于</span>
               
-            </a>
-        
-      </h2>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-04T21:46:00+08:00">
+                2019-09-04
+              </time>
+            
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-17T22:18:00+08:00" content="2019-05-17">
-          05-17
-        </time>
-      </div>
+            
 
-    </header>
-  </article>
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
 
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/04/微信红包的架构设计简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/04/微信红包的架构设计简介/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/05/0-1背包问题/" itemprop="url">
-              
-                <span itemprop="name">0-1背包问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-05T21:54:00+08:00" content="2019-05-05">
-          05-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/27/缓存与数据库的双写一致性问题/" itemprop="url">
-              
-                <span itemprop="name">缓存与数据库的双写一致性问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-27T17:41:00+08:00" content="2019-04-27">
-          04-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>有某个朋友在朋友圈咨询微信红包的架构。</p>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>2014年微信红包使用数据库硬抗整个流量，2015年使用cache抗流量。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="微信的金额什么时候算？"><a href="#微信的金额什么时候算？" class="headerlink" title="微信的金额什么时候算？"></a>微信的金额什么时候算？</h3><p>微信金额是拆的时候实时算出来，不是预先分配的，采用的是纯内存计算，不需要预算空间存储。</p>
+<p>采取实时计算金额的考虑：预算需要占存储，实时效率很高，预算才效率低。</p>
+<h3 id="实时性：为什么明明抢到红包，点开后发现没有？"><a href="#实时性：为什么明明抢到红包，点开后发现没有？" class="headerlink" title="实时性：为什么明明抢到红包，点开后发现没有？"></a>实时性：为什么明明抢到红包，点开后发现没有？</h3><p>2014年的红包一点开就知道金额，分两次操作，先抢到金额，然后再转账。</p>
+<p>2015年的红包的拆和抢是分离的，需要点两次，因此会出现抢到红包了，但点开后告知红包已经被领完的状况。进入到第一个页面不代表抢到，只表示当时红包还有。</p>
+<h3 id="分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？"><a href="#分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？" class="headerlink" title="分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？"></a>分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？</h3><p>随机，额度在0.01和剩余平均值*2之间。</p>
+<p>例如：发100块钱，总共10个红包，那么平均值是10块钱一个，那么发出来的红包的额度在0.01元～20元之间波动。</p>
+<p>当前面3个红包总共被领了40块钱时，剩下60块钱，总共7个红包，那么这7个红包的额度在：0.01～（60/7*2）=17.14之间。</p>
+<p>注意：这里的算法是每被抢一个后，剩下的会再次执行上面的这样的算法。</p>
+<p>这样算下去，会超过最开始的全部金额，因此到了最后面如果不够这么算，那么会采取如下算法：保证剩余用户能拿到最低1分钱即可。</p>
+<p>如果前面的人手气不好，那么后面的余额越多，红包额度也就越多，因此实际概率一样的。</p>
+<h3 id="红包的设计"><a href="#红包的设计" class="headerlink" title="红包的设计"></a>红包的设计</h3><p>微信从财付通拉取金额数据过来，生成个数/红包类型/金额放到redis集群里，app端将红包ID的请求放入请求队列中，如果发现超过红包的个数，直接返回。根据红包的裸祭处理成功得到令牌请求，则由财付通进行一致性调用，通过像比特币一样，两边保存交易记录，交易后交给第三方服务审计，如果交易过程中出现不一致就强制回归。</p>
+<h3 id="并发性处理：红包如何计算被抢完？"><a href="#并发性处理：红包如何计算被抢完？" class="headerlink" title="并发性处理：红包如何计算被抢完？"></a>并发性处理：红包如何计算被抢完？</h3><p>cache会抵抗无效请求，将无效的请求过滤掉，实际进入到后台的量不大。cache记录红包个数，原子操作进行个数递减，到0表示被抢光。财付通按照20万笔每秒入账准备，但实际还不到8万每秒。</p>
+<h3 id="如何保持8w每秒的写入？"><a href="#如何保持8w每秒的写入？" class="headerlink" title="如何保持8w每秒的写入？"></a>如何保持8w每秒的写入？</h3><p>多主sharding，水平扩展机器。</p>
+<h3 id="数据容量多少？"><a href="#数据容量多少？" class="headerlink" title="数据容量多少？"></a>数据容量多少？</h3><p>一个红包只占一条记录，有效期只有几天，因此不需要太多空间。</p>
+<h3 id="轮询红包分配，压力大不？"><a href="#轮询红包分配，压力大不？" class="headerlink" title="轮询红包分配，压力大不？"></a>轮询红包分配，压力大不？</h3><p>抢到红包的人数和红包都在一条cache记录上，没有太大的查询压力。</p>
+<h3 id="一个红包一个队列？"><a href="#一个红包一个队列？" class="headerlink" title="一个红包一个队列？"></a>一个红包一个队列？</h3><p>没有队列，一个红包一条数据，数据上有一个计数器字段。</p>
+<h3 id="有没有从数据上证明每个红包的概率是不是均等？"><a href="#有没有从数据上证明每个红包的概率是不是均等？" class="headerlink" title="有没有从数据上证明每个红包的概率是不是均等？"></a>有没有从数据上证明每个红包的概率是不是均等？</h3><p>不是绝对均等，就是一个简单的拍脑袋算法。</p>
+<h3 id="拍脑袋算法，会不会出现两个最佳？"><a href="#拍脑袋算法，会不会出现两个最佳？" class="headerlink" title="拍脑袋算法，会不会出现两个最佳？"></a>拍脑袋算法，会不会出现两个最佳？</h3><p>答：会出现金额一样的，但是手气最佳只有一个，先抢到的那个最佳。</p>
+<h3 id="每领一个红包就更新数据么？"><a href="#每领一个红包就更新数据么？" class="headerlink" title="每领一个红包就更新数据么？"></a>每领一个红包就更新数据么？</h3><p>答：每抢到一个红包，就cas更新剩余金额和红包个数。</p>
+<h3 id="红包如何入库入账？"><a href="#红包如何入库入账？" class="headerlink" title="红包如何入库入账？"></a>红包如何入库入账？</h3><p>数据库会累加已经领取的个数与金额，插入一条领取记录。入账则是后台异步操作。</p>
+<h3 id="入帐出错怎么办？比如红包个数没了，但余额还有？"><a href="#入帐出错怎么办？比如红包个数没了，但余额还有？" class="headerlink" title="入帐出错怎么办？比如红包个数没了，但余额还有？"></a>入帐出错怎么办？比如红包个数没了，但余额还有？</h3><p>答：最后会有一个take all操作。另外还有一个对账来保障。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/20/浅谈ThreadLocal/" itemprop="url">
-              
-                <span itemprop="name">浅谈ThreadLocal</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-20T14:53:00+08:00" content="2019-04-20">
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/12/黑匣子问题/" itemprop="url">
-              
-                <span itemprop="name">黑匣子问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-12T21:16:00+08:00" content="2019-04-12">
-          04-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/05/Http缓存优先级问题/" itemprop="url">
-              
-                <span itemprop="name">Http缓存优先级问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-05T14:27:00+08:00" content="2019-04-05">
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/25/飞机座位问题/" itemprop="url">
-              
-                <span itemprop="name">飞机座位问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-25T21:09:20+08:00" content="2019-03-25">
-          03-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/10/百囚徒挑战/" itemprop="url">
-              
-                <span itemprop="name">百囚徒挑战</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-10T20:53:00+08:00" content="2019-03-10">
-          03-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/04/从1到n整数中1出现的次数/" itemprop="url">
-              
-                <span itemprop="name">从1到n整数中1出现的次数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-04T09:31:00+08:00" content="2019-03-04">
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/03/简单博客系统-Web/" itemprop="url">
-              
-                <span itemprop="name">简单博客系统(Web)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-03T19:16:00+08:00" content="2019-03-03">
-          03-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2019/09/04/微信红包的架构设计简介/" title="微信红包的架构设计简介">http://CongLinDev.github.io/2019/09/04/微信红包的架构设计简介/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/22/基于Redis的分布式锁的安全性/" rel="next" title="基于Redis的分布式锁的安全性">
+                <i class="fa fa-chevron-left"></i> 基于Redis的分布式锁的安全性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/08/短网址生成系统/" rel="prev" title="短网址生成系统">
+                短网址生成系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -694,6 +581,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -714,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -796,6 +701,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概况"><span class="nav-number">2.</span> <span class="nav-text">概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信的金额什么时候算？"><span class="nav-number">3.1.</span> <span class="nav-text">微信的金额什么时候算？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实时性：为什么明明抢到红包，点开后发现没有？"><span class="nav-number">3.2.</span> <span class="nav-text">实时性：为什么明明抢到红包，点开后发现没有？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？"><span class="nav-number">3.3.</span> <span class="nav-text">分配：红包里的金额怎么算？为什么出现各个红包金额相差很大？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红包的设计"><span class="nav-number">3.4.</span> <span class="nav-text">红包的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发性处理：红包如何计算被抢完？"><span class="nav-number">3.5.</span> <span class="nav-text">并发性处理：红包如何计算被抢完？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保持8w每秒的写入？"><span class="nav-number">3.6.</span> <span class="nav-text">如何保持8w每秒的写入？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据容量多少？"><span class="nav-number">3.7.</span> <span class="nav-text">数据容量多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轮询红包分配，压力大不？"><span class="nav-number">3.8.</span> <span class="nav-text">轮询红包分配，压力大不？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个红包一个队列？"><span class="nav-number">3.9.</span> <span class="nav-text">一个红包一个队列？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有没有从数据上证明每个红包的概率是不是均等？"><span class="nav-number">3.10.</span> <span class="nav-text">有没有从数据上证明每个红包的概率是不是均等？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拍脑袋算法，会不会出现两个最佳？"><span class="nav-number">3.11.</span> <span class="nav-text">拍脑袋算法，会不会出现两个最佳？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每领一个红包就更新数据么？"><span class="nav-number">3.12.</span> <span class="nav-text">每领一个红包就更新数据么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红包如何入库入账？"><span class="nav-number">3.13.</span> <span class="nav-text">红包如何入库入账？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入帐出错怎么办？比如红包个数没了，但余额还有？"><span class="nav-number">3.14.</span> <span class="nav-text">入帐出错怎么办？比如红包个数没了，但余额还有？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -932,6 +853,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -960,6 +885,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
