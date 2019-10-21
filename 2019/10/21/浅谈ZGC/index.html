@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Java,">
 
 
 
@@ -96,17 +96,18 @@
 
 
 
-<meta name="description" content="问题描述给定一个无限的数据流，要求随机取出 k 个数。也就是说当数据流有 N 个数据时，不论 N 为多少，每个数被取出的概率都为 k/N 算法 先取出前 k 个数； 从第 k+1 开始，以 k/i 的概率取出这个数，并随机替换掉之前已经取出的 k 个数中的一个。  123456Init a reservoir with the size kfor i = k + 1 to N     M = ra">
+<meta name="description" content="ZGC is a new garbage collector recently open-sourced by Oracle for the OpenJDK. It was mainly written by Per Liden. ZGC is similar to Shenandoah or Azul’s C4 that focus on reducing pause-times while s">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="蓄水池采样">
-<meta property="og:url" content="http://CongLinDev.github.io/2019/08/15/蓄水池采样/index.html">
+<meta property="og:title" content="浅谈ZGC">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/10/21/浅谈ZGC/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="问题描述给定一个无限的数据流，要求随机取出 k 个数。也就是说当数据流有 N 个数据时，不论 N 为多少，每个数被取出的概率都为 k/N 算法 先取出前 k 个数； 从第 k+1 开始，以 k/i 的概率取出这个数，并随机替换掉之前已经取出的 k 个数中的一个。  123456Init a reservoir with the size kfor i = k + 1 to N     M = ra">
+<meta property="og:description" content="ZGC is a new garbage collector recently open-sourced by Oracle for the OpenJDK. It was mainly written by Per Liden. ZGC is similar to Shenandoah or Azul’s C4 that focus on reducing pause-times while s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-08T13:03:02.803Z">
+<meta property="og:updated_time" content="2019-10-21T14:35:56.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蓄水池采样">
-<meta name="twitter:description" content="问题描述给定一个无限的数据流，要求随机取出 k 个数。也就是说当数据流有 N 个数据时，不论 N 为多少，每个数被取出的概率都为 k/N 算法 先取出前 k 个数； 从第 k+1 开始，以 k/i 的概率取出这个数，并随机替换掉之前已经取出的 k 个数中的一个。  123456Init a reservoir with the size kfor i = k + 1 to N     M = ra">
+<meta name="twitter:title" content="浅谈ZGC">
+<meta name="twitter:description" content="ZGC is a new garbage collector recently open-sourced by Oracle for the OpenJDK. It was mainly written by Per Liden. ZGC is similar to Shenandoah or Azul’s C4 that focus on reducing pause-times while s">
 
 
 
@@ -136,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2019/08/15/蓄水池采样/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/10/21/浅谈ZGC/">
 
 
 
 
 
-  <title>蓄水池采样 | CongLin's Blog</title>
+  <title>浅谈ZGC | CongLin's Blog</title>
   
 
 
@@ -318,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/08/15/蓄水池采样/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/10/21/浅谈ZGC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -335,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">蓄水池采样</h1>
+          <h1 class="post-title" itemprop="name headline">浅谈ZGC</h1>
         
 
         <div class="post-meta">
@@ -348,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T20:52:16+08:00">
-                2019-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T22:00:00+08:00">
+                2019-10-21
               </time>
             
 
@@ -359,6 +360,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -367,8 +390,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/08/15/蓄水池采样/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/15/蓄水池采样/" itemprop="commentCount"></span>
+                <a href="/2019/10/21/浅谈ZGC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/21/浅谈ZGC/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,18 +419,62 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个无限的数据流，要求随机取出 <code>k</code> 个数。也就是说当数据流有 <code>N</code> 个数据时，不论 <code>N</code> 为多少，每个数被取出的概率都为 <code>k/N</code></p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
-<li>先取出前 <code>k</code> 个数；</li>
-<li>从第 <code>k+1</code> 开始，以 <code>k/i</code> 的概率取出这个数，并随机替换掉之前已经取出的 <code>k</code> 个数中的一个。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Init a reservoir with the size k</span><br><span class="line">for i = k + 1 to N</span><br><span class="line">     M = random(1, i);</span><br><span class="line">     if (M &lt; k)</span><br><span class="line">         SWAP the Mth value and ith value</span><br><span class="line">end for</span><br></pre></td></tr></table></figure>
-<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>使用归纳法进行证明，其中 <code>i</code> 表示当前到来的数据编号。</p>
+        <p>ZGC is a new garbage collector recently open-sourced by Oracle for the OpenJDK. It was mainly written by Per Liden. ZGC is similar to Shenandoah or Azul’s C4 that focus on reducing pause-times while still compacting the heap. Although I won’t give a full introduction here, “compacting the heap” just means moving the still-alive objects to the start (or some other region) of the heap. This helps to reduce fragmentation but usually this also means that the whole application (that includes all of its threads) needs to be halted while the GC does its magic, this is usually referred to as stopping the world. Only when the GC is finished, the application can be resumed. In GC literature the application is often called mutator, since from the GC’s point of view the application mutates the heap. Depending on the size of the heap such a pause could take several seconds, which could be quite problematic for interactive applications.</p>
+<p>There are several ways to reduce pause times:</p>
 <ul>
-<li>当 <code>i==k+1</code> 时，该数以 <code>k/(k+1)</code> 被取出。当该数被取出时，需要替换前 <code>k</code> 个数中的某个数，被替换的概率为 <code>k/(k+1) · 1/k = 1/(k+1)</code>，这个数被保留的概率即为 <code>1 - 被替换的概率 = 1 - 1/(k+1) = k/(k+1)</code>。</li>
-<li>假设 <code>i==p</code> 时符合条件，即前 <code>p</code> 个数都以 <code>k/p</code>的概率被取出。当 <code>i==p+1</code> 时，该数被取出概率为 <code>k/(p+1)</code>。对于前 <code>p</code> 个数，该数被取出要符合两个条件：之前被取出、没有被第 <code>p+1</code> 的数替代。没有被第 <code>p+1</code> 的数替代的概率 = <code>1 - 被第 p+1</code> 的数替换。因此总概率为 <code>k/p ·(1- k/(p+1)·1/k) = k/ (p+1)</code> 。</li>
+<li>The GC can employ multiple threads while compacting (parallel compaction).</li>
+<li>Compaction work can also be split across multiple pauses (incremental compaction).</li>
+<li>Compact the heap concurrently to the running application without stopping it (or just for a short time) (concurrent compaction).</li>
+<li>No compaction of the heap at all (an approach taken by e.g. Go’s GC).</li>
 </ul>
-<p>综上所述，得证。</p>
+<p>ZGC uses concurrent compaction to keep pauses to a minimum, this is certainly not obvious to implement so I want to describe how this works. Why is this complicated?</p>
+<ul>
+<li>You need to copy an object to another memory address, at the same time another thread could read from or write into the old object.</li>
+<li>If copying succeeded there might still be arbitrary many references somewhere in the heap to the old object address that need to be updated to the new address.</li>
+</ul>
+<p>I should also mention that although concurrent compaction seems to be the best solution to reduce pause time of the alternatives given above, there are definitely some tradeoffs involved. So if you don’t care about pause times, you might be better off using a GC that focuses on throughput instead.</p>
+<h2 id="GC-barriers"><a href="#GC-barriers" class="headerlink" title="GC barriers"></a>GC barriers</h2><p>The key to understanding how ZGC does concurrent compaction is the load barrier (often called read barrier in GC literature). Although I have an own section about ZGC’s load-barrier, I want to give a short overview since not all readers might be familiar with them. If a GC has load-barriers, the GC needs to do some additional action when reading a reference from the heap. Basically in Java this happens every time you see some code like <code>obj.field</code>. A GC could also need a write/store-barrier for operations like <code>obj.field = value</code>. Both operations are special since they read from or write into the heap. The names are a bit confusing, but GC barriers are different from memory barriers used in CPUs or compilers.</p>
+<p>Both reading and writing in the heap is extremely common, so both GC-barriers need to be super efficient. That means just a few assembly instructions in the common case. Read barriers are an order of magnitude more likely than write-barriers (although this can certainly vary depending on the application), so read-barriers are even more performance-sensitive. Generational GC’s for example usually get by with just a write barrier, no read barrier needed. ZGC needs a read barrier but no write barrier. For concurrent compaction I haven’t seen a solution without read barriers.</p>
+<p>Another factor to consider: Even if a GC needs some type of barrier, they might “only” be required when reading or writing references in the heap. Reading or writing primitives like <code>int</code> or <code>double</code> might not require the barrier.</p>
+<h2 id="Reference-coloring"><a href="#Reference-coloring" class="headerlink" title="Reference coloring"></a>Reference coloring</h2><p>The key to understanding ZGC is reference coloring. ZGC stores additional metadata in heap references. On x64 a reference is 64-bit wide (ZGC doesn’t support compressed oops or class pointers at the moment), but today’s hardware actually limits a reference to 48-bit for virtual memory addresses. Although to be exact only 47-bit, since bit 47 determines the value of bits 48-63 (for our purpose those bits are always 0).</p>
+<p>ZGC reserves the first 42-bits for the actual address of the object (referenced to as offset in the source code). 42-bit addresses give you a theoretical heap limitation of 4TB in ZGC. The remaining bits are used for these flags: <code>finalizable</code>, <code>remapped</code>, <code>marked1</code> and <code>marked0</code> (one bit is reserved for future use). There is a really nice ASCII drawing in ZGC’s source that shows all these bits:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> 6                 4 4 4  4 4                                             0</span><br><span class="line"> 3                 7 6 5  2 1                                             0</span><br><span class="line">+-------------------+-+----+-----------------------------------------------+</span><br><span class="line">|00000000 00000000 0|0|1111|11 11111111 11111111 11111111 11111111 11111111|</span><br><span class="line">+-------------------+-+----+-----------------------------------------------+</span><br><span class="line">|                   | |    |</span><br><span class="line">|                   | |    * 41-0 Object Offset (42-bits, 4TB address space)</span><br><span class="line">|                   | |</span><br><span class="line">|                   | * 45-42 Metadata Bits (4-bits)  0001 = Marked0</span><br><span class="line">|                   |                                 0010 = Marked1</span><br><span class="line">|                   |                                 0100 = Remapped</span><br><span class="line">|                   |                                 1000 = Finalizable</span><br><span class="line">|                   |</span><br><span class="line">|                   * 46-46 Unused (1-bit, always zero)</span><br><span class="line">|</span><br><span class="line">* 63-47 Fixed (17-bits, always zero)</span><br></pre></td></tr></table></figure>
+<p>Having metadata information in heap references does make dereferencing more expensive, since the address needs to be masked to get the real address (without metainformation). ZGC employs a nice trick to avoid this: When reading from memory exactly one bit of <code>marked0</code>, <code>marked1</code> or <code>remapped</code> is set. When allocating a page at offset <code>x</code>, ZGC maps the same page to 3 different address:</p>
+<ul>
+<li>for <code>marked0</code>: <code>(0b0001 &lt;&lt; 42) | x</code></li>
+<li>for <code>marked1</code>: <code>(0b0010 &lt;&lt; 42) | x</code></li>
+<li>for <code>remapped</code>: <code>(0b0100 &lt;&lt; 42) | x</code></li>
+</ul>
+<p>ZGC therefore just reserves 16TB of address space (but not actually uses all of this memory) starting at address 4TB. Here is another nice drawing from ZGC’s source:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------------+ 0x0000140000000000 (20TB)</span><br><span class="line">|         Remapped View          |</span><br><span class="line">+--------------------------------+ 0x0000100000000000 (16TB)</span><br><span class="line">|     (Reserved, but unused)     |</span><br><span class="line">+--------------------------------+ 0x00000c0000000000 (12TB)</span><br><span class="line">|         Marked1 View           |</span><br><span class="line">+--------------------------------+ 0x0000080000000000 (8TB)</span><br><span class="line">|         Marked0 View           |</span><br><span class="line">+--------------------------------+ 0x0000040000000000 (4TB)</span><br></pre></td></tr></table></figure>
+<p>At any point of time only one of these 3 views is in use. So for debugging the unused views can be unmapped to better verify correctness.</p>
+<h2 id="Pages-amp-Physical-amp-Virtual-Memory"><a href="#Pages-amp-Physical-amp-Virtual-Memory" class="headerlink" title="Pages &amp; Physical &amp; Virtual Memory"></a>Pages &amp; Physical &amp; Virtual Memory</h2><p>Shenandoah separates the heap into a large number of equally-sized regions. An object usually does not span multiple regions, except for large objects that do not fit into a single region. Those large objects need to be allocated in multiple contiguous regions. I quite like this approach because it is so simple.</p>
+<p>ZGC is quite similar to Shenandoah in this regard. In ZGC’s parlance regions are called pages. The major difference to Shenandoah: Pages in ZGC can have different sizes (but always a multiple of 2MB on x64). There are 3 different page types in ZGC: small (2MB size), medium (32MB size) and large (some multiple of 2MB). Small objects (up to 256KB size) are allocated in small pages, medium-sized objects (up to 4MB) are allocated in medium pages. Objects larger than 4MB are allocated in large pages. Large pages can only store exactly one object, in constrast to small or medium pages. Somewhat confusingly large pages can actually be smaller than medium pages (e.g. for a large object with a size of 6MB).</p>
+<p>Another nice property of ZGC is, that it also differentiates between physical and virtual memory. The idea behind this is that there usually is plenty of virtual memory available (always 4TB in ZGC) while physical memory is more scarce. Physical memory can be expanded up to the maximum heap size (set with <code>-Xmx</code> for the JVM), so this tends to be much less than the 4 TB of virtual memory. Allocating a page of a certain size in ZGC means allocating both physical and virtual memory. With ZGC the physical memory doesn’t need to be contiguous - only the virtual memory space. So why is this actually a nice property?</p>
+<p>Allocating a contiguous range of virtual memory should be easy, since we usually have more than enough of it. But it is quite easy to imagine a situation where we have 3 free pages with size 2MB somewhere in the physical memory, but we need 6MB of contiguous memory for a large object allocation. There is enough free physical memory but unfortunately this memory is non-contiguous. ZGC is able to map this non-contiguous physical pages to a single contiguous virtual memory space. If this wasn’t possible, we would have run out of memory.</p>
+<p>On Linux the physical memory is basically an anonymous file that is only stored in RAM (and not on disk), ZGC uses memfd_create to create it. The file can then be extended with ftruncate, ZGC is allowed to extend the physical memory (= the anonymous file) up to the maximum heap size. Physical memory is then mmaped into the virtual address space.</p>
+<h2 id="Marking-amp-Relocating-objects"><a href="#Marking-amp-Relocating-objects" class="headerlink" title="Marking &amp; Relocating objects"></a>Marking &amp; Relocating objects</h2><p>A collection is split into two major phases: marking &amp; relocating. (Actually there are more than those two phases but see the source for more details).</p>
+<p>A GC cycle starts with the marking phase, which marks all reachable objects. At the end of this phase we know which objects are still alive and which are garbage. ZGC stores this information in the so called live map for each page. A live map is a bitmap that stores whether the object at the given index is strongly-reachable and/or final-reachable (for objects with a <code>finalize</code>-method).</p>
+<p>During the marking-phase the load-barrier in application-threads pushes unmarked references into a thread-local marking buffer. As soon as this buffer is full, the GC threads can take ownership of this buffer and recursively traverse all reachable objects from this buffer. Marking in an application thread just pushes the reference into a buffer, the GC threads are responsible for walking the object graph and updating the live map.</p>
+<p>After marking ZGC needs to relocate all live objects in the relocation set. The relocation set is a set of pages, that were chosen to be evacuated based on some criteria after marking (e.g. those page with the most amount of garbage). An object is either relocated by a GC thread or an application thread (again through the load-barrier). ZGC allocates a forwarding table for each page in the relocation set. The forwarding table is basically a hash map that stores the address an object has been relocated to (if the object has already been relocated).</p>
+<p>The advantage with ZGC’s approach is that we only need to allocate space for the forwarding pointer for pages in the relocation set. Shenandoah in comparison stores the forwarding pointer in the object itself for each and every object, which has some memory overhead.</p>
+<p>The GC threads walk over the live objects in the relocation set and relocate all those objects that haven’t been relocated yet. It could even happen that an application thread and a GC thread try to relocate the same object at the same time, in this case the first thread to relocate the object wins. ZGC uses an atomic CAS-operation to determine a winner.</p>
+<p>While not marking the load-barrier relocates or remaps all references loaded from the heap. That ensure that every new reference the mutator sees, already points to the newest copy of an object. Remapping an object means looking up the new object address in the forwarding table.</p>
+<p>The relocation phase is finished as soon as the GC threads are finished walking the relocation set. Although that means all objects have been relocated, there will generally still be references into the relocation set, that need to be remapped to their new addresses. These reference will then be healed by trapping load-barriers or if this doesn’t happen soon enough by the next marking cycle. That means marking also needs to inspect the forward table to remap (but not relocate - all objects are guaranteed to be relocated) objects to their new addresses.</p>
+<p>This also explains why there are two marking bits (<code>marked0</code> and <code>marked1</code>) in an object reference. The marking phase alternates between the <code>marked0</code> and <code>marked1</code> bit. After the relocation phase there may still be references that haven’t been <code>remapped</code> and thus have still the bit from the last marking cycle set. If the new marking phase would use the same marking bit, the load-barrier would detect this reference as already marked.</p>
+<h2 id="Load-Barrier"><a href="#Load-Barrier" class="headerlink" title="Load-Barrier"></a>Load-Barrier</h2><p>ZGC needs a so called load-barrier (also referred to as read-barrier) when reading a reference from the heap. We need to insert this load-barrier each time the Java program accesses a field of object type, e.g. <code>obj.field</code>. Accessing fields of some other primitive type do not need a barrier, e.g. <code>obj.anInt</code> or <code>obj.anDouble</code>. ZGC doesn’t need store/write-barriers for <code>obj.field = someValue</code>.</p>
+<p>Depending on the stage the GC is currently in (stored in the global variable ZGlobalPhase), the barrier either marks the object or relocates it if the reference isn’t already marked or remapped.</p>
+<p>The global variables ZAddressGoodMask and ZAddressBadMask store the mask that determines if a reference is already considered good (that means already marked or remapped/relocated) or if there is still some action necessary. These variables are only changed at the start of marking- and relocation-phase and both at the same time. This table from ZGC’s source gives a nice overview in which state these masks can be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">               GoodMask         BadMask          WeakGoodMask     WeakBadMask</span><br><span class="line">               --------------------------------------------------------------</span><br><span class="line">Marked0        001              110              101              010</span><br><span class="line">Marked1        010              101              110              001</span><br><span class="line">Remapped       100              011              100              011</span><br></pre></td></tr></table></figure>
+<p>Assembly code for the barrier can be seen in the MacroAssembler for x64, I will only show some pseudo assembly code for this barrier:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov rax, [r10 + some_field_offset]</span><br><span class="line">test rax, [address of ZAddressBadMask]</span><br><span class="line">jnz load_barrier_mark_or_relocate</span><br><span class="line"></span><br><span class="line"># otherwise reference in rax is considered good</span><br></pre></td></tr></table></figure>
+<p>The first assembly instruction reads a reference from the heap: <code>r10</code> stores the object reference and <code>some_field_offset</code> is some constant field offset. The loaded reference is stored in the <code>rax</code> register. This reference is then tested (this is just an bitwise-and) against the current bad mask. Synchronization isn’t necessary here since <code>ZAddressBadMask</code> only gets updated when the world is stopped. If the result is non-zero, we need to execute the barrier. The barrier needs to either mark or relocate the object depending on which GC phase we are currently in. After this action it needs to update the reference stored in <code>r10 + some_field_offset</code> with the good reference. This is necessary such that subsequent loads from this field return a good reference. Since we might need to update the reference-address, we need to use two registers <code>r10</code> and <code>rax</code> for the loaded reference and the objects address. The good reference also needs to be stored into register <code>rax</code>, such that execution can continue just as when we would have loaded a good reference.</p>
+<p>Since every single reference needs to be marked or relocated, throughput is likely to decrease right after starting a marking- or relocation-phase. This should get better quite fast when most references are healed.</p>
+<h2 id="Stop-the-World-Pauses"><a href="#Stop-the-World-Pauses" class="headerlink" title="Stop-the-World Pauses"></a>Stop-the-World Pauses</h2><p>ZGC doesn’t get rid of stop-the-world pauses completely. The collector needs pauses when starting marking, ending marking and starting relocation. But this pauses are usually quite short - only a few milliseconds.</p>
+<p>When starting marking ZGC traverses all thread stacks to mark the applications root set. The root set is the set of object references from where traversing the object graph starts. It usually consists of local and global variables, but also other internal VM structures (e.g. JNI handles).</p>
+<p>Another pause is required when ending the marking phase. In this pause the GC needs to empty and traverse all thread-local marking buffers. Since the GC could discover a large unmarked sub-graph this could take longer. ZGC tries to avoid this by stopping the end of marking phase after 1 millisecond. It returns into the concurrent marking phase until the whole graph is traversed, then the end of marking phase can be started again.</p>
+<p>Starting relocation phase pauses the application again. This phase is quite similar to starting marking, with the difference that this phase relocates the objects in the root set.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I hope I could give a short introduction into ZGC. I certainly couldn’t describe every detail about this GC in a single blog post. If you need more information, ZGC is open-source, so it is possible to study the whole implementation.</p>
 
       
     </div>
@@ -457,7 +524,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2019/08/15/蓄水池采样/" title="蓄水池采样">http://CongLinDev.github.io/2019/08/15/蓄水池采样/</a>
+    <a href="http://CongLinDev.github.io/2019/10/21/浅谈ZGC/" title="浅谈ZGC">http://CongLinDev.github.io/2019/10/21/浅谈ZGC/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -479,6 +546,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+        </div>
+      
 
       
       
@@ -488,8 +561,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/07/分布式事务实现方案/" rel="next" title="分布式事务实现方案">
-                <i class="fa fa-chevron-left"></i> 分布式事务实现方案
+              <a href="/2019/10/08/短网址生成系统/" rel="next" title="短网址生成系统">
+                <i class="fa fa-chevron-left"></i> 短网址生成系统
               </a>
             
           </div>
@@ -497,10 +570,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/22/基于Redis的分布式锁的安全性/" rel="prev" title="基于Redis的分布式锁的安全性">
-                基于Redis的分布式锁的安全性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明"><span class="nav-number">3.</span> <span class="nav-text">证明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GC-barriers"><span class="nav-number">1.</span> <span class="nav-text">GC barriers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-coloring"><span class="nav-number">2.</span> <span class="nav-text">Reference coloring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pages-amp-Physical-amp-Virtual-Memory"><span class="nav-number">3.</span> <span class="nav-text">Pages &amp; Physical &amp; Virtual Memory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Marking-amp-Relocating-objects"><span class="nav-number">4.</span> <span class="nav-text">Marking &amp; Relocating objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Barrier"><span class="nav-number">5.</span> <span class="nav-text">Load-Barrier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stop-the-World-Pauses"><span class="nav-number">6.</span> <span class="nav-text">Stop-the-World Pauses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">7.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
