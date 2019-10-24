@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="编译原理,C++,">
+  <meta name="keywords" content="数据库,InnoDB,">
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。        文法如下： EXP     -&amp;gt;  TERM {AlphaOP TERM} TERM    -&amp;gt;  FACTOR {BetaOP FACTOR} FACTOR  -&amp;gt;  (EXP) | number AlphaOP -&amp;gt;  + | - BetaOP  -&amp;gt;  * | \">
-<meta name="keywords" content="编译原理,C++">
+<meta name="description" content="网站和app并发性能取决于访问链路的每个环节，包括前端、流量路由、后台业务逻辑代码、中间件和数据库等。大部分环节都可以通过横向扩展来提高并发性能，数据库作为链路的末端要保持数据一致性等特点不像其他环节容易横向扩展，所以数据库性能尤为重要，特别是插入性能。 数据库设计通常会用一列与业务无关的自增长id作为主键（互联网业务数据库设计一般不会完全遵循数据库范式，如果有其他列值是随时间递增，也可以用该列做">
+<meta name="keywords" content="数据库,InnoDB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++实现简单计算器">
-<meta property="og:url" content="http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/index.html">
+<meta property="og:title" content="InnoDB中的AUTO_INCREMENT处理">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/10/24/InnoDB中的AUTO-INCREMENT处理/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。        文法如下： EXP     -&amp;gt;  TERM {AlphaOP TERM} TERM    -&amp;gt;  FACTOR {BetaOP FACTOR} FACTOR  -&amp;gt;  (EXP) | number AlphaOP -&amp;gt;  + | - BetaOP  -&amp;gt;  * | \">
+<meta property="og:description" content="网站和app并发性能取决于访问链路的每个环节，包括前端、流量路由、后台业务逻辑代码、中间件和数据库等。大部分环节都可以通过横向扩展来提高并发性能，数据库作为链路的末端要保持数据一致性等特点不像其他环节容易横向扩展，所以数据库性能尤为重要，特别是插入性能。 数据库设计通常会用一列与业务无关的自增长id作为主键（互联网业务数据库设计一般不会完全遵循数据库范式，如果有其他列值是随时间递增，也可以用该列做">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-13T08:00:20.122Z">
+<meta property="og:updated_time" content="2019-10-24T13:11:25.202Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++实现简单计算器">
-<meta name="twitter:description" content="利用编译原理中递归下降的 语法分析 和 语义分析 ，使用 C++ 实现简单计算器。        文法如下： EXP     -&amp;gt;  TERM {AlphaOP TERM} TERM    -&amp;gt;  FACTOR {BetaOP FACTOR} FACTOR  -&amp;gt;  (EXP) | number AlphaOP -&amp;gt;  + | - BetaOP  -&amp;gt;  * | \">
+<meta name="twitter:title" content="InnoDB中的AUTO_INCREMENT处理">
+<meta name="twitter:description" content="网站和app并发性能取决于访问链路的每个环节，包括前端、流量路由、后台业务逻辑代码、中间件和数据库等。大部分环节都可以通过横向扩展来提高并发性能，数据库作为链路的末端要保持数据一致性等特点不像其他环节容易横向扩展，所以数据库性能尤为重要，特别是插入性能。 数据库设计通常会用一列与业务无关的自增长id作为主键（互联网业务数据库设计一般不会完全遵循数据库范式，如果有其他列值是随时间递增，也可以用该列做">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/">
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/10/24/InnoDB中的AUTO-INCREMENT处理/">
 
 
 
 
 
-  <title>C++实现简单计算器 | CongLin's Blog</title>
+  <title>InnoDB中的AUTO_INCREMENT处理 | CongLin's Blog</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/10/24/InnoDB中的AUTO-INCREMENT处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="从林">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++实现简单计算器</h1>
+          <h1 class="post-title" itemprop="name headline">InnoDB中的AUTO_INCREMENT处理</h1>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T20:26:00+08:00">
-                2018-05-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-24T21:01:00+08:00">
+                2019-10-24
               </time>
             
 
@@ -372,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译技术/" itemprop="url" rel="index">
-                    <span itemprop="name">编译技术</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -390,8 +390,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/12/C-实现简单计算器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/12/C-实现简单计算器/" itemprop="commentCount"></span>
+                <a href="/2019/10/24/InnoDB中的AUTO-INCREMENT处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/24/InnoDB中的AUTO-INCREMENT处理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -419,13 +419,38 @@
       
 
       
-        <hr>
-<p>利用编译原理中递归下降的 <strong>语法分析</strong> 和 <strong>语义分析</strong> ，使用 <strong>C++</strong> 实现简单计算器。      </p>
-<blockquote>
-<p><em>文法如下：</em><br> EXP     -&gt;  TERM {AlphaOP TERM}<br> TERM    -&gt;  FACTOR {BetaOP FACTOR}<br> FACTOR  -&gt;  (EXP) | number<br> AlphaOP -&gt;  + | -<br> BetaOP  -&gt;  * | \   </p>
-</blockquote>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  EXP     -&gt;  TERM &#123;AlphaOP TERM&#125;  </span></span><br><span class="line"><span class="comment"> *  TERM    -&gt;  FACTOR &#123;BetaOP FACTOR&#125;</span></span><br><span class="line"><span class="comment"> *  FACTOR  -&gt;  (EXP) | number</span></span><br><span class="line"><span class="comment"> *  AlphaOP -&gt;  + | -</span></span><br><span class="line"><span class="comment"> *  BetaOP  -&gt;  * | \</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> inputExp;</span><br><span class="line"><span class="built_in">string</span>::iterator ite;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handleError</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">matchChar</span><span class="params">(<span class="keyword">char</span> token)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">matchDigit</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">factor</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">term</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">expression</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误处理</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handleError</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Error expression !  "</span> + inputExp &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//匹配字符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">matchChar</span><span class="params">(<span class="keyword">char</span> token)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (*ite == token) &#123;</span><br><span class="line">		ite++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		handleError();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//匹配数字</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">matchDigit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">string</span> tempString = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(*ite)) &#123;</span><br><span class="line">		tempString += *ite;</span><br><span class="line">		ite++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="built_in">istringstream</span> <span class="title">iss</span><span class="params">(tempString)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> temp;</span><br><span class="line">	iss &gt;&gt; temp;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">factor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> temp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isdigit</span>(*ite)) &#123;</span><br><span class="line">		temp = matchDigit();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (*ite == <span class="string">'('</span>) &#123;</span><br><span class="line">		matchChar(<span class="string">'('</span>);</span><br><span class="line">		<span class="comment">//处理负数</span></span><br><span class="line">		<span class="keyword">if</span>(*ite == <span class="string">'-'</span>)&#123;</span><br><span class="line">			ite++;</span><br><span class="line">			temp = matchDigit() * (<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			temp = expression();	</span><br><span class="line">		&#125;</span><br><span class="line">		matchChar(<span class="string">')'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		handleError();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">term</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> temp = factor();</span><br><span class="line">	<span class="keyword">while</span> (*ite == <span class="string">'*'</span> || *ite == <span class="string">'/'</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (*ite == <span class="string">'*'</span>) &#123;</span><br><span class="line">			matchChar(<span class="string">'*'</span>);</span><br><span class="line">			temp = temp * factor();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			matchChar(<span class="string">'/'</span>);</span><br><span class="line">			temp = temp / factor();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">expression</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> temp = term();</span><br><span class="line">	<span class="keyword">while</span> (*ite == <span class="string">'+'</span> || *ite == <span class="string">'-'</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (*ite == <span class="string">'+'</span>) &#123;</span><br><span class="line">			matchChar(<span class="string">'+'</span>);</span><br><span class="line">			temp = temp + factor();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			matchChar(<span class="string">'-'</span>);</span><br><span class="line">			temp = temp - factor();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入表达式："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; inputExp;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//加上空格防止迭代器溢出</span></span><br><span class="line">	inputExp += <span class="string">" "</span>;</span><br><span class="line">	ite = inputExp.begin();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (*ite != inputExp.back()) &#123;</span><br><span class="line">		result = expression();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; result &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>网站和app并发性能取决于访问链路的每个环节，包括前端、流量路由、后台业务逻辑代码、中间件和数据库等。大部分环节都可以通过横向扩展来提高并发性能，数据库作为链路的末端要保持数据一致性等特点不像其他环节容易横向扩展，所以数据库性能尤为重要，特别是插入性能。</p>
+<p>数据库设计通常会用一列与业务无关的自增长id作为主键（互联网业务数据库设计一般不会完全遵循数据库范式，如果有其他列值是随时间递增，也可以用该列做主键），提高写入效率和方便数据复制。而自增长id生成模式影响着数据插入性能。</p>
+<p>InnoDB提供了一种可配置的锁定机制，可以显着提高SQL语句的可伸缩性和性能，从而为具有AUTO_INCREMENT列的表添加行 。要在InnoDB表使用AUTO_INCREMENT机制， AUTO_INCREMENT必须将列定义为索引的一部分，以便可以在表上执行等效的索引查找SELECT MAX(ai_col)以获取最大列值。通常，这是通过使列成为某些表索引的第一列来实现的。  </p>
+<p>本节介绍AUTO_INCREMENT用于生成自动增量值的锁定模式的行为 ，以及每种锁定模式如何影响复制。自增量锁定模式是在启动时使用 innodb_autoinc_lock_mode 参数配置。</p>
+<p>以下术语用于描述 innodb_autoinc_lock_mode 设置：</p>
+<ol>
+<li>“INSERT-like” 语句：在表中生成新的行中的所有语句，包括 <code>INSERT</code>， <code>INSERT … SELECT</code>，<code>REPLACE</code>， <code>REPLACE … SELECT</code>和<code>LOAD DATA</code>。包括“简单插入”，“批量插入”和“混合模式 ”插入。</li>
+<li>“简单插入”：可以预先确定要插入的行数的语句（最初处理语句时）。这包括没有嵌套子查询的单行和多行INSERT以及REPLACE语句，但不包括<code>INSERT … ON DUPLICATE KEY UPDATE</code>。  </li>
+<li>“批量插入”：预先不知道要插入的行数（以及所需的自动增量值的数量）的语句。这包括 <code>INSERT … SELECT</code>， <code>REPLACE … SELECT</code>和<code>LOAD DATA</code>声明，但不是简单的 <code>INSERT</code>。在处理每一行时，InnoDB为AUTO_INCREMENT列分配一个新值。  </li>
+<li>“混合模式插入”：指定一些（但不是全部）新增行的自动增量值的“简单插入”语句。举个例子 <code>INSERT INTO t1 (c1,c2) VALUES (1,&#39;a&#39;), (NULL,&#39;b&#39;), (5,&#39;c&#39;), (NULL,&#39;d&#39;);</code> 其中c1是 ti表的AUTO_INCREMENT表。</li>
+<li>另一种类型的“混合模式插入”是<code>INSERT … ON DUPLICATE KEY UPDATE</code>，在最坏的情况下实际上是INSERT 后跟了一个UPDATE操作，其中AUTO_INCREMENT列在UPDATE阶段期间可能使用或不使用分配值 。innodb_autoinc_lock_mode 配置参数有三种可能的设置 。对于“传统”，“连续”或 “交错”锁定模式，设置分别为0,1或2。从MySQL 8.0开始，交错锁定模式（innodb_autoinc_lock_mode=2）是默认设置。在MySQL 8.0之前，连续锁定模式是默认值（innodb_autoinc_lock_mode=1）。  </li>
+</ol>
+<p>MySQL 8.0中的交错锁定模式的默认设置反映了从基于语句的复制到基于行的复制的更改，作为默认复制类型。基于语句的复制需要连续的自动增量锁定模式，以确保为给定的SQL语句序列以可预测和可重复的顺序分配自动增量值，而基于行的复制对SQL语句的执行顺序不敏感。  </p>
+<h2 id="innodb-autoinc-lock-mode-0-（“传统”锁定模式）"><a href="#innodb-autoinc-lock-mode-0-（“传统”锁定模式）" class="headerlink" title="innodb_autoinc_lock_mode = 0 （“传统”锁定模式）"></a>innodb_autoinc_lock_mode = 0 （“传统”锁定模式）</h2><p>传统的锁定模式提供了与在MySQL 5.1中引入innodb_autoinc_lock_mode配置参数之前相同的行为 。由于语义可能存在差异，传统的锁定模式选项用于向后兼容，性能测试以及解决“混合模式插入”问题。 在此锁定模式下，所有“INSERT-like”语句都会获得一个特殊的表级AUTO-INC 锁，以便插入带有 AUTO_INCREMENT列的表中。此锁通常保持在语句的末尾（而不是事务的结尾），以确保为给定的INSERT语句序列以可预测和可重复的顺序分配自动增量值，并确保自动增量值由任何给定的声明分配是连续的。</p>
+<p>对于基于语句的复制，这意味着在从服务器上复制SQL语句时，自动增量列使用的值与主服务器上的值相同。执行多个INSERT语句的结果是确定性的，并且从服务器再现与主服务器上相同的数据。如果多个INSERT语句生成的自动递增值是交错的，则两个并发INSERT语句的结果将是不确定的，并且无法使用基于语句的复制可靠地传播到从服务器。 为清楚起见，请考虑使用此表的示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1 (</span><br><span class="line">c1 <span class="built_in">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">c2 <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (c1)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure>
+<p>假设有两个事务正在运行，每个事务都将行插入带有AUTO_INCREMENT列的表中 。一个事务使用INSERT … SELECT插入1000行的语句，另一个事务使用 插入一行的简单 INSERT语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Tx1: <span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 (c2) <span class="keyword">SELECT</span> <span class="number">1000</span> <span class="keyword">rows</span> <span class="keyword">from</span> another <span class="keyword">table</span> ... </span><br><span class="line"></span><br><span class="line">Tx2: <span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 (c2) <span class="keyword">VALUES</span> (<span class="string">'xxx'</span>);</span><br></pre></td></tr></table></figure>
+<p>InnoDB事先无法判断从Tx1 SELECT中的INSERT语句中检索了多少行 ，并且随着语句的进行，它会一次分配一个自动增量值。使用保持在语句末尾的表级锁定，一次只能执行一个 INSERT引用表t1的语句，并且不会交错生成不同语句的自动增量数。由Tx1 INSERT … SELECT语句生成的自动递增值是连续的，并且用于Tx2中的INSERT 语句的（单个）自动递增值要小于或大于用于Tx1的语句，具体取决于首先执行的语句。</p>
+<p>只要SQL语句在从二进制日志重放时（在使用基于语句的复制时或在恢复方案中）以相同的顺序执行，结果与首次运行Tx1和Tx2时的结果相同。因此，表级锁定一直持续到语句结束，使用自动增量的INSERT语句可以安全地用于基于语句的复制。但是，当多个事务同时执行insert语句时，这些表级锁限制了并发性和可伸缩性。</p>
+<p>在前面的示例中，如果没有表级锁定，则用于Tx2的INSERT中的自动增量列的值取决于语句执行的时间。如果Tx2的INSERT在Tx1的INSERT运行时执行（而不是在启动之前或完成之后），则由两个INSERT语句分配的特定自动增量值是不确定的，并且可能因运行而异。</p>
+<p>在连续锁定模式下，InnoDB可以避免将表级AUTO-INC锁定用于预先知道行数的“简单插入”语句，并且仍然保留基于语句的复制的确定性执行和安全性。  </p>
+<p>如果不使用二进制日志作为恢复或复制的一部分重放SQL语句，则 交错 锁定模式可用于消除表级AUTO-INC锁的所有使用，从而 实现更高的并发性和性能，但代价是允许自动存在空白 – 由语句分配的增量编号，可能具有由并发执行的语句交错分配的编号。</p>
+<h2 id="innodb-autoinc-lock-mode-1-（“连续”锁定模式）"><a href="#innodb-autoinc-lock-mode-1-（“连续”锁定模式）" class="headerlink" title="innodb_autoinc_lock_mode = 1 （“连续”锁定模式）"></a>innodb_autoinc_lock_mode = 1 （“连续”锁定模式）</h2><p>在此模式下，“批量插入”使用特殊的 AUTO-INC表级锁定并保持它直到语句结束。这适用于所有 INSERT … SELECT， REPLACE … SELECT和LOAD DATA语句。只有一个持有AUTO-INC锁的语句可以一次执行。如果批量插入操作的源表与目标表不同，则AUTO-INC在从源表中选择的第一行上执行共享锁之后，将对目标表执行锁定。如果批量插入操作的源和目标是同一个表，则AUTO-INC 在对所有选定的行执行共享锁定后执行锁定。  </p>
+<p>“简单插入”（预先知道要插入的行数）通过在互斥锁（轻量级锁定）的控制下获得所需数量的自动增量值在分配过程的持续时间内保持，来避免表级锁AUTO-INC锁定直到语句完成。除非另一个事务持有AUTO-INC锁，否则不使用表级AUTO-INC锁 。如果另一个事务持有AUTO-INC锁，则“简单插入”等待AUTO-INC锁定，就像它是“批量插入”。  </p>
+<p>此锁定模式确保在存在未提前知道行数的INSERT语句（以及在语句进行时指定自动增量编号）的情况下，由任何“INSERT-like” 语句指定的所有自动增量值都是连续，并且操作对于基于语句的复制是安全的。  </p>
+<p>简而言之，这种锁定模式显着提高了可伸缩性，同时可以安全地使用基于语句的复制。此外，与“传统” 锁定模式一样，由任何给定语句分配的自动递增数字是连续的。对于任何使用自动增量的语句，与“传统”模式相比，语义没有变化，但有一个重要的例外。 </p>
+<p>“混合模式插入”的例外情况是，用户为多行“简单插入”中的某些行（但不是所有行）提供AUTO_INCREMENT列的显式值。 对于此类插入，InnoDB会分配比要插入的行数更多的自动增量值。 但是，自动分配的所有值都是连续生成（因此高于）最近执行的先前语句生成的自动增量值。 “超额”号码丢失了。  </p>
+<h2 id="innodb-autoinc-lock-mode-2-（“交错”锁定模式）"><a href="#innodb-autoinc-lock-mode-2-（“交错”锁定模式）" class="headerlink" title="innodb_autoinc_lock_mode = 2 （“交错”锁定模式）"></a>innodb_autoinc_lock_mode = 2 （“交错”锁定模式）</h2><p>在此锁定模式下， 没有“INSERT-like”语句使用表级AUTO-INC锁 ，并且多个语句可以同时执行。 这是最快且最具扩展性的锁定模式，但在从二进制日志重放SQL语句时使用基于语句的复制或恢复方案时，这是不安全的。  </p>
+<p>在这种锁定模式下，自动增量值保证是唯一的，并且在所有同时执行的“INSERT-like”语句中单调递增。 但是，因为多个语句可以同时生成数字（即，数字的分配在语句之间交错），所以为任何给定语句插入的行生成的值可能不是连续的。  </p>
+<p>如果执行的唯一语句是“简单插入”，其中要插入的行数是提前知道的，则除了“混合模式插入”之外，单个语句生成的数字没有间断 。但是，当执行“批量插入”时，任何给定语句分配的自动增量值可能存在间断。  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MySQL 插入语句分三类：简单插入（Simple inserts）、批量插入（Bulk inserts）和混合插入（Mixed-mode inserts），这三种插入在innodb_autoinc_lock_mode取不同值时，生成的自增长值和插入性能会不一样。</p>
 
       
     </div>
@@ -475,7 +500,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/" title="C++实现简单计算器">http://CongLinDev.github.io/2018/05/12/C-实现简单计算器/</a>
+    <a href="http://CongLinDev.github.io/2019/10/24/InnoDB中的AUTO-INCREMENT处理/" title="InnoDB中的AUTO_INCREMENT处理">http://CongLinDev.github.io/2019/10/24/InnoDB中的AUTO-INCREMENT处理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -499,9 +524,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编译原理/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
+            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
           
-            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+            <a href="/tags/InnoDB/" rel="tag"><i class="fa fa-tag"></i> InnoDB</a>
           
         </div>
       
@@ -514,8 +539,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/21/OperateFile-LAN-Java/" rel="next" title="OperateFile-LAN-Java">
-                <i class="fa fa-chevron-left"></i> OperateFile-LAN-Java
+              <a href="/2019/10/21/浅谈ZGC/" rel="next" title="浅谈ZGC">
+                <i class="fa fa-chevron-left"></i> 浅谈ZGC
               </a>
             
           </div>
@@ -523,10 +548,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/17/Markdown文本转为Html/" rel="prev" title="Markdown文本转为Html">
-                Markdown文本转为Html <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,8 +617,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -678,6 +708,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#innodb-autoinc-lock-mode-0-（“传统”锁定模式）"><span class="nav-number">1.</span> <span class="nav-text">innodb_autoinc_lock_mode = 0 （“传统”锁定模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innodb-autoinc-lock-mode-1-（“连续”锁定模式）"><span class="nav-number">2.</span> <span class="nav-text">innodb_autoinc_lock_mode = 1 （“连续”锁定模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innodb-autoinc-lock-mode-2-（“交错”锁定模式）"><span class="nav-number">3.</span> <span class="nav-text">innodb_autoinc_lock_mode = 2 （“交错”锁定模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
