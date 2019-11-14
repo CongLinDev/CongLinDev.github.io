@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编码,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="编码结构TLV 格式是我们比较熟悉的编码格式。 所谓的 TLV 即 Tag - Length - Value。Tag 作为该字段的唯一标识，Length 代表 Value 数据域的长度，最后的 Value 并是数据本身。 ProtoBuf 编码采用类似的结构，但是实际上又有较大区别，其编码结构可见下图：  我们来一步步解析上图所表达的编码结构。 首先，每一个 message 进行编码，其结果由一个">
+<meta name="keywords" content="编码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈ProtoBuf编码">
+<meta property="og:url" content="http://CongLinDev.github.io/2019/11/14/浅谈ProtoBuf编码/index.html">
+<meta property="og:site_name" content="CongLin&#39;s Blog">
+<meta property="og:description" content="编码结构TLV 格式是我们比较熟悉的编码格式。 所谓的 TLV 即 Tag - Length - Value。Tag 作为该字段的唯一标识，Length 代表 Value 数据域的长度，最后的 Value 并是数据本身。 ProtoBuf 编码采用类似的结构，但是实际上又有较大区别，其编码结构可见下图：  我们来一步步解析上图所表达的编码结构。 首先，每一个 message 进行编码，其结果由一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/tG5Yhdy9kos2lmu.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/XpMEHVZ27xFBDth.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/UAKgG8WOSk4XCM3.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/XBniVOgJLaC6EyF.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/tG5Yhdy9kos2lmu.png">
+<meta property="og:image" content="https://i.loli.net/2019/11/14/CZHtuL1KRlAXkDv.png">
+<meta property="og:updated_time" content="2019-11-14T10:48:46.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈ProtoBuf编码">
+<meta name="twitter:description" content="编码结构TLV 格式是我们比较熟悉的编码格式。 所谓的 TLV 即 Tag - Length - Value。Tag 作为该字段的唯一标识，Length 代表 Value 数据域的长度，最后的 Value 并是数据本身。 ProtoBuf 编码采用类似的结构，但是实际上又有较大区别，其编码结构可见下图：  我们来一步步解析上图所表达的编码结构。 首先，每一个 message 进行编码，其结果由一个">
+<meta name="twitter:image" content="https://i.loli.net/2019/11/14/tG5Yhdy9kos2lmu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://CongLinDev.github.io/2019/11/14/浅谈ProtoBuf编码/">
+
+
+
+
+
+  <title>浅谈ProtoBuf编码 | CongLin's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6f823d2810f7a1836c701bfbeb347726";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/CongLinDev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CongLin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">敢于直面惨淡的人生。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://CongLinDev.github.io/2019/11/14/浅谈ProtoBuf编码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="从林">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/CL.svg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongLin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅谈ProtoBuf编码</h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T18:15:00+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编码/" itemprop="url" rel="index">
+                    <span itemprop="name">编码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/14/浅谈ProtoBuf编码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/14/浅谈ProtoBuf编码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="编码结构"><a href="#编码结构" class="headerlink" title="编码结构"></a>编码结构</h2><p>TLV 格式是我们比较熟悉的编码格式。</p>
+<p>所谓的 TLV 即 Tag - Length - Value。Tag 作为该字段的唯一标识，Length 代表 Value 数据域的长度，最后的 Value 并是数据本身。</p>
+<p>ProtoBuf 编码采用类似的结构，但是实际上又有较大区别，其编码结构可见下图：</p>
+<p><img src="https://i.loli.net/2019/11/14/tG5Yhdy9kos2lmu.png" alt="ProtoBuf 编码结构图.png"></p>
+<p>我们来一步步解析上图所表达的编码结构。</p>
+<p>首先，每一个 message 进行编码，其结果由一个个字段组成，每个字段可划分为 <code>Tag - [Length] - Value</code> ，如下图所示：</p>
+<p><img src="https://i.loli.net/2019/11/14/XpMEHVZ27xFBDth.png" alt="ProtoBuf 编码结构图-1.png"></p>
+<p>特别注意这里的 <code>[Length]</code> 是可选的，含义是针对不同类型的数据编码结构可能会变成 <code>Tag - Value</code> 的形式，如果变成这样的形式，没有了 <code>Length</code> 我们该如何确定 <code>Value</code> 的边界？答案就是 <strong>Varint</strong> 编码，在后面将详细介绍。</p>
+<p>继续深入 <code>Tag</code> ，<code>Tag</code> 由 <code>field_number</code> 和 <code>wire_type</code> 两个部分组成：</p>
+<ul>
+<li>field_number: message 定义字段时指定的字段编号</li>
+<li>wire_type: ProtoBuf 编码类型，根据这个类型选择不同的 Value 编码方案。</li>
+</ul>
+<p>整个 <code>Tag</code> 采用 <strong>Varints</strong> 编码方案进行编码，<strong>Varints</strong> 编码会在后面详细介绍。</p>
+<p>Tag 结构如下图所示：</p>
+<p><img src="https://i.loli.net/2019/11/14/UAKgG8WOSk4XCM3.png" alt="ProtoBuf 编码结构图-2.png"></p>
+<p><code>3</code> bit 的 <code>wire_type</code> 最多可以表达 <code>8</code> 种编码类型，目前 ProtoBuf 已经定义了 <code>6</code> 种，如下图所示：</p>
+<p><img src="https://i.loli.net/2019/11/14/XBniVOgJLaC6EyF.png" alt="PB 编码数据类型.png"></p>
+<p>第一列即是对应的类型编号，第二列为面向最终编码的编码类型，第三列是面向开发者的 message 字段的类型。</p>
+<p>注意其中的 <code>Start group</code> 和 <code>End group</code> 两种类型已被遗弃。</p>
+<p>另外要特别注意一点，虽然 <code>wire_type</code> 代表编码类型，但是 <strong>Varint</strong> 这个编码类型里针对 sint32、sint64 又会有一些特别编码（<strong>ZigTag</strong> 编码）处理，相当于 <strong>Varint</strong> 这个编码类型里又存在两种不同编码。</p>
+<p>重新来看完整的编码结构图：</p>
+<p><img src="https://i.loli.net/2019/11/14/tG5Yhdy9kos2lmu.png" alt="ProtoBuf 编码结构图.png"></p>
+<p>现在我们可以理解一个 message 编码将由一个个的 field 组成，每个 field 根据类型将有如下两种格式：</p>
+<ul>
+<li><code>Tag - Length - Value</code>：编码类型表中 Type = 2 即 <code>Length-delimited</code> 编码类型将使用这种结构，</li>
+<li><code>Tag - Value</code>：编码类型表中 Varint、64-bit、32-bit 使用这种结构。</li>
+</ul>
+<p>可以思考一下为什么这么设计编码方案？可以看完下面各种编码详细的介绍再来细细品味这个问题。</p>
+<p>其中 <code>Tag</code> 由字段编号 <code>field_number</code> 和 编码类型 <code>wire_type</code> 组成， <code>Tag</code> 整体采用 <strong>Varints</strong> 编码。</p>
+<p>现在来模拟一下，我们接收到了一串序列化的二进制数据，我们先读一个 <strong>Varints</strong> 编码块，进行 <strong>Varints</strong> 解码，读取最后 3 bit 得到 <code>wire_type（由此可知是后面的</code> Value 采用的哪种编码），随后获取到 <code>field_number</code> （由此可知是哪一个字段）。依据 <code>wire_type</code> 来正确读取后面的 <code>Value</code>。接着继续读取下一个字段 <code>field</code>。</p>
+<h2 id="Varints-编码"><a href="#Varints-编码" class="headerlink" title="Varints 编码"></a>Varints 编码</h2><p>上一节中多次提到 Varints 编码，现在我们来正式介绍这种编码方案。</p>
+<p>总结的讲，Varints 编码的规则主要为以下三点：</p>
+<ol>
+<li>在每个字节开头的 bit 设置了 msb(most significant bit )，标识是否需要继续读取下一个字节</li>
+<li>存储数字对应的二进制补码</li>
+<li>补码的低位排在前面</li>
+</ol>
+<p>为什么低位排在前面？这里主要是为编码实现（移位操作）做的一个小优化。可以尝试写个二进制移位进行编码解码的小例子来体会这一点。</p>
+<p>来看一个最为简单的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int32 val =  1;  // 设置一个 int32 的字段的值 val = 1; 这时编码的结果如下</span><br><span class="line">原码：0000 ... 0000 0001  // 1 的原码表示</span><br><span class="line">补码：0000 ... 0000 0001  // 1 的补码表示</span><br><span class="line">Varints 编码：0#000 0001（0x01）  // 1 的 Varints 编码，其中第一个字节的 msb = 0</span><br></pre></td></tr></table></figure>
+<h3 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h3><p>数字 <code>1</code> 对应补码 <code>0000 ... 0000 0001</code>（规则 2），从末端开始取每 <code>7</code> 位一组并且反转排序（规则 3），因为 <code>0000 ... 0000 0001</code> 除了第一个取出的 <code>7</code> 位组（即原数列的后 <code>7</code> 位），剩下的均为 <code>0</code>。所以只需取第一个 <code>7</code> 位组，无需再取下一个 <code>7</code> bit，那么第一个 <code>7</code> 位组的 msb = 0。最终得到 <code>0 | 000 0001(0x01)</code> 。</p>
+<h3 id="解码过程"><a href="#解码过程" class="headerlink" title="解码过程"></a>解码过程</h3><p>我们再做一遍解码过程，加深理解。</p>
+<p>编码结果为 <code>0#000 0001(0x01)</code> 。首先，每个字节的第一个 bit 为 msb 位，msb = 1 表示需要再读一个字节（还未结束），msb = 0 表示无需再读字节（读取到此为止）。</p>
+<p>在上面的例子中，数字 <code>1</code> 的 <strong>Varints</strong> 编码中 msb = 0，所以只需要读完第一个字节无需再读。去掉 msb 之后，剩下的 <code>000 0001</code> 就是补码的逆序，但是这里只有一个字节，所以无需反转，直接解释补码 <code>000 0001</code>，还原即为数字 <code>1</code>。</p>
+<p>注意：这里编码数字 <code>1</code>，<strong>Varints</strong> 只使用了 <code>1</code> 个字节。而正常情况下 int32 将使用 <code>4</code> 个字节存储数字 <code>1</code>。</p>
+<p>仔细品味上述的 <strong>Varints</strong> 编码，我们可以发现 <strong>Varints</strong> 的本质实际上是每个字节都<strong>牺牲</strong>一个 bit 位（msb），来表示是否已经结束（是否还需要读取下一个字节），msb 实际上就起到了 Length 的作用，正因为有了 msb（Length），所以我们可以摆脱原来那种无论数字大小都必须分配四个字节的窘境。通过 <strong>Varints</strong> 我们可以让小的数字用更少的字节表示。从而提高了空间利用和效率。</p>
+<p>这里为什么强调<strong>牺牲</strong>？因为每个字节都拿出一个 bit 做 msb，而原先这个 bit 是可直接用来表示 Value 的，现在每个字节都少了一个 bit 位即只有 <code>7</code> 位能真正用来表达 Value。那就意味这 <code>4</code> 个字节能表达的最大数字为 <code>2^28</code>，而不再是 <code>2^32</code> 了。</p>
+<p>这意味着什么？意味着当数字大于 <code>2^28</code> 时，采用 <strong>Varints</strong> 编码将导致分配 <code>5</code> 个字节，而原先明明只需要 <code>4</code> 个字节，此时 <strong>Varints</strong> 编码的效率不仅不是提高反而是下降。</p>
+<p>但这并不影响 <strong>Varints</strong> 在实际应用时的高效，因为事实证明，在大多数情况下，小于 <code>2^28</code> 的数字比大于 <code>2^28</code> 的数字出现的更为频繁。</p>
+<p>到目前为止，好像一切都很完美。但是当前的 Varints 编码却存在着明显缺陷。我们的例子好像只给出了正数，我们来看一下负数的 Varints 编码情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int32 val = -1</span><br><span class="line">原码：1000 ... 0001  // 注意这里是 8 个字节</span><br><span class="line">补码：1111 ... 1111  // 注意这里是 8 个字节</span><br><span class="line">Varints 编码：1#1111111 ... 0#000 0001 （FF FF FF FF FF FF FF FF FF 01）</span><br></pre></td></tr></table></figure>
+<p>注意，因为负数必须在最高位（符号位）置 <code>1</code>，这一点意味着无论如何，负数都必须占用所有字节，所以它的补码总是占满 <code>8</code> 个字节。你没法像正数那样去掉多余的高位（都是 0）。再加上 msb，最终 <strong>Varints</strong> 编码的结果将固定在 <code>10</code> 个字节。</p>
+<p><strong>为什么是十个字节？</strong> int32 不应该是 4 个字节吗？这里是 ProtoBuf 基于兼容性的考虑（比如开发者将 int64 的字段改成 int32 后应当不影响旧程序），而将 int32 扩展成 int64 的八个字节。</p>
+<p><strong>为什么之前讲正数的时候没有这种扩展？</strong> 请仔细品味 Varints 编码，正数的前提下 int32 和 int64 天然兼容！</p>
+<p>所以目前的情况是我们定义了一个 int32 类型的变量，如果将变量值设置为负数，那么直接采用 Varints 编码的话，其编码结果将总是占用十个字节，这显然不是我们希望得到的结果。如何解决？</p>
+<h2 id="ZigZag-编码"><a href="#ZigZag-编码" class="headerlink" title="ZigZag 编码"></a>ZigZag 编码</h2><p>在上一节中我们提到了 Varints 编码对负数编码效率低的问题。</p>
+<p>为解决这个问题，ProtoBuf 为我们提供了 sint32、sint64 两种类型，当你在使用这两种类型定义字段时，ProtoBuf 将使用 ZigZag 编码，而 ZigZag 编码将解决负数编码效率低的问题。</p>
+<p><strong>ZigZag</strong> 的原理和概念比我们想象的简单易懂，一句话就可概括介绍 <strong>ZigZag</strong> 编码：<strong>ZigZag 编码：有符号整数映射到无符号整数，然后再使用 Varints 编码</strong> 。</p>
+<p><img src="https://i.loli.net/2019/11/14/CZHtuL1KRlAXkDv.png" alt="ZigZag 编码.png"></p>
+<p>对于 <strong>ZigZag</strong> 编码的思维不难理解，既然负数的 <strong>Varints</strong> 编码效率很低，那么就将负数映射到正数，然后对映射后的正数进行 <strong>Varints</strong> 编码。解码时，解出正数之后再按映射关系映射回原来的负数。</p>
+<p>例如我们设置 <code>int32 val = -2</code>。映射得到 <code>3</code>，那么对数字 <code>3</code> 进行 <strong>Varints</strong> 编码，将结果存储或发送出去。接收方接到数据后进行 <strong>Varints</strong> 解码，得到数字 <code>3</code>，再将 <code>3</code> 映射回 <code>-2</code>。</p>
+<p>这里的“映射”是以移位实现的，并非存储映射表。</p>
+<h2 id="Varint-类型"><a href="#Varint-类型" class="headerlink" title="Varint 类型"></a>Varint 类型</h2><p>介绍了 Varints 编码和 ZigZag 编码之后，我们就可以继续深入分析每个类型的编码。</p>
+<p>在第一节中我们提到了 wire_type 目前已定义 6 种，其中两种已被遗弃（Start group 和 End group），只剩下四种类型： Varint、64-bit、Length-delimited、32-bit。</p>
+<p>接下来我们就来一个个详细分析，彻底搞明白 ProtoBuf 针对每种类型的编码策略。</p>
+<p>注意，我们在之前已经强调过，与其它三种类型不同，Varint 类型里不止一种编码策略。 除了 int32、int64 等类型的 Varints 编码，还有 sint32、sint64 类型的 ZigZag 编码。</p>
+<p>当我们使用 int32、int64、uint32、uint64、bool、enum 声明字段类型时，其字段值将使用之前介绍的 Varints 编码。</p>
+<p>其中 bool 的本质为 0 和 1，enum 本质为整数常量。</p>
+<p>在结合本文开头介绍的编码结构： <code>Tag - [Length] - Value</code>，这里的 <code>Value</code> 采用 <strong>Varints</strong> 编码，因此不需要 <code>Length</code>，则编码结构为 <code>Tag - Value</code>，其中 <code>Tag</code> 和 <code>Value</code> 均采用 <strong>Vartins</strong> 编码。</p>
+<h3 id="int32、int64、uint32、uint64"><a href="#int32、int64、uint32、uint64" class="headerlink" title="int32、int64、uint32、uint64"></a>int32、int64、uint32、uint64</h3><p>来看一个最简单的 int32 的小例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">// message 定义</span><br><span class="line">message Example1 &#123;</span><br><span class="line">    int32 int32Val = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 1，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 1</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_int32val(1);</span><br><span class="line">// 编码结果</span><br><span class="line">tag-(Varints)0#0001 000 + value-(Varints)0#000 0001 = 0x08 0x01</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 666，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 666</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_int32val(666);</span><br><span class="line">// 编码结果</span><br><span class="line">tag-(Varints)00001 000 + value-(Varints)1#0011010  0#000 0101 = 0x08 0x9a 0x05</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 -1，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 1</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_int32val(-1);</span><br><span class="line">// 编码结果</span><br><span class="line">tag-(Varints)00001 000 + value-(Varints)1#1111111 ... 0#000 0001 = 0x08 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0x01</span><br></pre></td></tr></table></figure>
+<p>int64、uint32、uint64 与 int32 同理</p>
+<h3 id="bool"><a href="#bool" class="headerlink" title="bool"></a>bool</h3><p>bool 的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">// message 定义</span><br><span class="line">message Example1 &#123;</span><br><span class="line">    bool boolVal = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 true，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 true</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_boolval(true);</span><br><span class="line"></span><br><span class="line">// 编码结果</span><br><span class="line">tag-(Varints)00001 000 + value-(Varints)0#000 0001 = 08 01</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 true，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 false</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_boolval(false);</span><br><span class="line"></span><br><span class="line">// 编码结果</span><br><span class="line">空</span><br></pre></td></tr></table></figure>
+<p>这里有个有意思的现象，当 boolVal = false 时，其编码结果为空，为什么？</p>
+<p>这里是 ProtoBuf 为了提高效率做的又一个小技巧：规定一个默认值机制，当读出来的字段为空的时候就设置字段的值为默认值。而 bool 类型的默认值为 false。也就是说将 false 编码然后传递（消耗一个字节），不如直接不输出任何编码结果（空），终端解析时发现该字段为空，它会按照规定设置其值为默认值（也就是 false）。如此，可进一步节省空间提高效率。</p>
+<h3 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h3><p>enum 的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">// message 定义</span><br><span class="line">message Example1 &#123;</span><br><span class="line">    enum COLOR &#123;</span><br><span class="line">        YELLOW = 0;</span><br><span class="line">        RED = 1;</span><br><span class="line">        BLACK = 1;</span><br><span class="line">        WHITE = 1;</span><br><span class="line">        BLUE = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    // 枚举常量必须在 32 位整型值的范围</span><br><span class="line">    // 使用 Varints 编码,对负数不够高效，因此不推荐在枚举中使用负数</span><br><span class="line">    COLOR colorVal = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 Example1_COLOR_BLUE，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 Example1_COLOR_BLUE</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_colorval(Example1_COLOR_BLUE);</span><br><span class="line"></span><br><span class="line">// 编码结果</span><br><span class="line">tag-(Varints)00001 000 + value-(Varints)0#000 0100 = 08 04</span><br></pre></td></tr></table></figure>
+<h3 id="sint32、sint64"><a href="#sint32、sint64" class="headerlink" title="sint32、sint64"></a>sint32、sint64</h3><p>sint32、sint64 将采用 <strong>ZigZag</strong> 编码。编码结构依然为 <code>Tag - Value</code>，只不过在编码和解码的过程中多出一个映射的过程，映射后依然采用 <strong>Varints</strong> 编码。<br>来看 sint32 的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">// message 定义</span><br><span class="line">message Example1 &#123;</span><br><span class="line">    sint32 sint32Val = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 -1，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 -1</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_colorval(-1);</span><br><span class="line"></span><br><span class="line">// 编码结果，1 映射回 -1 </span><br><span class="line">tag-(Varints)00001 000 + value-(Varints)0#000 0001 = 08 01</span><br></pre></td></tr></table></figure>
+<p>在程序中设置字段值为 -2，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 -2</span><br><span class="line">Example1 example1;</span><br><span class="line">example1.set_colorval(-2);</span><br><span class="line"></span><br><span class="line">// 编码结果，3 映射回 -2</span><br><span class="line">编码结果：tag-(Varints)00001 000 + value-(Varints)0#000 0011 = 08 03</span><br></pre></td></tr></table></figure>
+<p>sint64 与 sint32 同理。</p>
+<p>int、uint 和 sint: 之所以同时出现了这三种类型，是因为历史和代码迭代的结果。ProtoBuf 最初只有 int 类型，由于 int 类型不适合负数（负数编码效率低），所以提供了 sint。因为 sint 的一部分正数其实是表达的负数，所以其正数范围有所减小，所以在一些全是正式场景下需要提供 uint 类型。</p>
+<h2 id="64-bit-和-32-bit-类型"><a href="#64-bit-和-32-bit-类型" class="headerlink" title="64-bit 和 32-bit 类型"></a>64-bit 和 32-bit 类型</h2><p>64-bit 和 32-bit 比较简单，与 <strong>Varints</strong> 一样其编码结构为 <code>Tag-Value</code>，不同的是不管数字大小，64-bit 存储 8 字节，32-bit 存储 4 字节。读取时同理，64-bit 直接读取 <code>8</code> 字节，32-bit 直接读取 <code>4</code> 字节。</p>
+<p>为什么需要 64-bit 和 32-bit？之前已经分析过了 Varints 编码在一定范围内是有高效的，超过某一个数字占用字节反而更多，效率更低。如果现在有场景是存在大量的大数字，那么使用 Varints 就不要合适的，此时使用 64-bit 和 32-bit 更为合适。具体的，如果数值比 <code>2^56</code> 大的话，64-bit 这个类型比 uint64 高效，如果数值比 <code>2^28</code> 大的话，32-bit 这个类型比 uint32 高效。</p>
+<h3 id="fixed64、sfixed64、double"><a href="#fixed64、sfixed64、double" class="headerlink" title="fixed64、sfixed64、double"></a>fixed64、sfixed64、double</h3><p>来看例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// message 定义</span><br><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">message Example1 &#123;</span><br><span class="line">    fixed64 fixed64Val = 1;</span><br><span class="line">    sfixed64 sfixed64Val = 2;</span><br><span class="line">    double doubleVal = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在程序中分别设置字段值 1、-1、1.2，其编码结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//  设置字段值 为 -2</span><br><span class="line">example1.set_fixed64val(1)</span><br><span class="line">example1.set_sfixed64val(-1)</span><br><span class="line">example1.set_doubleval(1.2)</span><br><span class="line"></span><br><span class="line">// 编码结果，总是 8 个字节</span><br><span class="line">09 # 01 00 00 00 00 00 00 00</span><br><span class="line">11 # FF FF FF FF FF FF FF FF （没有 ZigZag 编码）</span><br><span class="line">19 # 33 33 33 33 33 33 F3 3F</span><br></pre></td></tr></table></figure>
+<h3 id="fixed32、sfixed32、float"><a href="#fixed32、sfixed32、float" class="headerlink" title="fixed32、sfixed32、float"></a>fixed32、sfixed32、float</h3><p>与 64-bit 同理。</p>
+<h2 id="Length-delimited-类型"><a href="#Length-delimited-类型" class="headerlink" title="Length-delimited 类型"></a>Length-delimited 类型</h2><h3 id="string、bytes、EmbeddedMessage、repeated"><a href="#string、bytes、EmbeddedMessage、repeated" class="headerlink" title="string、bytes、EmbeddedMessage、repeated"></a>string、bytes、EmbeddedMessage、repeated</h3><p>终于遇到了体现编码结构图中 <code>[Length]</code> 意义的类型了。Length-delimited 类型的编码结构为 <code>Tag - Length - Value</code> 。</p>
+<p>这种编码方式很好理解，来看例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">// message 定义</span><br><span class="line">message Example1 &#123;</span><br><span class="line">    string stringVal = 1;</span><br><span class="line">    bytes bytesVal = 2;</span><br><span class="line">    message EmbeddedMessage &#123;</span><br><span class="line">        int32 int32Val = 1;</span><br><span class="line">        string stringVal = 2;</span><br><span class="line">    &#125;</span><br><span class="line">    EmbeddedMessage embeddedExample1 = 3;</span><br><span class="line">    repeated int32 repeatedInt32Val = 4;</span><br><span class="line">    repeated string repeatedStringVal = 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设置相应的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Example1 example1;</span><br><span class="line">example1.set_stringval(&quot;hello,world&quot;);</span><br><span class="line">example1.set_bytesval(&quot;are you ok?&quot;);</span><br><span class="line"></span><br><span class="line">Example1_EmbeddedMessage *embeddedExample2 = new Example1_EmbeddedMessage();</span><br><span class="line"></span><br><span class="line">embeddedExample2-&gt;set_int32val(1);</span><br><span class="line">embeddedExample2-&gt;set_stringval(&quot;embeddedInfo&quot;);</span><br><span class="line">example1.set_allocated_embeddedexample1(embeddedExample2);</span><br><span class="line"></span><br><span class="line">example1.add_repeatedint32val(2);</span><br><span class="line">example1.add_repeatedint32val(3);</span><br><span class="line">example1.add_repeatedstringval(&quot;repeated1&quot;);</span><br><span class="line">example1.add_repeatedstringval(&quot;repeated2&quot;);</span><br></pre></td></tr></table></figure>
+<p>最终编码的结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0A 0B 68 65 6C 6C 6F 2C 77 6F 72 6C 64 </span><br><span class="line">12 0B 61 72 65 20 79 6F 75 20 6F 6B 3F </span><br><span class="line">1A 10 08 01 12 0C 65 6D 62 65 64 64 65 64 49 6E 66 6F </span><br><span class="line">22 02 02 03[ proto3 默认 packed = true]（编码结果打包处理，见下一小节的介绍）</span><br><span class="line">2A 09 72 65 70 65 61 74 65 64 31 2A 09 72 65 70 65 61 74 65 64 32(repeated string 为啥不进行默认 packed ?)</span><br></pre></td></tr></table></figure>
+<p>读者可对照上面介绍过的编码来理解这段相对复杂的编码结果。（为降低难度，已按字段分行，即第一个字段的编码结果对应第一行，第二个字段对应第二行…）</p>
+<h2 id="补充-packed-编码"><a href="#补充-packed-编码" class="headerlink" title="补充 packed 编码"></a>补充 packed 编码</h2><p>在 proto2 中为我们提供了可选的设置 [packed = true]，而这一可选项在 proto3 中已成默认设置。</p>
+<p>packed 目前只能用于 primitive 类型。</p>
+<p>packed = true 主要使让 ProtoBuf 为我们把 repeated primitive 的编码结果打包，从而进一步压缩空间，进一步提高效率、速度。这里打包的含义其实就是：原先的 repeated 字段的编码结构为 <code>Tag-Length-Value-Tag-Length-Value-Tag-Length-Value</code>…，因为这些 <code>Tag</code> 都是相同的（同一字段），因此可以将这些字段的 <code>Value</code> 打包，即将编码结构变为 <code>Tag-Length-Value-Value-Value</code>…</p>
+<p>上一节例子中 repeatedInt32Val 字段的编码结果为：<code>22 | 02 02 03</code></p>
+<p>22 即 00100010 -&gt; wire_type = 2(Length-delimited), field_number = 4(repeatedInt32Val 字段)，02 字节长度为 2，则读取两个字节，之后按照 <strong>Varints</strong> 解码出数字 2 和 3。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>扫描二维码，拯救贫困山区大学生！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="从林 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="从林 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    从林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://CongLinDev.github.io/2019/11/14/浅谈ProtoBuf编码/" title="浅谈ProtoBuf编码">http://CongLinDev.github.io/2019/11/14/浅谈ProtoBuf编码/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+    
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编码/" rel="tag"><i class="fa fa-tag"></i> 编码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/24/InnoDB中的AUTO-INCREMENT处理/" rel="next" title="InnoDB中的AUTO_INCREMENT处理">
+                <i class="fa fa-chevron-left"></i> InnoDB中的AUTO_INCREMENT处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_xiaoyou"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/CL.svg" alt="从林">
+            
+              <p class="site-author-name" itemprop="name">从林</p>
+              <p class="site-description motion-element" itemprop="description">It is my personal website.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CongLinDev" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:conglindev@live.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="52" src="//music.163.com/outchain/player?type=0&id=53360822&auto=0&height=32"></iframe>
+
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编码结构"><span class="nav-number">1.</span> <span class="nav-text">编码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Varints-编码"><span class="nav-number">2.</span> <span class="nav-text">Varints 编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编码过程"><span class="nav-number">2.1.</span> <span class="nav-text">编码过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码过程"><span class="nav-number">2.2.</span> <span class="nav-text">解码过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZigZag-编码"><span class="nav-number">3.</span> <span class="nav-text">ZigZag 编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Varint-类型"><span class="nav-number">4.</span> <span class="nav-text">Varint 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#int32、int64、uint32、uint64"><span class="nav-number">4.1.</span> <span class="nav-text">int32、int64、uint32、uint64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bool"><span class="nav-number">4.2.</span> <span class="nav-text">bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enum"><span class="nav-number">4.3.</span> <span class="nav-text">enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sint32、sint64"><span class="nav-number">4.4.</span> <span class="nav-text">sint32、sint64</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-bit-和-32-bit-类型"><span class="nav-number">5.</span> <span class="nav-text">64-bit 和 32-bit 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fixed64、sfixed64、double"><span class="nav-number">5.1.</span> <span class="nav-text">fixed64、sfixed64、double</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fixed32、sfixed32、float"><span class="nav-number">5.2.</span> <span class="nav-text">fixed32、sfixed32、float</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Length-delimited-类型"><span class="nav-number">6.</span> <span class="nav-text">Length-delimited 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string、bytes、EmbeddedMessage、repeated"><span class="nav-number">6.1.</span> <span class="nav-text">string、bytes、EmbeddedMessage、repeated</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充-packed-编码"><span class="nav-number">7.</span> <span class="nav-text">补充 packed 编码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CongLin</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '8DqwHpPHGCe98qP0hQTJjtWY-gzGzoHsz',
+        appKey: 'lpJYsT7v6JyJitMi3yiHLlbJ',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
