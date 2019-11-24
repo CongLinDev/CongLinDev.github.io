@@ -96,19 +96,19 @@
 
 
 
-<meta name="description" content="这是一个基于 Java 、 由 Netty 负责传输 、Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-SNAPSH">
+<meta name="description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
 <meta name="keywords" content="Java,RPC,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="clrpc-简单的RPC工具">
 <meta property="og:url" content="http://CongLinDev.github.io/2019/06/17/clrpc-简单的RPC工具/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-SNAPSH">
+<meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png">
-<meta property="og:updated_time" content="2019-11-06T06:41:36.385Z">
+<meta property="og:updated_time" content="2019-11-24T13:02:59.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clrpc-简单的RPC工具">
-<meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-SNAPSH">
+<meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
 <meta name="twitter:image" content="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png">
 
 
@@ -425,7 +425,7 @@
       
 
       
-        <p>这是一个基于 <code>Java</code> 、 由 <strong>Netty</strong> 负责传输 、<strong>Protostuff</strong> 负责编解码的简单的RPC(远程过程调用)工具。</p>
+        <p>这是一个基于 <code>Java</code> 、 由 <strong>Netty</strong> 负责传输 、默认使用 <strong>Protostuff</strong> 负责编解码的简单的RPC(远程过程调用)工具。</p>
 <p>服务提供者将服务发布注册到 <strong>ZooKeeper</strong> 上后，服务消费者请求 <strong>ZooKeeper</strong> 查找订阅服务后与服务提供者通信调用服务( 支持 <em>同步服务</em> 和 <em>异步服务</em> )。</p>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p><strong>开发阶段</strong> 均为 <code>SNAPSHOT</code> 版本，暂时不提供依赖配置。</p>
 <p>目前只有 <code>0.X.0-SNAPSHOT</code> 版本的源码能够 <strong>较为稳定</strong> 地运行。</p>
@@ -434,9 +434,9 @@
 <h3 id="Service-Consumer"><a href="#Service-Consumer" class="headerlink" title="Service Consumer"></a>Service Consumer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅同步服务</span></span><br><span class="line">Interface1 i1 = bootstrap.subscribe(<span class="string">"service1"</span>);</span><br><span class="line">Interface2 i2 = bootstrap.subscribe(Interface2.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅异步服务</span></span><br><span class="line">ObjectProxy proxy = bootstrap.subscribeAsync(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅事务服务</span></span><br><span class="line">TransactionProxy transactionProxy = bootstrap.subscribeAsync();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
 <h3 id="Service-Monitor"><a href="#Service-Monitor" class="headerlink" title="Service Monitor"></a>Service Monitor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = RpcMonitorBootstrapFactory.getRpcMonitorBootstrap(MonitorType.CONSOLE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line">    <span class="comment">// 并开启监视器</span></span><br><span class="line">    bootstrap.monitor().monitorService().start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭监视器</span></span><br><span class="line">    bootstrap.stop();</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="comment">// 处理中断异常</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p><img src="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png" alt="architecture.png"></p>
-<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>配置文件名为 <code>clrpc-config</code>，默认后缀名为 <code>.yml</code>，位置默认在项目根目录下。</p>
-<p><a href="https://github.com/CongLinDev/clrpc/blob/master/clrpc-config.yml" target="_blank" rel="noopener">默认配置文件模板</a>。</p>
-<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目根目录下，默认文件为 <code>clrpc-config.yml</code>。</p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>默认配置文件名为 <code>clrpc-config</code>。</p>
+<p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件模板</a>。</p>
+<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目 <strong>resources</strong> 目录下，默认格式为 <strong>json</strong> ，默认文件为 <code>clrpc-config.json</code>。</p>
 <h3 id="Config-Items"><a href="#Config-Items" class="headerlink" title="Config Items"></a>Config Items</h3><table>
 <thead>
 <tr>
@@ -588,9 +588,16 @@
 <td style="text-align:center">false</td>
 <td style="text-align:center">是否开启缓存</td>
 </tr>
+<tr>
+<td style="text-align:center">service.transaction.enable</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">是否开启事务</td>
+</tr>
 </tbody>
 </table>
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>使用 <a href="https://github.com/CongLinDev/clrpc/blob/master/clrpc-config.yml" target="_blank" rel="noopener">默认配置</a> 进行本机模拟RPC测试。</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>使用 <a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件</a> 进行本机模拟RPC测试。</p>
 <ol>
 <li>操作系统：Windows 10 (18362.239) 企业版</li>
 <li>处理器：Inter(R) Core(TM) i5-6300HQ CPU @ 2.30GHz</li>
