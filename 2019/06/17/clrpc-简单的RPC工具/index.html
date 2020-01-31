@@ -96,20 +96,20 @@
 
 
 
-<meta name="description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
+<meta name="description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
 <meta name="keywords" content="Java,RPC,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="clrpc-简单的RPC工具">
 <meta property="og:url" content="http://CongLinDev.github.io/2019/06/17/clrpc-简单的RPC工具/index.html">
 <meta property="og:site_name" content="CongLin&#39;s Blog">
-<meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
+<meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png">
-<meta property="og:updated_time" content="2019-11-24T13:02:59.665Z">
+<meta property="og:image" content="https://i.loli.net/2020/01/21/63Ea7nbxez5Hkmd.png">
+<meta property="og:updated_time" content="2020-01-31T07:34:45.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clrpc-简单的RPC工具">
-<meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 ZooKeeper 上后，服务消费者请求 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup开发阶段 均为 SNAPSHOT 版本，暂时不提供依赖配置。 目前只有 0.X.0-S">
-<meta name="twitter:image" content="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png">
+<meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/21/63Ea7nbxez5Hkmd.png">
 
 
 
@@ -426,17 +426,16 @@
 
       
         <p>这是一个基于 <code>Java</code> 、 由 <strong>Netty</strong> 负责传输 、默认使用 <strong>Protostuff</strong> 负责编解码的简单的RPC(远程过程调用)工具。</p>
-<p>服务提供者将服务发布注册到 <strong>ZooKeeper</strong> 上后，服务消费者请求 <strong>ZooKeeper</strong> 查找订阅服务后与服务提供者通信调用服务( 支持 <em>同步服务</em> 和 <em>异步服务</em> )。</p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p><strong>开发阶段</strong> 均为 <code>SNAPSHOT</code> 版本，暂时不提供依赖配置。</p>
-<p>目前只有 <code>0.X.0-SNAPSHOT</code> 版本的源码能够 <strong>较为稳定</strong> 地运行。</p>
+<p>服务提供者将服务发布注册到 注册中心 <strong>ZooKeeper</strong> 上后，服务消费者请求 注册中心 <strong>ZooKeeper</strong> 查找订阅服务后与服务提供者通信调用服务( 支持 <em>同步服务</em> 和 <em>异步服务</em> )。</p>
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>当前阶段均为 <code>SNAPSHOT</code> 版本，暂时不提供依赖配置。</p>
 <p>你可以使用命令 <code>git clone git@github.com:CongLinDev/clrpc.git</code> 克隆到本地进行使用。</p>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Service-Provider"><a href="#Service-Provider" class="headerlink" title="Service Provider"></a>Service Provider</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务提供者</span></span><br><span class="line">RpcProviderBootstrap bootstrap = <span class="keyword">new</span> RpcProviderBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布服务并开启服务</span></span><br><span class="line">bootstrap.publish(<span class="string">"service1"</span>, ServiceBean1.class)</span><br><span class="line">            .publish(<span class="string">"service2"</span>, <span class="keyword">new</span> ServiceBean2())</span><br><span class="line">            .publish(Interface3.class, Implement3.class)</span><br><span class="line">            .start();</span><br><span class="line"><span class="comment">// 关闭服务</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
-<h3 id="Service-Consumer"><a href="#Service-Consumer" class="headerlink" title="Service Consumer"></a>Service Consumer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅同步服务</span></span><br><span class="line">Interface1 i1 = bootstrap.subscribe(<span class="string">"service1"</span>);</span><br><span class="line">Interface2 i2 = bootstrap.subscribe(Interface2.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅异步服务</span></span><br><span class="line">ObjectProxy proxy = bootstrap.subscribeAsync(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅事务服务</span></span><br><span class="line">TransactionProxy transactionProxy = bootstrap.subscribeAsync();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
-<h3 id="Service-Monitor"><a href="#Service-Monitor" class="headerlink" title="Service Monitor"></a>Service Monitor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = RpcMonitorBootstrapFactory.getRpcMonitorBootstrap(MonitorType.CONSOLE);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line">    <span class="comment">// 并开启监视器</span></span><br><span class="line">    bootstrap.monitor().monitorService().start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line">    <span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭监视器</span></span><br><span class="line">    bootstrap.stop();</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="comment">// 处理中断异常</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p><img src="https://i.loli.net/2019/11/04/UCpbuqOM2zYgTh7.png" alt="architecture.png"></p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Service-Provider"><a href="#Service-Provider" class="headerlink" title="Service Provider"></a>Service Provider</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务提供者</span></span><br><span class="line">RpcProviderBootstrap bootstrap = <span class="keyword">new</span> RpcProviderBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布服务并开启服务</span></span><br><span class="line">bootstrap.publish(<span class="string">"service1"</span>, ServiceBean1.class)</span><br><span class="line">            .publish(<span class="string">"service2"</span>, <span class="keyword">new</span> ServiceBean2())</span><br><span class="line">            .publish(Interface3.class, Implement3.class)</span><br><span class="line">            .start();</span><br><span class="line"><span class="comment">// 关闭服务提供者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Consumer"><a href="#Service-Consumer" class="headerlink" title="Service Consumer"></a>Service Consumer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用通用的服务</span></span><br><span class="line">CommonProxy commonProxy = bootstrap.subscribe();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅同步服务</span></span><br><span class="line">Interface1 i1 = bootstrap.subscribe(<span class="string">"service1"</span>);</span><br><span class="line">Interface2 i2 = bootstrap.subscribe(Interface2.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅异步服务</span></span><br><span class="line">ObjectProxy objectProxy = bootstrap.subscribeAsync(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅事务服务</span></span><br><span class="line">TransactionProxy transactionProxy = bootstrap.subscribeTransaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Monitor"><a href="#Service-Monitor" class="headerlink" title="Service Monitor"></a>Service Monitor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = RpcMonitorBootstrapFactory.rpcMonitorBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line"><span class="comment">// 并开启服务监视器</span></span><br><span class="line">bootstrap.monitor().start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务监视器</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p><img src="https://i.loli.net/2020/01/21/63Ea7nbxez5Hkmd.png" alt="architecture.png"></p>
 <h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>默认配置文件名为 <code>clrpc-config</code>。</p>
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件模板</a>。</p>
-<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目 <strong>resources</strong> 目录下，默认格式为 <strong>json</strong> ，默认文件为 <code>clrpc-config.json</code>。</p>
+<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目 <strong>src/main/resources</strong> 目录下，默认格式为 <code>json</code> ，默认文件为 <code>clrpc-config.json</code>。</p>
 <h3 id="Config-Items"><a href="#Config-Items" class="headerlink" title="Config Items"></a>Config Items</h3><table>
 <thead>
 <tr>
@@ -463,6 +462,13 @@
 <td style="text-align:center">服务注册根节点</td>
 </tr>
 <tr>
+<td style="text-align:center">zookeeper.registry.<br>session-timeout</td>
+<td style="text-align:center">Integer</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">5000</td>
+<td style="text-align:center">超时时间，单位为毫秒</td>
+</tr>
+<tr>
 <td style="text-align:center">zookeeper.discovery.address</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
@@ -475,6 +481,13 @@
 <td style="text-align:center">YES</td>
 <td style="text-align:center">/clrpc</td>
 <td style="text-align:center">服务搜索根节点</td>
+</tr>
+<tr>
+<td style="text-align:center">zookeeper.discovery.<br>session-timeout</td>
+<td style="text-align:center">Integer</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">5000</td>
+<td style="text-align:center">超时时间，单位为毫秒</td>
 </tr>
 <tr>
 <td style="text-align:center">zookeeper.monitor.address</td>
@@ -491,6 +504,13 @@
 <td style="text-align:center">服务监视根节点</td>
 </tr>
 <tr>
+<td style="text-align:center">zookeeper.monitor.<br>session-timeout</td>
+<td style="text-align:center">Integer</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">5000</td>
+<td style="text-align:center">超时时间，单位为毫秒</td>
+</tr>
+<tr>
 <td style="text-align:center">zookeeper.atomicity.address</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
@@ -505,8 +525,8 @@
 <td style="text-align:center">原子性服务根节点</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.session.timeout</td>
-<td style="text-align:center">Long</td>
+<td style="text-align:center">zookeeper.atomicity.<br>session-timeout</td>
+<td style="text-align:center">Integer</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">5000</td>
 <td style="text-align:center">超时时间，单位为毫秒</td>
@@ -515,7 +535,7 @@
 <td style="text-align:center">provider.port</td>
 <td style="text-align:center">Integer</td>
 <td style="text-align:center">YES</td>
-<td style="text-align:center">5100</td>
+<td style="text-align:center">5200</td>
 <td style="text-align:center">服务提供者端口号</td>
 </tr>
 <tr>
@@ -533,11 +553,18 @@
 <td style="text-align:center">服务提供者的workerGroup线程数</td>
 </tr>
 <tr>
-<td style="text-align:center">consumer.port</td>
-<td style="text-align:center">Integer</td>
+<td style="text-align:center">provider.channel-handler<br>.before</td>
+<td style="text-align:center">List&lt;String&gt;</td>
 <td style="text-align:center">YES</td>
-<td style="text-align:center">5200</td>
-<td style="text-align:center">服务使用者端口号</td>
+<td style="text-align:center">Empty List</td>
+<td style="text-align:center">处理请求之前的自定义ChannelHandler</td>
+</tr>
+<tr>
+<td style="text-align:center">provider.channel-handler<br>.after</td>
+<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">Empty List</td>
+<td style="text-align:center">处理请求之后的自定义ChannelHandler</td>
 </tr>
 <tr>
 <td style="text-align:center">consumer.wait-time</td>
@@ -552,6 +579,20 @@
 <td style="text-align:center">YES</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">服务使用者的workerGroup线程数</td>
+</tr>
+<tr>
+<td style="text-align:center">consumer.channel-handler<br>.before</td>
+<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">Empty List</td>
+<td style="text-align:center">处理请求之前的自定义ChannelHandler</td>
+</tr>
+<tr>
+<td style="text-align:center">consumer.channel-handler<br>.after</td>
+<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center">Empty List</td>
+<td style="text-align:center">处理请求之后的自定义ChannelHandler</td>
 </tr>
 <tr>
 <td style="text-align:center">service.thread-pool.<br>core-size</td>
@@ -581,20 +622,6 @@
 <td style="text-align:center">10</td>
 <td style="text-align:center">业务线程池队列数</td>
 </tr>
-<tr>
-<td style="text-align:center">service.cache.enable</td>
-<td style="text-align:center">Boolean</td>
-<td style="text-align:center">YES</td>
-<td style="text-align:center">false</td>
-<td style="text-align:center">是否开启缓存</td>
-</tr>
-<tr>
-<td style="text-align:center">service.transaction.enable</td>
-<td style="text-align:center">Boolean</td>
-<td style="text-align:center">YES</td>
-<td style="text-align:center">false</td>
-<td style="text-align:center">是否开启事务</td>
-</tr>
 </tbody>
 </table>
 <h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>使用 <a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件</a> 进行本机模拟RPC测试。</p>
@@ -608,21 +635,42 @@
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/test/java/conglin/clrpc/test/benchmark/sync/SyncConsumerTimeTest.java" target="_blank" rel="noopener">客户端</a></p>
 <p>Conclusion:</p>
 <ol>
-<li>本机基础上，且只有一台服务器的情况下，1000次的<em>同步请求</em>大约在 <strong>650毫秒</strong> 内完成。</li>
-<li>本机基础上，且只有一台服务器的情况下，10000次的<em>同步请求</em>大约在 <strong>3300毫秒</strong> 内完成。</li>
-<li>本机基础上，且只有一台服务器的情况下，100000次的<em>同步请求</em>大约在 <strong>23000毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，1000次的<em>同步请求</em>大约在 <strong>580毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，10000次的<em>同步请求</em>大约在 <strong>2900毫秒</strong> 内完成。</li>
+<li>本机基础上，且只有一台服务器的情况下，100000次的<em>同步请求</em>大约在 <strong>21300毫秒</strong> 内完成。</li>
 </ol>
 <h3 id="Asynchronous-Test-without-cache"><a href="#Asynchronous-Test-without-cache" class="headerlink" title="Asynchronous Test (without cache)"></a>Asynchronous Test (without cache)</h3><p>在异步测试中，<strong>尽量了排除业务逻辑占用时间的干扰</strong>。</p>
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/test/java/conglin/clrpc/test/benchmark/async/AsyncProviderTimeTest.java" target="_blank" rel="noopener">服务端</a></p>
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/test/java/conglin/clrpc/test/benchmark/async/AsyncConsumerTimeTest.java" target="_blank" rel="noopener">客户端</a></p>
 <p>Conclusion:</p>
 <ol>
-<li>本机基础上，且只有一台服务器的情况下，1000次的<em>异步请求</em>大约在 <strong>760毫秒</strong> 内完成。（请求调用完成后每500毫秒检查一次）</li>
+<li>本机基础上，且只有一台服务器的情况下，1000次的<em>异步请求</em>大约在 <strong>750毫秒</strong> 内完成。（请求调用完成后每500毫秒检查一次）</li>
 <li>本机基础上，且只有一台服务器的情况下，10000次的<em>异步请求</em>大约在 <strong>1200毫秒</strong> 内完成。（请求调用完成后每500毫秒检查一次）</li>
 <li>本机基础上，且只有一台服务器的情况下，100000次的<em>异步请求</em>大约在 <strong>3100毫秒</strong> 内完成。（请求调用完成后每500毫秒检查一次）</li>
 </ol>
-<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><p><code>clrpc</code> 自身暂时不支持<strong>熔断</strong>、<strong>服务降级</strong>等功能。</p>
-<p>你可以使用诸如 <a href="https://github.com/resilience4j/resilience4j" target="_blank" rel="noopener">resilience4j</a> 、 <a href="https://github.com/Netflix/Hystrix" target="_blank" rel="noopener">Hystrix</a> 等框架或库进行 <strong>熔断</strong>、<strong>高频控制</strong>、<strong>隔离</strong>、<strong>限流</strong>。</p>
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><p><strong>clrpc</strong> 利用了 <strong>Netty</strong> 的 <code>ChannelPipeline</code> 作为处理消息的责任链，并提供消息处理扩展点。</p>
+<p>你只需要编写基于接口 <code>io.netty.channel.ChannelHandler</code> 的类且提供只有一个参数（类型如下表）的构造方法，并告知 <strong>clrpc</strong> 该类作用的时机即可完成对消息处理的扩展。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Role</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Provider</td>
+<td style="text-align:center">conglin.clrpc.service.context.ProviderContext</td>
+<td style="text-align:center">上下文</td>
+</tr>
+<tr>
+<td style="text-align:center">Consumer</td>
+<td style="text-align:center">conglin.clrpc.service.context.ConsumerContext</td>
+<td style="text-align:center">上下文</td>
+</tr>
+</tbody>
+</table>
 <h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="http://apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a></p>
 
       
@@ -924,7 +972,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
