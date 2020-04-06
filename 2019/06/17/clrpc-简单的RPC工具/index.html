@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Java,分布式,RPC,">
+  <meta name="keywords" content="Java,RPC,分布式,">
 
 
 
@@ -97,7 +97,7 @@
 
 
 <meta name="description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
-<meta name="keywords" content="Java,分布式,RPC">
+<meta name="keywords" content="Java,RPC,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="clrpc-简单的RPC工具">
 <meta property="og:url" content="http://CongLinDev.github.io/2019/06/17/clrpc-简单的RPC工具/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2020/01/21/63Ea7nbxez5Hkmd.png">
-<meta property="og:updated_time" content="2020-03-05T08:13:25.721Z">
+<meta property="og:updated_time" content="2020-04-06T02:56:43.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clrpc-简单的RPC工具">
 <meta name="twitter:description" content="这是一个基于 Java 、 由 Netty 负责传输 、默认使用 Protostuff 负责编解码的简单的RPC(远程过程调用)工具。 服务提供者将服务发布注册到 注册中心 ZooKeeper 上后，服务消费者请求 注册中心 ZooKeeper 查找订阅服务后与服务提供者通信调用服务( 支持 同步服务 和 异步服务 )。 Setup当前阶段均为 SNAPSHOT 版本，暂时不提供依赖配置。 你可以">
@@ -429,13 +429,15 @@
 <p>服务提供者将服务发布注册到 注册中心 <strong>ZooKeeper</strong> 上后，服务消费者请求 注册中心 <strong>ZooKeeper</strong> 查找订阅服务后与服务提供者通信调用服务( 支持 <em>同步服务</em> 和 <em>异步服务</em> )。</p>
 <h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>当前阶段均为 <code>SNAPSHOT</code> 版本，暂时不提供依赖配置。</p>
 <p>你可以使用命令 <code>git clone git@github.com:CongLinDev/clrpc.git</code> 克隆到本地进行使用。</p>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Service-Provider"><a href="#Service-Provider" class="headerlink" title="Service Provider"></a>Service Provider</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务提供者</span></span><br><span class="line">RpcProviderBootstrap bootstrap = <span class="keyword">new</span> RpcProviderBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布服务并开启服务</span></span><br><span class="line">bootstrap.publish(ServiceBean1.class) <span class="comment">// 配合 @conglin.clrpc.service.annotation.Service 注解</span></span><br><span class="line">        .publish(<span class="keyword">new</span> ServiceBean2())  <span class="comment">// 配合 @conglin.clrpc.service.annotation.Service 注解</span></span><br><span class="line">        .publish(<span class="string">"service3"</span>, <span class="keyword">new</span> ServiceBean3())</span><br><span class="line">        .start();</span><br><span class="line"><span class="comment">// 关闭服务提供者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
-<h3 id="Service-Consumer"><a href="#Service-Consumer" class="headerlink" title="Service Consumer"></a>Service Consumer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"><span class="comment">// 提前刷新需要订阅服务，亦可直接调用 refreshAndSubscribe 刷新并获取代理</span></span><br><span class="line">bootstrap.refresh(<span class="string">"service1"</span>).refresh(<span class="string">"service2"</span>).refresh(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用通用的服务</span></span><br><span class="line">CommonProxy commonProxy = bootstrap.subscribe();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅同步服务</span></span><br><span class="line">Interface1 i1 = bootstrap.subscribe(<span class="string">"service1"</span>, Interface1.class);</span><br><span class="line">Interface2 i2 = bootstrap.subscribe(Interface2.class); <span class="comment">// 配合 @conglin.clrpc.service.annotation.Service 注解</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅异步服务</span></span><br><span class="line">ObjectProxy objectProxy = bootstrap.subscribe(<span class="string">"service3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅事务服务</span></span><br><span class="line">TransactionProxy transactionProxy = bootstrap.subscribeTransaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
-<h3 id="Service-Monitor"><a href="#Service-Monitor" class="headerlink" title="Service Monitor"></a>Service Monitor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = <span class="keyword">new</span> ConsoleRpcMonitorBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line"><span class="comment">// 并开启服务监视器</span></span><br><span class="line">bootstrap.monitor(<span class="string">"service1"</span>).monitor(Interface2.class).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面是你的业务逻辑代码</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务监视器</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Define-Service-And-Implement-it"><a href="#Define-Service-And-Implement-it" class="headerlink" title="Define Service And Implement it"></a>Define Service And Implement it</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define a service named 'HelloService'</span></span><br><span class="line"><span class="meta">@conglin</span>.clrpc.service.annotation.Service(name = <span class="string">"HelloService"</span>)</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">hello</span><span class="params">(String arg)</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">hi</span><span class="params">(String arg)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// implements interface HelloService</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloServiceImpl</span> <span class="keyword">implements</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">(String arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello "</span> + arg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hi</span><span class="params">(String arg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hi "</span> + arg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Provider"><a href="#Service-Provider" class="headerlink" title="Service Provider"></a>Service Provider</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务提供者</span></span><br><span class="line">RpcProviderBootstrap bootstrap = <span class="keyword">new</span> RpcProviderBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布服务并开启服务</span></span><br><span class="line">bootstrap.publish(<span class="keyword">new</span> HelloServiceImpl())</span><br><span class="line">        .hookStop() <span class="comment">// 注册关闭钩子，用于优雅关闭服务提供者</span></span><br><span class="line">        .start();</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Consumer"><a href="#Service-Consumer" class="headerlink" title="Service Consumer"></a>Service Consumer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"><span class="comment">// 提前刷新需要订阅的服务</span></span><br><span class="line">bootstrap.refresh(HelloService.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用同步服务</span></span><br><span class="line">HelloService syncService = bootstrap.subscribe(HelloService.class);</span><br><span class="line">String result = syncService.hello(<span class="string">"I am consumer!"</span>); <span class="comment">// 一直阻塞，直到返回结果</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用异步服务</span></span><br><span class="line">HelloService asyncService = bootstrap.subscribeAsync(HelloService.class);</span><br><span class="line">String fakeResult = asyncService.hello(<span class="string">"I am consumer!"</span>); <span class="comment">// 直接返回默认值</span></span><br><span class="line">RpcFuture future = AsyncObjectProxy.lastFuture(); <span class="comment">// 获取该线程最新一次操作的产生的future对象</span></span><br><span class="line">future.addCallback(<span class="keyword">new</span> Callback()&#123; <span class="comment">// 使用回调处理结果</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">success</span><span class="params">(Object res)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fail</span><span class="params">(Exception e)</span> </span>&#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Consumer-With-Transaction"><a href="#Service-Consumer-With-Transaction" class="headerlink" title="Service Consumer (With Transaction)"></a>Service Consumer (With Transaction)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建服务消费者</span></span><br><span class="line">RpcConsumerBootstrap bootstrap = <span class="keyword">new</span> RpcConsumerBootstrap();</span><br><span class="line"><span class="comment">// 开启服务消费者</span></span><br><span class="line">bootstrap.start();</span><br><span class="line"><span class="comment">// 提前刷新需要订阅的服务</span></span><br><span class="line">bootstrap.refresh(HelloService.class);</span><br><span class="line"></span><br><span class="line">TransactionProxy proxy = bootstrap.subscribeTransaction();</span><br><span class="line">HelloService service = proxy.subscribeAsync(HelloService.class);</span><br><span class="line"></span><br><span class="line">proxy.begin(); <span class="comment">// 事务开启</span></span><br><span class="line"></span><br><span class="line">service.hello(<span class="string">"first request"</span>); <span class="comment">// 异步发送第一条请求</span></span><br><span class="line">RpcFuture f1 = AsyncObjectProxy.lastFuture(); <span class="comment">// 获取第一条请求产生的future对象</span></span><br><span class="line">service.hi(<span class="string">"second request"</span>); <span class="comment">// 异步发送第二条请求</span></span><br><span class="line">RpcFuture f2 = AsyncObjectProxy.lastFuture(); <span class="comment">// 获取第二条请求产生的future对象</span></span><br><span class="line"></span><br><span class="line">RpcFuture future = proxy.commit(); <span class="comment">// 事务提交 返回事务 Future</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭服务消费者</span></span><br><span class="line">bootstrap.stop();</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Monitor"><a href="#Service-Monitor" class="headerlink" title="Service Monitor"></a>Service Monitor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 由监视器工厂创建监视器</span></span><br><span class="line">RpcMonitorBootstrap bootstrap = <span class="keyword">new</span> ConsoleRpcMonitorBootstrap();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置监视器的配置以及你需要监视的服务</span></span><br><span class="line"><span class="comment">// 并开启服务监视器</span></span><br><span class="line">bootstrap.monitor(HelloService.class)</span><br><span class="line">        .hookStop() <span class="comment">// 注册关闭钩子，用于优雅关闭服务监视器</span></span><br><span class="line">        .start();</span><br></pre></td></tr></table></figure>
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p><img src="https://i.loli.net/2020/01/21/63Ea7nbxez5Hkmd.png" alt="architecture.png"></p>
 <h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>默认配置文件名为 <code>clrpc-config</code>。</p>
 <p><a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件模板</a>。</p>
-<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目 <code>src/main/resources</code> 目录下，默认格式为 <code>json</code> ，默认文件为 <code>clrpc-config.json</code>。</p>
+<h3 id="Config-File"><a href="#Config-File" class="headerlink" title="Config File"></a>Config File</h3><p>配置文件位置默认在项目 <code>resources</code> 目录下，默认格式为 <code>json</code> ，默认文件为 <code>clrpc-config.json</code>。</p>
 <h3 id="Config-Items"><a href="#Config-Items" class="headerlink" title="Config Items"></a>Config Items</h3><table>
 <thead>
 <tr>
@@ -448,42 +450,42 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">zookeeper.registry.address</td>
+<td style="text-align:center">zookeeper.provider.address</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">127.0.0.1:2181</td>
 <td style="text-align:center">服务注册地址</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.registry.root-path</td>
+<td style="text-align:center">zookeeper.provider.root-path</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">/clrpc</td>
 <td style="text-align:center">服务注册根节点</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.registry.<br>session-timeout</td>
+<td style="text-align:center">zookeeper.provider.<br>session-timeout</td>
 <td style="text-align:center">Integer</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">5000</td>
 <td style="text-align:center">超时时间，单位为毫秒</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.discovery.address</td>
+<td style="text-align:center">zookeeper.consumer.address</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">127.0.0.1:2181</td>
 <td style="text-align:center">服务搜索地址</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.discovery.root-path</td>
+<td style="text-align:center">zookeeper.consumer.root-path</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">/clrpc</td>
 <td style="text-align:center">服务搜索根节点</td>
 </tr>
 <tr>
-<td style="text-align:center">zookeeper.discovery.<br>session-timeout</td>
+<td style="text-align:center">zookeeper.consumer.<br>session-timeout</td>
 <td style="text-align:center">Integer</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">5000</td>
@@ -515,14 +517,14 @@
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">127.0.0.1:2181</td>
-<td style="text-align:center">原子性服务地址</td>
+<td style="text-align:center">原子服务地址</td>
 </tr>
 <tr>
 <td style="text-align:center">zookeeper.atomicity.root-path</td>
 <td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">/clrpc</td>
-<td style="text-align:center">原子性服务根节点</td>
+<td style="text-align:center">原子服务根节点</td>
 </tr>
 <tr>
 <td style="text-align:center">zookeeper.atomicity.<br>session-timeout</td>
@@ -567,22 +569,15 @@
 <td style="text-align:center">服务提供者的workerGroup线程数</td>
 </tr>
 <tr>
-<td style="text-align:center">provider.channel-handler<br>.before</td>
-<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">provider.channel.<br>handler-factory</td>
+<td style="text-align:center">String</td>
 <td style="text-align:center">YES</td>
-<td style="text-align:center">Empty List</td>
-<td style="text-align:center">处理请求之前的自定义ChannelHandler</td>
-</tr>
-<tr>
-<td style="text-align:center">provider.channel-handler<br>.after</td>
-<td style="text-align:center">List&lt;String&gt;</td>
-<td style="text-align:center">YES</td>
-<td style="text-align:center">Empty List</td>
-<td style="text-align:center">处理请求之后的自定义ChannelHandler</td>
+<td style="text-align:center"><code>null</code></td>
+<td style="text-align:center">实现ChannelHandlerFactory，可自定义添加处理器</td>
 </tr>
 <tr>
 <td style="text-align:center">consumer.wait-time</td>
-<td style="text-align:center">Integer</td>
+<td style="text-align:center">Long</td>
 <td style="text-align:center">YES</td>
 <td style="text-align:center">5000</td>
 <td style="text-align:center">无服务提供者时等待重试时间，单位为毫秒</td>
@@ -595,18 +590,32 @@
 <td style="text-align:center">服务使用者的workerGroup线程数</td>
 </tr>
 <tr>
-<td style="text-align:center">consumer.channel-handler<br>.before</td>
-<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">consumer.retry.<br>check-period</td>
+<td style="text-align:center">Long</td>
 <td style="text-align:center">YES</td>
-<td style="text-align:center">Empty List</td>
-<td style="text-align:center">处理请求之前的自定义ChannelHandler</td>
+<td style="text-align:center">3000</td>
+<td style="text-align:center">重试机制执行周期</td>
 </tr>
 <tr>
-<td style="text-align:center">consumer.channel-handler<br>.after</td>
-<td style="text-align:center">List&lt;String&gt;</td>
+<td style="text-align:center">consumer.retry.<br>initial-threshold</td>
+<td style="text-align:center">Long</td>
 <td style="text-align:center">YES</td>
-<td style="text-align:center">Empty List</td>
-<td style="text-align:center">处理请求之后的自定义ChannelHandler</td>
+<td style="text-align:center">3000</td>
+<td style="text-align:center">初始重试时间门槛</td>
+</tr>
+<tr>
+<td style="text-align:center">consumer.fallback.<br>max-retry</td>
+<td style="text-align:center">Integer</td>
+<td style="text-align:center">TES</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">Fallback 机制允许重试最大的次数(负数代表不开启，0代表不重试)</td>
+</tr>
+<tr>
+<td style="text-align:center">provider.channel.<br>handler-factory</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">YES</td>
+<td style="text-align:center"><code>null</code></td>
+<td style="text-align:center">实现ChannelHandlerFactory，可自定义添加处理器</td>
 </tr>
 <tr>
 <td style="text-align:center">service.thread-pool.<br>core-size</td>
@@ -643,8 +652,8 @@
 <h4 id="About-customized-channel-handler"><a href="#About-customized-channel-handler" class="headerlink" title="About customized channel handler"></a>About customized channel handler</h4><p><a href="#Extension">Click me</a>.</p>
 <h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>使用 <a href="https://github.com/CongLinDev/clrpc/blob/master/src/main/resources/clrpc-config.json" target="_blank" rel="noopener">默认配置文件</a> 进行本机模拟RPC测试。</p>
 <ul>
-<li>OS：Manjaro 19.0 Kyria</li>
-<li>Kernel: x86_64 Linux 5.4.18-1-MANJARO</li>
+<li>OS：Manjaro 19.0.2 Kyria</li>
+<li>Kernel: x86_64 Linux 5.4.24-1-MANJARO</li>
 <li>CPU：Intel Core i5-6300HQ @ 4x 2.30GHz</li>
 <li>RAM: 11873 MB</li>
 <li>JDK: openjdk-13.0.2</li>
@@ -668,7 +677,8 @@
 <li>本机基础上，且只有一台服务器的情况下，100000次的<em>异步请求</em>大约在 <strong>3000毫秒</strong> 内完成。（请求调用完成后每500毫秒检查一次）</li>
 </ol>
 <h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><p><strong>clrpc</strong> 利用了 <strong>Netty</strong> 的 <code>ChannelPipeline</code> 作为处理消息的责任链，并提供消息处理扩展点。</p>
-<p>使用者只需要提供实现接口 <code>io.netty.channel.ChannelHandler</code> 的类且存在一个参数（类型如下表）的构造方法，并在配置文件中告知 <strong>clrpc</strong> 该类作用的时机即可完成对消息处理的扩展。</p>
+<p>使用者实现接口 <code>conglin.clrpc.service.handler.factory.ChannelHandlerFactory</code>，并声明在配置文件中，即可完成对消息处理的扩展。</p>
+<p>在创建 <code>conglin.clrpc.service.handler.factory.ChannelHandlerFactory</code> 对象时，会向构造方法其中传入一个参数，其参数类型如下：</p>
 <table>
 <thead>
 <tr>
@@ -766,9 +776,9 @@
           
             <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
-            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
-          
             <a href="/tags/RPC/" rel="tag"><i class="fa fa-tag"></i> RPC</a>
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
           
         </div>
       
@@ -964,7 +974,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Provider"><span class="nav-number">2.1.</span> <span class="nav-text">Service Provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Consumer"><span class="nav-number">2.2.</span> <span class="nav-text">Service Consumer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Monitor"><span class="nav-number">2.3.</span> <span class="nav-text">Service Monitor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture"><span class="nav-number">3.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">4.</span> <span class="nav-text">Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Config-File"><span class="nav-number">4.1.</span> <span class="nav-text">Config File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Config-Items"><span class="nav-number">4.2.</span> <span class="nav-text">Config Items</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#About-customized-meta-infomation"><span class="nav-number">4.2.1.</span> <span class="nav-text">About customized meta infomation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#About-customized-channel-handler"><span class="nav-number">4.2.2.</span> <span class="nav-text">About customized channel handler</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">5.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronous-Test-without-cache"><span class="nav-number">5.1.</span> <span class="nav-text">Synchronous Test (without cache)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Test-without-cache"><span class="nav-number">5.2.</span> <span class="nav-text">Asynchronous Test (without cache)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extension"><span class="nav-number">6.</span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">7.</span> <span class="nav-text">License</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup"><span class="nav-number">1.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-Service-And-Implement-it"><span class="nav-number">2.1.</span> <span class="nav-text">Define Service And Implement it</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Provider"><span class="nav-number">2.2.</span> <span class="nav-text">Service Provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Consumer"><span class="nav-number">2.3.</span> <span class="nav-text">Service Consumer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Consumer-With-Transaction"><span class="nav-number">2.4.</span> <span class="nav-text">Service Consumer (With Transaction)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Monitor"><span class="nav-number">2.5.</span> <span class="nav-text">Service Monitor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture"><span class="nav-number">3.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">4.</span> <span class="nav-text">Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Config-File"><span class="nav-number">4.1.</span> <span class="nav-text">Config File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Config-Items"><span class="nav-number">4.2.</span> <span class="nav-text">Config Items</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#About-customized-meta-infomation"><span class="nav-number">4.2.1.</span> <span class="nav-text">About customized meta infomation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#About-customized-channel-handler"><span class="nav-number">4.2.2.</span> <span class="nav-text">About customized channel handler</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">5.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronous-Test-without-cache"><span class="nav-number">5.1.</span> <span class="nav-text">Synchronous Test (without cache)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Asynchronous-Test-without-cache"><span class="nav-number">5.2.</span> <span class="nav-text">Asynchronous Test (without cache)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extension"><span class="nav-number">6.</span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">7.</span> <span class="nav-text">License</span></a></li></ol></div>
             
 
           </div>
